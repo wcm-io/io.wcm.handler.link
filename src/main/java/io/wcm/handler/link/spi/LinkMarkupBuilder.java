@@ -17,9 +17,10 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.handler.link;
+package io.wcm.handler.link.spi;
 
 import io.wcm.handler.commons.dom.Anchor;
+import io.wcm.handler.link.LinkMetadata;
 
 /**
  * Builds XHTML markup for links
