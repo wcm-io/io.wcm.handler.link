@@ -54,6 +54,11 @@ To use this module you have to deploy also:
 | [wcm.io Media Handler](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.handler.media) | [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.handler.media/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm/io.wcm.handler.media) |
 
 
+### GitHub Repository
+
+Sources: https://github.com/wcm-io/io.wcm.handler.link
+
+
 [usage]: usage.html
 [general-concepts]: general-concepts.html
 [apidocs]: apidocs/
