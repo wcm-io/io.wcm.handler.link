@@ -27,12 +27,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class LinkResolveCounter {
 
-  private static final ThreadLocal<LinkResolveCounter> THREAD_LOCAL = new ThreadLocal<LinkResolveCounter>() {
-    @Override
-    protected LinkResolveCounter initialValue() {
-      return new LinkResolveCounter();
-    }
-  };
+  private static final ThreadLocal<LinkResolveCounter> THREAD_LOCAL = ThreadLocal.withInitial(LinkResolveCounter::new);
 
   /**
    * Maximum number of "recursion hops" allowed for link resolving.

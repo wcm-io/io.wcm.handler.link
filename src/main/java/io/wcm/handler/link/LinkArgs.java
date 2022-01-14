@@ -233,7 +233,7 @@ public final class LinkArgs implements Cloneable {
    */
   public @NotNull ValueMap getProperties() {
     if (this.properties == null) {
-      this.properties = new ValueMapDecorator(new HashMap<String, Object>());
+      this.properties = new ValueMapDecorator(new HashMap<>());
     }
     return this.properties;
   }

@@ -52,6 +52,7 @@ class LinkComponentPropertyResolverTest {
   }
 
   @Test
+  @SuppressWarnings("unused")
   void testGetLinkTargetUrlFallbackProperty_Default() throws Exception {
     Resource resource = context.create().resource("/content/r1");
 

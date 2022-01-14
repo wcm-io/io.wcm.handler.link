@@ -119,12 +119,10 @@ public final class MediaLinkType extends LinkType {
     // resolve media library reference
     Media media = mediaHandler.get(mediaRef, mediaArgs).build();
 
-    if (media != null) {
-      // set resovled media references information in link metadata
-      link.setUrl(media.getUrl());
-      link.setTargetAsset(media.getAsset());
-      link.setTargetRendition(media.getRendition());
-    }
+    // set resovled media references information in link metadata
+    link.setUrl(media.getUrl());
+    link.setTargetAsset(media.getAsset());
+    link.setTargetRendition(media.getRendition());
 
     // mark link as invalid if a reference was set that could not be resolved
     if (link.getUrl() == null && StringUtils.isNotEmpty(mediaRef)) {

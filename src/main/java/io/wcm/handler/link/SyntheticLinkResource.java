@@ -50,7 +50,7 @@ public final class SyntheticLinkResource extends SyntheticResource {
    */
   public SyntheticLinkResource(@NotNull ResourceResolver resourceResolver,
       @NotNull String path) {
-    this(resourceResolver, path, new HashMap<String, Object>());
+    this(resourceResolver, path, new HashMap<>());
   }
 
   /**

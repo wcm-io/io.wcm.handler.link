@@ -23,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.annotation.versioning.ConsumerType;
@@ -60,8 +61,8 @@ public abstract class AbstractInternalLinkInheritUrlParamLinkPostProcessor imple
   public final @NotNull Link process(@NotNull Link link) {
 
     if (link.isValid()
-        && (link.getLinkType().getId() == InternalLinkType.ID
-            || link.getLinkType().getId() == InternalCrossContextLinkType.ID)) {
+        && (StringUtils.equals(link.getLinkType().getId(), InternalLinkType.ID)
+            || StringUtils.equals(link.getLinkType().getId(), InternalCrossContextLinkType.ID))) {
       String url = link.getUrl();
       try {
         URI uri = new URI(url);

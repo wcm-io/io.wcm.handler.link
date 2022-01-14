@@ -120,6 +120,7 @@ public final class Link {
    * @return Map with all attributes of the anchor element. Returns null if anchor element is null.
    */
   @JsonIgnore
+  @SuppressWarnings("java:S1168")
   public Map<String, String> getAnchorAttributes() {
     if (getAnchor() == null) {
       return null;
@@ -240,7 +241,7 @@ public final class Link {
   /**
    * @return true if link is valid and was resolved successfully
    */
-  @SuppressWarnings("null")
+  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
   public boolean isValid() {
     return getLinkType() != null
         && getUrl() != null
