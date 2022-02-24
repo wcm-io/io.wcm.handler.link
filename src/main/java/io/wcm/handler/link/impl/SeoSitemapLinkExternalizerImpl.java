@@ -37,12 +37,19 @@ import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.PageManagerFactory;
 
 import io.wcm.handler.link.LinkHandler;
+import io.wcm.handler.url.UrlHandler;
 import io.wcm.handler.url.UrlModes;
 import io.wcm.sling.commons.adapter.AdaptTo;
 
 /**
  * Implementation of {@link SitemapLinkExternalizer} that uses the link handler for externalizing links.
  * This is used to externalize links in sitemaps, and links used for SEO tags e.g. canoncial URLs.
+ * <p>
+ * As AEM has no concept for context-aware services, this implementation is called for every link on an AEM instance. If
+ * the targeted resource is actually an AEM Page, the link is tried to externalize using the Link Handler. If this does
+ * not succeed, or does not result in an externalized link, the request is passed over to the AEM default implementation
+ * to externalize it.
+ * </p>
  */
 @Component(
     service = {
@@ -71,6 +78,9 @@ public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
     return aemSitemapLinkExternalizer.externalize(request, path);
   }
 
+  /*
+   * This is the main entrypoint for adobe.cq.wcm.com.adobe.aem.wcm.seo.impl 1.0.10 and below.
+   */
   @Override
   public @NotNull String externalize(Resource resource) {
     Page page = getPageForResource(resource);
@@ -86,6 +96,9 @@ public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
     return aemSitemapLinkExternalizer.externalize(resource);
   }
 
+  /*
+   * This is the main entrypoint since adobe.cq.wcm.com.adobe.aem.wcm.seo.impl 1.0.12.
+   */
   @Override
   public @NotNull String externalize(ResourceResolver resourceResolver, String path) {
     // html extension is added implicitly by AEM, remove it to get the targeted page instance
@@ -117,11 +130,19 @@ public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
   }
 
   private @Nullable String externalizePageLink(@Nullable Page page) {
-    if (page == null) {
-      return null;
+    if (page != null) {
+      LinkHandler linkHandler = AdaptTo.notNull(page.getContentResource(), LinkHandler.class);
+      String url = linkHandler.get(page).urlMode(UrlModes.FULL_URL).buildUrl();
+      if (url != null) {
+        // double-check that the URL was really externalized
+        // this may not the case if e.g. the site config is missing - ignore the URL then
+        UrlHandler urlHandler = AdaptTo.notNull(page.getContentResource(), UrlHandler.class);
+        if (urlHandler.isExternalized(url)) {
+          return url;
+        }
+      }
     }
-    LinkHandler linkHandler = AdaptTo.notNull(page.getContentResource(), LinkHandler.class);
-    return linkHandler.get(page).urlMode(UrlModes.FULL_URL).buildUrl();
+    return null;
   }
 
 }
