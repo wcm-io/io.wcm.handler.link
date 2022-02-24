@@ -69,7 +69,7 @@
     <dependency>
       <groupId>io.wcm</groupId>
       <artifactId>io.wcm.handler.url</artifactId>
-      <version>1.5.0</version>
+      <version>1.6.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -103,6 +103,21 @@
       <version>1.8.0</version>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.adobe.cq.wcm</groupId>
+      <artifactId>com.adobe.aem.wcm.seo</artifactId>
+      <version>1.0.6</version>
+      <scope>compile</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.sitemap</artifactId>
+      <version>1.0.2</version>
+      <scope>compile</scope>
+      <optional>true</optional>
+     </dependency>
 
     <dependency>
       <groupId>org.apache.sling</groupId>
@@ -198,8 +213,9 @@
             Sling-Initial-Content: \
               SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/handler/link
 
-            <!-- For build compatibility with Java 11 -->
             Import-Package: \
+              com.adobe.aem.wcm.seo.sitemap.externalizer;resolution:=optional,\
+              <!-- For build compatibility with Java 11 -->\
               javax.annotation;version="[0.0,2)",\
               *
           </bnd>
