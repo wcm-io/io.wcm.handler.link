@@ -57,18 +57,23 @@ import io.wcm.sling.commons.adapter.AdaptTo;
         org.apache.sling.sitemap.spi.common.SitemapLinkExternalizer.class
     },
     property = {
-        Constants.SERVICE_RANKING + ":Integer=500" // higher precedence than default AEM implementation (100)
+        Constants.SERVICE_RANKING + ":Integer=500", // higher precedence than default AEM implementation (100)
+        SeoSitemapLinkExternalizerImpl.TARGET_FILTER_PROPERTY + "=" + SeoSitemapLinkExternalizerImpl.TARGET_FILTER_VALUE
     })
 public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
 
   private static final String HTML_EXTENSION = ".html";
+
+  // custom service property to get AEM SitemapLinkExternalizer as fallback implementation of this service
+  static final String TARGET_FILTER_PROPERTY = "seoSitemapLinkExternalizer";
+  static final String TARGET_FILTER_VALUE = "wcmio";
 
   private final Logger log = LoggerFactory.getLogger(SeoSitemapLinkExternalizerImpl.class);
 
   @Reference
   private PageManagerFactory pageManagerFactory;
 
-  @Reference(target = "(!(" + Constants.OBJECTCLASS + "=io.wcm.handler.link.impl.SeoSitemapLinkExternalizerImpl))")
+  @Reference(target = "(!(" + TARGET_FILTER_PROPERTY + "=" + TARGET_FILTER_VALUE + "))")
   private SitemapLinkExternalizer aemSitemapLinkExternalizer;
 
   @Override

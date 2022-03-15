@@ -31,7 +31,7 @@
 
   <groupId>io.wcm</groupId>
   <artifactId>io.wcm.handler.link</artifactId>
-  <version>1.9.0</version>
+  <version>1.9.2</version>
   <packaging>jar</packaging>
 
   <name>Link Handler</name>
@@ -49,7 +49,7 @@
     <site.url.module.prefix>handler/link</site.url.module.prefix>
 
     <!-- Enable reproducible builds -->
-    <project.build.outputTimestamp>2022-03-15T11:04:49Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2022-03-15T17:20:00Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
@@ -214,7 +214,9 @@
               SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/handler/link
 
             Import-Package: \
+              <!-- Make SEO Sitemap-related dependencies optional, only available in latest AEM versions -->\
               com.adobe.aem.wcm.seo.sitemap.externalizer;resolution:=optional,\
+              org.apache.sling.sitemap.spi.common;resolution:=optional,\
               <!-- For build compatibility with Java 11 -->\
               javax.annotation;version="[0.0,2)",\
               *
