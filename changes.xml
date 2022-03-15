@@ -27,6 +27,9 @@
       <action type="fix" dev="sseifert">
         Make dependency to package org.apache.sling.sitemap.spi.common optional, only available in latest AEM versions.
       </action>
+      <action type="fix" dev="sseifert">
+        SeoSitemapLinkExternalizerImpl: Eliminate potential cyclic dependency.
+      </action>
     </release>
 
     <release version="1.9.0" date="2022-03-15">
