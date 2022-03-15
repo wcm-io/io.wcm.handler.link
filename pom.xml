@@ -214,7 +214,9 @@
               SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/handler/link
 
             Import-Package: \
+              <!-- Make SEO Sitemap-related dependencies optional, only available in latest AEM versions -->\
               com.adobe.aem.wcm.seo.sitemap.externalizer;resolution:=optional,\
+              org.apache.sling.sitemap.spi.common;resolution:=optional,\
               <!-- For build compatibility with Java 11 -->\
               javax.annotation;version="[0.0,2)",\
               *
