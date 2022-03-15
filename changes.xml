@@ -23,15 +23,15 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="1.9.0" date="not released">
+    <release version="1.9.0" date="2022-03-15">
       <action type="add" dev="sseifert">
         Add implementation of com.adobe.aem.wcm.seo.sitemap.externalizer.SitemapLinkExternalizer that hooks into wcm.io Link Handling.
       </action>
       <action type="update" dev="sseifert">
-        Switch to AEM 6.5 as minimum version.
+        Redirect template: Switch to coralui3 client library.
       </action>
       <action type="update" dev="sseifert">
-        Redirect template: Switch to coralui3 client library.
+        Switch to AEM 6.5 as minimum version.
       </action>
     </release>
 
