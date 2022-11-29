@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
+import io.wcm.handler.url.UrlHandler;
 import io.wcm.handler.url.UrlMode;
 import io.wcm.wcm.commons.util.ToStringStyle;
 
@@ -50,9 +51,11 @@ public final class LinkArgs implements Cloneable {
   private String queryString;
   private String fragment;
   private String windowTarget;
+  private boolean disableSuffixSelector;
   private ValueMap properties;
   private String[] linkTargetUrlFallbackProperty;
   private String[] linkTargetWindowTargetFallbackProperty;
+
 
   /**
    * @return URL mode for externalizing the URL
@@ -199,6 +202,30 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Disable the automatic addition of an additional selector {@link UrlHandler#SELECTOR_SUFFIX}
+   * in case a suffix is present for building the URL. Although recommended as best practice, this can
+   * be omitted if you are sure your URLs are always either include a suffix or never do, so there is no risk
+   * for file name clashes in dispatcher cache.
+   * @return If set to true, no additional suffix selector is added
+   */
+  public boolean isDisableSuffixSelector() {
+    return this.disableSuffixSelector;
+  }
+
+  /**
+   * Disable the automatic addition of an additional selector {@link UrlHandler#SELECTOR_SUFFIX}
+   * in case a suffix is present for building the URL. Although recommended as best practice, this can
+   * be omitted if you are sure your URLs are always either include a suffix or never do, so there is no risk
+   * for file name clashes in dispatcher cache.
+   * @param value If set to true, no additional suffix selector is added
+   * @return this
+   */
+  public @NotNull LinkArgs disableSuffixSelector(boolean value) {
+    this.disableSuffixSelector = value;
+    return this;
+  }
+
+  /**
    * Custom properties that my be used by application-specific markup builders or processors.
    * @param map Property map. Is merged with properties already set.
    * @return this
@@ -314,6 +341,7 @@ public final class LinkArgs implements Cloneable {
     clone.queryString = this.queryString;
     clone.fragment = this.fragment;
     clone.windowTarget = this.windowTarget;
+    clone.disableSuffixSelector = this.disableSuffixSelector;
     clone.linkTargetUrlFallbackProperty = ArrayUtils.clone(this.linkTargetUrlFallbackProperty);
     clone.linkTargetWindowTargetFallbackProperty = ArrayUtils.clone(this.linkTargetWindowTargetFallbackProperty);
     if (this.properties != null) {

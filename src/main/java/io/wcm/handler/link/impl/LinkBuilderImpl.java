@@ -206,6 +206,12 @@ final class LinkBuilderImpl implements LinkBuilder {
   }
 
   @Override
+  public @NotNull LinkBuilder disableSuffixSelector(boolean disableSuffixSelector) {
+    this.linkArgs.disableSuffixSelector(disableSuffixSelector);
+    return this;
+  }
+
+  @Override
   @SuppressFBWarnings("NP_METHOD_PARAMETER_TIGHTENS_ANNOTATION")
   public @NotNull LinkBuilder linkTargetUrlFallbackProperty(@NotNull String @Nullable... propertyNames) {
     this.linkArgs.linkTargetUrlFallbackProperty(propertyNames);

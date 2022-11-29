@@ -197,6 +197,7 @@ public final class InternalLinkResolver {
           .queryString(queryString)
           .fragment(fragment)
           .urlMode(linkArgs.getUrlMode())
+          .disableSuffixSelector(linkArgs.isDisableSuffixSelector())
           .buildExternalLinkUrl(targetPage);
     }
 
