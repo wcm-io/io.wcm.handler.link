@@ -47,6 +47,7 @@ class LinkArgsTest {
         .queryString("query1")
         .fragment("fragment1")
         .windowTarget("_parent")
+        .disableSuffixSelector(true)
         .linkTargetUrlFallbackProperty("property1");
 
     assertEquals(UrlModes.FULL_URL, linkArgs.getUrlMode());
@@ -58,6 +59,7 @@ class LinkArgsTest {
     assertEquals("query1", linkArgs.getQueryString());
     assertEquals("fragment1", linkArgs.getFragment());
     assertEquals("_parent", linkArgs.getWindowTarget());
+    assertTrue(linkArgs.isDisableSuffixSelector());
     assertArrayEquals(new String[] { "property1" }, linkArgs.getLinkTargetUrlFallbackProperty());
   }
 
@@ -92,6 +94,7 @@ class LinkArgsTest {
         .windowTarget("_blank")
         .linkTargetUrlFallbackProperty("property1")
         .linkTargetWindowTargetFallbackProperty("property2")
+        .disableSuffixSelector(true)
         .properties(props);
 
     LinkArgs clone = linkArgs.clone();
@@ -105,6 +108,7 @@ class LinkArgsTest {
     assertEquals(linkArgs.getQueryString(), clone.getQueryString());
     assertEquals(linkArgs.getFragment(), clone.getFragment());
     assertEquals(linkArgs.getWindowTarget(), clone.getWindowTarget());
+    assertEquals(linkArgs.isDisableSuffixSelector(), clone.isDisableSuffixSelector());
     assertArrayEquals(linkArgs.getLinkTargetUrlFallbackProperty(), clone.getLinkTargetUrlFallbackProperty());
     assertArrayEquals(linkArgs.getLinkTargetWindowTargetFallbackProperty(), clone.getLinkTargetWindowTargetFallbackProperty());
     assertEquals(ImmutableValueMap.copyOf(linkArgs.getProperties()), ImmutableValueMap.copyOf(clone.getProperties()));

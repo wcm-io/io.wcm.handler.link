@@ -420,6 +420,9 @@ class InternalLinkTypeTest {
 
     assertEquals("/content/unittest/de_test/brand/de/section/content.sel1.suffix.htx/suf1/suf2.htx",
         linkHandler.get(targetPage).selectors("sel1").extension(FileExtension.HTML_UNCACHED).suffix("suf1/suf2").urlMode(UrlModes.NO_HOSTNAME).buildUrl());
+
+    assertEquals("http://www.dummysite.org/content/unittest/de_test/brand/de/section/content.sel1.html/suf1/suf2.html",
+        linkHandler.get(targetPage).selectors("sel1").suffix("suf1/suf2").disableSuffixSelector(true).buildUrl());
   }
 
   @Test

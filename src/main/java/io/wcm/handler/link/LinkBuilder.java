@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 import io.wcm.handler.commons.dom.Anchor;
+import io.wcm.handler.url.UrlHandler;
 import io.wcm.handler.url.UrlMode;
 
 /**
@@ -87,6 +88,17 @@ public interface LinkBuilder {
    */
   @NotNull
   LinkBuilder windowTarget(@Nullable String windowTarget);
+
+  /**
+   * Disable the automatic addition of an additional selector {@link UrlHandler#SELECTOR_SUFFIX}
+   * in case a suffix is present for building the URL. Although recommended as best practice, this can
+   * be omitted if you are sure your URLs are always either include a suffix or never do, so there is no risk
+   * for file name clashes in dispatcher cache.
+   * @param disableSuffixSelector If set to true, no additional suffix selector is added
+   * @return URL builder
+   */
+  @NotNull
+  LinkBuilder disableSuffixSelector(boolean disableSuffixSelector);
 
   /**
    * Set URL mode for externalizing the URL

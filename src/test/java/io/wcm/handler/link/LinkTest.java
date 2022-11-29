@@ -109,7 +109,7 @@ class LinkTest {
 
   @Test
   void testToString() {
-    assertEquals("Link[linkType=linkType,linkRequest=LinkRequest[linkArgs=LinkArgs[dummyLink=false]],linkReferenceInvalid=false]",
+    assertEquals("Link[linkType=linkType,linkRequest=LinkRequest[linkArgs=LinkArgs[dummyLink=false,disableSuffixSelector=false]],linkReferenceInvalid=false]",
         underTest.toString());
   }
 
