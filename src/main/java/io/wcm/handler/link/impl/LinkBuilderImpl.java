@@ -219,6 +219,12 @@ final class LinkBuilderImpl implements LinkBuilder {
   }
 
   @Override
+  public @NotNull LinkBuilder property(@NotNull String key, @Nullable Object value) {
+    this.linkArgs.property(key, value);
+    return this;
+  }
+
+  @Override
   public @NotNull Link build() {
     LinkRequest request = new LinkRequest(this.resource, this.page, this.reference, this.linkArgs);
     return linkHandler.processRequest(request);

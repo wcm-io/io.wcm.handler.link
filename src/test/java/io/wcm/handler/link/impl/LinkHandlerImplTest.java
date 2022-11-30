@@ -183,6 +183,14 @@ class LinkHandlerImplTest {
     assertEquals("http://xyz/path1/pre1", link.getAnchor().getHRef());
   }
 
+  @Test
+  void testLinkHandlerCustomProperty() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    Link link = linkHandler.get("http://dummy").property("prop1", "value1").build();
+    assertEquals("value1", link.getLinkRequest().getLinkArgs().getProperties().get("prop1"));
+  }
+
 
   public static class TestLinkHandlerConfig extends LinkHandlerConfig {
 
