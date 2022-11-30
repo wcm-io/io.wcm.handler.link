@@ -28,6 +28,9 @@
         Add LinkBuilder.disableSuffixSelector to allow to diable the automatic addition of a "suffix" selector in case a suffix is present.
         Although recommended as best practice, this can be omitted if you are sure your URLs are always either include a suffix or never do, so there is no risk for file name clashes in dispatcher cache.
       </action>
+      <action type="add" dev="sseifert">
+        Add LinkBuilder.property method to be able to directly specify custom properties.
+      </action>
       <action type="update" dev="sseifert">
         Switch to AEM 6.5.7 as minimum version.
       </action>

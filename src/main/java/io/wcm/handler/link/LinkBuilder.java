@@ -134,6 +134,15 @@ public interface LinkBuilder {
   LinkBuilder linkTargetUrlFallbackProperty(@NotNull String @Nullable... propertyNames);
 
   /**
+   * Adds a custom property that my be used by application-specific processors.
+   * @param key Property key
+   * @param value Property value
+   * @return this
+   */
+  @NotNull
+  LinkBuilder property(@NotNull String key, @Nullable Object value);
+
+  /**
    * Resolve link and return metadata object that contains the results.
    * @return Link metadata object. Never null, if the resolving failed the isValid() method returns false.
    */
