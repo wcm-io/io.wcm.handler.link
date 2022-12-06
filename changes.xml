@@ -32,6 +32,9 @@
         Add LinkBuilder.property method to be able to directly specify custom properties.
       </action>
       <action type="update" dev="sseifert">
+        LinkType: Mark getEditComponentResourceType and hasRichTextPlugin to be ignored in JSON representation.
+      </action>
+      <action type="update" dev="sseifert">
         Switch to AEM 6.5.7 as minimum version.
       </action>
     </release>

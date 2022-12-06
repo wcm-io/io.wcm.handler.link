@@ -20,5 +20,5 @@
 /**
  * SPI for configuring and tailoring link handler processing.
  */
-@org.osgi.annotation.versioning.Version("1.2")
+@org.osgi.annotation.versioning.Version("1.2.1")
 package io.wcm.handler.link.spi;
