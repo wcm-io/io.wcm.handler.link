@@ -67,6 +67,7 @@ class LinkTest {
   }
 
   @Test
+  @SuppressWarnings("deprecation")
   void testAnchor() {
     assertNull(underTest.getAnchorAttributes());
     assertNull(underTest.getMarkup());

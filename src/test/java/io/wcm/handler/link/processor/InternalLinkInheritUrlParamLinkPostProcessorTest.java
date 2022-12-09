@@ -60,7 +60,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new InternalLinkType(), null);
     link.setUrl("/sample.html");
-    link.setAnchor(new Anchor().setHRef("/sample.html"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
@@ -84,7 +84,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new InternalLinkType(), null);
     link.setUrl("/sample.html#fragment1");
-    link.setAnchor(new Anchor().setHRef("/sample.html#fragment1"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
@@ -108,7 +108,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new InternalLinkType(), null);
     link.setUrl("https://host1/sample.html#fragment1");
-    link.setAnchor(new Anchor().setHRef("/sample.html#fragment1"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
@@ -132,7 +132,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new InternalLinkType(), null);
     link.setUrl("https://host1:8080/sample.html#fragment1");
-    link.setAnchor(new Anchor().setHRef("/sample.html#fragment1"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
@@ -156,7 +156,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new InternalLinkType(), null);
     link.setUrl("/sample.html");
-    link.setAnchor(new Anchor().setHRef("/sample.html"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
@@ -180,7 +180,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new ExternalLinkType(), null);
     link.setUrl("/sample.html");
-    link.setAnchor(new Anchor().setHRef("/sample.html"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
@@ -199,7 +199,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
 
     Link link = new Link(new InternalCrossContextLinkType(), null);
     link.setUrl("/sample.html");
-    link.setAnchor(new Anchor().setHRef("/sample.html"));
+    link.setAnchorBuilder(l -> new Anchor().setHRef(l.getUrl()));
 
     // test without url parameters
     postProcessor.process(link);
