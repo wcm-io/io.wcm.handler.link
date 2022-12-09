@@ -108,7 +108,7 @@ class LinkHandlerImplTest {
     assertEquals(true, link.isValid());
     assertEquals("http://xyz/path1/pre1/post1", link.getUrl());
     assertNotNull(link.getAnchor());
-    assertEquals("http://xyz/path1/pre1", link.getAnchor().getHRef());
+    assertEquals("http://xyz/path1/pre1/post1", link.getAnchor().getHRef());
   }
 
   @Test
@@ -138,7 +138,7 @@ class LinkHandlerImplTest {
     assertEquals(true, link.isValid());
     assertEquals("http://xyz/fallbackpath1/post1", link.getUrl());
     assertNotNull(link.getAnchor());
-    assertEquals(ImmutableMap.of("href", "http://xyz/fallbackpath1", "target", "_blank"), link.getAnchorAttributes());
+    assertEquals(ImmutableMap.of("href", "http://xyz/fallbackpath1/post1", "target", "_blank"), link.getAnchorAttributes());
   }
 
   @Test
@@ -158,7 +158,7 @@ class LinkHandlerImplTest {
     assertEquals(true, link.isValid());
     assertEquals("http://xyz/fallbackpath1/post1", link.getUrl());
     assertNotNull(link.getAnchor());
-    assertEquals(ImmutableMap.of("href", "http://xyz/fallbackpath1"), link.getAnchorAttributes());
+    assertEquals(ImmutableMap.of("href", "http://xyz/fallbackpath1/post1"), link.getAnchorAttributes());
   }
 
   @Test
@@ -180,7 +180,7 @@ class LinkHandlerImplTest {
     assertEquals(true, link.isValid());
     assertEquals("http://xyz/path1/pre1/post1", link.getUrl());
     assertNotNull(link.getAnchor());
-    assertEquals("http://xyz/path1/pre1", link.getAnchor().getHRef());
+    assertEquals("http://xyz/path1/pre1/post1", link.getAnchor().getHRef());
   }
 
   @Test

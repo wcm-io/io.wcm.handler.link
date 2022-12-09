@@ -144,13 +144,15 @@ public final class LinkHandlerImpl implements LinkHandler {
     // generate markup (if markup builder is available) - first accepting wins
     List<Class<? extends LinkMarkupBuilder>> linkMarkupBuilders = linkHandlerConfig.getMarkupBuilders();
     if (linkMarkupBuilders != null) {
-      for (Class<? extends LinkMarkupBuilder> linkMarkupBuilderClass : linkMarkupBuilders) {
-        LinkMarkupBuilder linkMarkupBuilder = AdaptTo.notNull(adaptable, linkMarkupBuilderClass);
-        if (linkMarkupBuilder.accepts(link)) {
-          link.setAnchor(linkMarkupBuilder.build(link));
-          break;
+      link.setAnchorBuilder(l -> {
+        for (Class<? extends LinkMarkupBuilder> linkMarkupBuilderClass : linkMarkupBuilders) {
+          LinkMarkupBuilder linkMarkupBuilder = AdaptTo.notNull(adaptable, linkMarkupBuilderClass);
+          if (linkMarkupBuilder.accepts(l)) {
+            return linkMarkupBuilder.build(l);
+          }
         }
-      }
+        return null;
+      });
     }
 
     // postprocess link after resolving
