@@ -35,6 +35,9 @@
         LinkType: Mark getEditComponentResourceType and hasRichTextPlugin to be ignored in JSON representation.
       </action>
       <action type="update" dev="sseifert">
+        LinkHandler: Build anchor markup on-demand based on the current status of link when the anchor is requested. This allows to react on results of link post processors, and avoids building the anchor if not required.
+      </action>
+      <action type="update" dev="sseifert">
         Switch to AEM 6.5.7 as minimum version.
       </action>
     </release>

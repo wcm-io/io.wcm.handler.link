@@ -79,6 +79,19 @@ class LinkTest {
   }
 
   @Test
+  void testAnchorBuilder() {
+    assertNull(underTest.getAnchorAttributes());
+    assertNull(underTest.getMarkup());
+
+    underTest.setAnchorBuilder(l -> new Anchor(l.getUrl()).setTitle("title1"));
+    underTest.setUrl("http://dummy1");
+
+    assertEquals("title1", underTest.getAnchor().getTitle());
+    assertEquals("http://dummy1", underTest.getAnchorAttributes().get("href"));
+    assertEquals("<a href=\"http://dummy1\" title=\"title1\">", underTest.getMarkup());
+  }
+
+  @Test
   void testUrlAndValid() {
     assertFalse(underTest.isValid());
     underTest.setUrl("http://dummy");

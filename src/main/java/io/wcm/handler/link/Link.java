@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -54,6 +55,7 @@ public final class Link {
   private @NotNull LinkRequest linkRequest;
   private boolean linkReferenceInvalid;
   private Anchor anchor;
+  private Function<Link, Anchor> anchorBuilder;
   private String url;
   private Page targetPage;
   private Asset targetAsset;
@@ -113,6 +115,10 @@ public final class Link {
    */
   @JsonIgnore
   public Anchor getAnchor() {
+    if (this.anchor == null && this.anchorBuilder != null) {
+      this.anchor = this.anchorBuilder.apply(this);
+      this.anchorBuilder = null;
+    }
     return this.anchor;
   }
 
@@ -122,11 +128,12 @@ public final class Link {
   @JsonIgnore
   @SuppressWarnings("java:S1168")
   public Map<String, String> getAnchorAttributes() {
-    if (getAnchor() == null) {
+    Anchor a = getAnchor();
+    if (a == null) {
       return null;
     }
     Map<String, String> attributes = new HashMap<>();
-    for (Attribute attribute : getAnchor().getAttributes()) {
+    for (Attribute attribute : a.getAttributes()) {
       attributes.put(attribute.getName(), attribute.getValue());
     }
     return attributes;
@@ -140,12 +147,20 @@ public final class Link {
   }
 
   /**
+   * @param anchorBuilder Function that builds an anchor representation on demand
+   */
+  public void setAnchorBuilder(Function<Link, Anchor> anchorBuilder) {
+    this.anchorBuilder = anchorBuilder;
+  }
+
+  /**
    * @return Link markup (only the opening anchor tag) or null if resolving was not successful.
    */
   @JsonIgnore
   public String getMarkup() {
-    if (this.anchor != null) {
-      return StringUtils.removeEnd(this.anchor.toString(), "</a>");
+    Anchor a = getAnchor();
+    if (a != null) {
+      return StringUtils.removeEnd(a.toString(), "</a>");
     }
     else {
       return null;
