@@ -111,6 +111,7 @@ public abstract class LinkType {
    * Granite UI component resource type to be used for editing this link type's properties in edit dialog.
    * @return Granite UI component resource type or null, if none is available
    */
+  @JsonIgnore
   public @Nullable String getEditComponentResourceType() {
     return null;
   }
@@ -120,6 +121,7 @@ public abstract class LinkType {
    * this link type in the rich text editor.
    * @return true if a RTE plugin is available.
    */
+  @JsonIgnore
   public boolean hasRichTextPlugin() {
     return false;
   }

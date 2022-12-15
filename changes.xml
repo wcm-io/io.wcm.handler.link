@@ -23,6 +23,25 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="1.10.0" date="2022-12-15">
+      <action type="add" dev="sseifert">
+        Add LinkBuilder.disableSuffixSelector to allow to diable the automatic addition of a "suffix" selector in case a suffix is present.
+        Although recommended as best practice, this can be omitted if you are sure your URLs are always either include a suffix or never do, so there is no risk for file name clashes in dispatcher cache.
+      </action>
+      <action type="add" dev="sseifert">
+        Add LinkBuilder.property method to be able to directly specify custom properties.
+      </action>
+      <action type="update" dev="sseifert">
+        LinkType: Mark getEditComponentResourceType and hasRichTextPlugin to be ignored in JSON representation.
+      </action>
+      <action type="update" dev="sseifert">
+        LinkHandler: Build anchor markup on-demand based on the current status of link when the anchor is requested. This allows to react on results of link post processors, and avoids building the anchor if not required.
+      </action>
+      <action type="update" dev="sseifert">
+        Switch to AEM 6.5.7 as minimum version.
+      </action>
+    </release>
+
     <release version="1.9.2" date="2022-03-15">
       <action type="fix" dev="sseifert">
         Make dependency to package org.apache.sling.sitemap.spi.common optional, only available in latest AEM versions.

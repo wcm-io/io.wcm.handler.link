@@ -75,9 +75,6 @@ public abstract class AbstractInternalLinkInheritUrlParamLinkPostProcessor imple
             .fragment(uri.getFragment())
             .build();
         link.setUrl(url);
-        if (link.getAnchor() != null) {
-          link.getAnchor().setAttribute("href", url);
-        }
       }
       catch (URISyntaxException ex) {
         log.warn("Skipping post-processing or URL: {}", url, ex);
