@@ -21,14 +21,14 @@ package io.wcm.handler.link.processor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Set;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.adapter.Adaptable;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import com.google.common.collect.ImmutableSet;
 
 import io.wcm.handler.commons.dom.Anchor;
 import io.wcm.handler.link.Link;
@@ -225,7 +225,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
     //CHECKSTYLE:OFF
     public AbcInternalLinkInheritUrlParamLinkPostProcessor() {
       //CHECKSTYLE_ON
-      super(ImmutableSet.of("abc"));
+      super(Set.of("abc"));
     }
   }
 

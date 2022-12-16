@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -37,9 +38,6 @@ import org.apache.sling.models.annotations.Model;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.framework.Constants;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkArgs;
@@ -138,7 +136,7 @@ class LinkHandlerImplTest {
     assertEquals(true, link.isValid());
     assertEquals("http://xyz/fallbackpath1/post1", link.getUrl());
     assertNotNull(link.getAnchor());
-    assertEquals(ImmutableMap.of("href", "http://xyz/fallbackpath1/post1", "target", "_blank"), link.getAnchorAttributes());
+    assertEquals(Map.of("href", "http://xyz/fallbackpath1/post1", "target", "_blank"), link.getAnchorAttributes());
   }
 
   @Test
@@ -158,7 +156,7 @@ class LinkHandlerImplTest {
     assertEquals(true, link.isValid());
     assertEquals("http://xyz/fallbackpath1/post1", link.getUrl());
     assertNotNull(link.getAnchor());
-    assertEquals(ImmutableMap.of("href", "http://xyz/fallbackpath1/post1"), link.getAnchorAttributes());
+    assertEquals(Map.of("href", "http://xyz/fallbackpath1/post1"), link.getAnchorAttributes());
   }
 
   @Test
@@ -196,17 +194,17 @@ class LinkHandlerImplTest {
 
     @Override
     public List<Class<? extends LinkType>> getLinkTypes() {
-      return ImmutableList.<Class<? extends LinkType>>of(TestLinkType.class);
+      return List.of(TestLinkType.class);
     }
 
     @Override
     public List<Class<? extends LinkProcessor>> getPreProcessors() {
-      return ImmutableList.<Class<? extends LinkProcessor>>of(TestLinkPreProcessor.class);
+      return List.of(TestLinkPreProcessor.class);
     }
 
     @Override
     public List<Class<? extends LinkProcessor>> getPostProcessors() {
-      return ImmutableList.<Class<? extends LinkProcessor>>of(TestLinkPostProcessor.class);
+      return List.of(TestLinkPostProcessor.class);
     }
 
   };

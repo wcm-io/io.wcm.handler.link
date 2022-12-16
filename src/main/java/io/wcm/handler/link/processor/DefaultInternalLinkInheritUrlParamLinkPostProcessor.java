@@ -26,8 +26,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.osgi.annotation.versioning.ProviderType;
 
-import com.google.common.collect.ImmutableSet;
-
 /**
  * Linkhandler postprocessor to inherit URL parametres to internal links.
  * The list of URL parameters contains "debugClientLibs" and "wcmmode".
@@ -41,7 +39,7 @@ public final class DefaultInternalLinkInheritUrlParamLinkPostProcessor extends A
   /**
    * Default list of inheritable URL parameter names
    */
-  public static final Set<String> DEFAULT_INHERIT_URL_PARAMETER_NAMES = ImmutableSet.of(
+  public static final Set<String> DEFAULT_INHERIT_URL_PARAMETER_NAMES = Set.of(
       "debugClientLibs",
       "wcmmode"
       );

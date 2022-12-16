@@ -28,8 +28,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
-
 import io.wcm.handler.url.UrlModes;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 
@@ -65,7 +63,7 @@ class LinkArgsTest {
 
   @Test
   void testGetProperties() {
-    Map<String, Object> props = ImmutableMap.<String, Object>of("prop1", "value1");
+    Map<String, Object> props = Map.of("prop1", "value1");
 
     LinkArgs linkArgs = new LinkArgs()
         .property("prop3", "value3")
@@ -80,7 +78,7 @@ class LinkArgsTest {
 
   @Test
   void testClone() {
-    Map<String, Object> props = ImmutableValueMap.of("prop1", "value1", "prop2", "value2");
+    Map<String, Object> props = Map.of("prop1", "value1", "prop2", "value2");
 
     LinkArgs linkArgs = new LinkArgs()
         .urlMode(UrlModes.FULL_URL)
@@ -111,7 +109,7 @@ class LinkArgsTest {
     assertEquals(linkArgs.isDisableSuffixSelector(), clone.isDisableSuffixSelector());
     assertArrayEquals(linkArgs.getLinkTargetUrlFallbackProperty(), clone.getLinkTargetUrlFallbackProperty());
     assertArrayEquals(linkArgs.getLinkTargetWindowTargetFallbackProperty(), clone.getLinkTargetWindowTargetFallbackProperty());
-    assertEquals(ImmutableValueMap.copyOf(linkArgs.getProperties()), ImmutableValueMap.copyOf(clone.getProperties()));
+    assertEquals(Map.copyOf(linkArgs.getProperties()), ImmutableValueMap.copyOf(clone.getProperties()));
   }
 
 
