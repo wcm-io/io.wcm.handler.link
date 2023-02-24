@@ -23,18 +23,30 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="1.10.2" date="2023-02-24">
+      <action type="update" dev="sseifert">
+        Switch to Java 11 as minimum version.
+      </action>
+      <action type="update" dev="sseifert">
+        Eliminate dependency to Guava.
+      </action>
+      <action type="fix" dev="sseifert">
+        Sling-Initial-Content: Register non-standard JCR namespaces for conversion with cp2fm into enhanced DocView files.
+      </action>
+    </release>
+
     <release version="1.10.0" date="2022-12-15">
-      <action type="add" dev="sseifert">
+      <action type="add" dev="sseifert" issue="2">
         Add LinkBuilder.disableSuffixSelector to allow to diable the automatic addition of a "suffix" selector in case a suffix is present.
         Although recommended as best practice, this can be omitted if you are sure your URLs are always either include a suffix or never do, so there is no risk for file name clashes in dispatcher cache.
       </action>
-      <action type="add" dev="sseifert">
+      <action type="add" dev="sseifert" issue="3">
         Add LinkBuilder.property method to be able to directly specify custom properties.
       </action>
       <action type="update" dev="sseifert">
         LinkType: Mark getEditComponentResourceType and hasRichTextPlugin to be ignored in JSON representation.
       </action>
-      <action type="update" dev="sseifert">
+      <action type="update" dev="sseifert" issue="4">
         LinkHandler: Build anchor markup on-demand based on the current status of link when the anchor is requested. This allows to react on results of link post processors, and avoids building the anchor if not required.
       </action>
       <action type="update" dev="sseifert">
@@ -52,7 +64,7 @@
     </release>
 
     <release version="1.9.0" date="2022-03-15">
-      <action type="add" dev="sseifert">
+      <action type="add" dev="sseifert" issue="1">
         Add implementation of com.adobe.aem.wcm.seo.sitemap.externalizer.SitemapLinkExternalizer that hooks into wcm.io Link Handling.
       </action>
       <action type="update" dev="sseifert">

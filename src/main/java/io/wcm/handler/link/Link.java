@@ -19,6 +19,7 @@
  */
 package io.wcm.handler.link;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.commons.dom.Anchor;
 import io.wcm.handler.link.spi.LinkType;
@@ -237,10 +237,10 @@ public final class Link {
   @JsonIgnore
   public @NotNull List<Page> getRedirectPages() {
     if (redirectPages == null) {
-      return ImmutableList.of();
+      return Collections.emptyList();
     }
     else {
-      return ImmutableList.copyOf(redirectPages);
+      return Collections.unmodifiableList(redirectPages);
     }
   }
 

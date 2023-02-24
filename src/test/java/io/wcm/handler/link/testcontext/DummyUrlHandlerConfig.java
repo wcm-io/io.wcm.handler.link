@@ -26,7 +26,6 @@ import org.apache.sling.api.resource.Resource;
 
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.url.integrator.IntegratorMode;
 import io.wcm.handler.url.integrator.IntegratorModes;
@@ -40,10 +39,9 @@ public class DummyUrlHandlerConfig extends UrlHandlerConfig {
 
   public static final int SITE_ROOT_LEVEL = 4;
 
-  private static final List<IntegratorMode> INTEGRATOR_MODES = ImmutableList.<IntegratorMode>of(
+  private static final List<IntegratorMode> INTEGRATOR_MODES = List.of(
       IntegratorModes.SIMPLE,
-      IntegratorModes.EXTENDED
-      );
+      IntegratorModes.EXTENDED);
 
   @Override
   public int getSiteRootLevel(Resource resource) {

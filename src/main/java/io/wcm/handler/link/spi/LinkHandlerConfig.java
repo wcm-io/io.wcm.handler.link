@@ -19,6 +19,7 @@
  */
 package io.wcm.handler.link.spi;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +28,6 @@ import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ConsumerType;
 
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.link.markup.DummyLinkMarkupBuilder;
 import io.wcm.handler.link.markup.SimpleLinkMarkupBuilder;
@@ -50,16 +50,16 @@ import io.wcm.wcm.commons.util.Path;
 @ConsumerType
 public abstract class LinkHandlerConfig implements ContextAwareService {
 
-  private static final List<Class<? extends LinkType>> DEFAULT_LINK_TYPES = ImmutableList.<Class<? extends LinkType>>of(
+  private static final List<Class<? extends LinkType>> DEFAULT_LINK_TYPES = List.of(
       InternalLinkType.class,
       ExternalLinkType.class,
       MediaLinkType.class);
 
-  private static final List<Class<? extends LinkMarkupBuilder>> DEFAULT_LINK_MARKUP_BUILDERS = ImmutableList.<Class<? extends LinkMarkupBuilder>>of(
+  private static final List<Class<? extends LinkMarkupBuilder>> DEFAULT_LINK_MARKUP_BUILDERS = List.of(
       SimpleLinkMarkupBuilder.class,
       DummyLinkMarkupBuilder.class);
 
-  private static final List<Class<? extends LinkProcessor>> DEFAULT_POST_PROCESSORS = ImmutableList.<Class<? extends LinkProcessor>>of(
+  private static final List<Class<? extends LinkProcessor>> DEFAULT_POST_PROCESSORS = List.of(
       DefaultInternalLinkInheritUrlParamLinkPostProcessor.class);
 
   private static final String REDIRECT_RESOURCE_TYPE = "wcm-io/handler/link/components/page/redirect";
@@ -93,7 +93,7 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
    */
   public @NotNull List<Class<? extends LinkProcessor>> getPreProcessors() {
     // no processors
-    return ImmutableList.of();
+    return Collections.emptyList();
   }
 
   /**

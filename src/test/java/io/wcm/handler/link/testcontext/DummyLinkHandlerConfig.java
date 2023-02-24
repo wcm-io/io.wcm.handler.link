@@ -25,7 +25,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
-import com.google.common.collect.ImmutableList;
 
 import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.link.spi.LinkType;
@@ -41,7 +40,7 @@ import io.wcm.handler.link.type.MediaLinkType;
 @SuppressWarnings({ "null", "deprecation" })
 public class DummyLinkHandlerConfig extends LinkHandlerConfig {
 
-  private static final List<Class<? extends LinkType>> LINK_TYPES = ImmutableList.<Class<? extends LinkType>>of(
+  private static final List<Class<? extends LinkType>> LINK_TYPES = List.of(
       InternalLinkType.class,
       InternalCrossContextLinkType.class,
       InternalCrossScopeLinkType.class,

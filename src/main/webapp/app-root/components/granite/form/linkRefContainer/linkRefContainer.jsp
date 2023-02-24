@@ -28,7 +28,6 @@
 <%@page import="com.adobe.granite.ui.components.ComponentHelper.Options"%>
 <%@page import="com.adobe.granite.ui.components.Tag"%>
 <%@page import="com.day.cq.commons.jcr.JcrConstants"%>
-<%@page import="com.google.common.collect.ImmutableSet"%>
 <%@page import="io.wcm.handler.link.LinkNameConstants"%>
 <%@page import="io.wcm.handler.link.LinkComponentPropertyResolver"%>
 <%@page import="io.wcm.handler.link.type.InternalLinkType"%>
@@ -287,7 +286,7 @@ private final Logger log = LoggerFactory.getLogger(getClass());
 
 private Map<String,LinkType> getLinkTypes(Resource resource, LinkHandlerConfig linkHandlerConfig,
     String[] allowedLinkTypes) {
-  Set<String> allowedLinkTypeSet = ImmutableSet.copyOf(allowedLinkTypes);
+  Set<String> allowedLinkTypeSet = Set.of(allowedLinkTypes);
   Map<String,LinkType> linkTypes = new LinkedHashMap<>();
   if (resource != null) {
     for (Class<? extends LinkType> linkTypeClass : linkHandlerConfig.getLinkTypes()) {
