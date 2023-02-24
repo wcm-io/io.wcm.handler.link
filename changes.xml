@@ -30,6 +30,9 @@
       <action type="update" dev="sseifert">
         Eliminate dependency to Guava.
       </action>
+      <action type="fix" dev="sseifert">
+        Sling-Initial-Content: Register non-standard JCR namespaces for conversion with cp2fm into enhanced DocView files.
+      </action>
     </release>
 
     <release version="1.10.0" date="2022-12-15">

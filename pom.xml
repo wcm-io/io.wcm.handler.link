@@ -212,6 +212,11 @@
             Sling-Initial-Content: \
               SLING-INF/app-root;overwrite:=true;ignoreImportProviders:=xml;path:=/apps/wcm-io/handler/link
 
+            Sling-Namespaces: \
+              cq=http://www.day.com/jcr/cq/1.0,\
+              granite=http://www.adobe.com/jcr/granite/1.0,\
+              sling=http://sling.apache.org/jcr/sling/1.0
+
             Import-Package: \
               <!-- Make SEO Sitemap-related dependencies optional, only available in latest AEM versions -->\
               com.adobe.aem.wcm.seo.sitemap.externalizer;resolution:=optional,\
