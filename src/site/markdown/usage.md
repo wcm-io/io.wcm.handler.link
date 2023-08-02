@@ -41,6 +41,8 @@ When storing a link in a resource multiple properties are used to describe the l
 
 Further properties are defined in [LinkNameConstants][link-name-constants]. It is recommended to define an edit dialog that shows only the properties supported for the selected link type after choosing one.
 
+If using the `linkRefContainer` to import link related properties into your dialog be aware that some of the properties defined in the `LinkNameConstants` won't be included. Eg: it is required to add `linkFragment` and `linkQueryParam` separately in order to add fragment and query string support to the link generation.
+
 
 ### Using links in HTL/Sightly template
 
