@@ -38,10 +38,12 @@ When storing a link in a resource multiple properties are used to describe the l
 * `linkMediaRef`: Path of media asset (e.g. DAM asset) to link to
 * `linkExternalRef`: External URL to link to
 * `linkWindowTarget`: Target for window to open link in (e.g. "\_blank")
+* `linkFragment`: Fragment part to add to link URL
+* `linkQueryParam`: Query parameters to add to link URL
 
 Further properties are defined in [LinkNameConstants][link-name-constants]. It is recommended to define an edit dialog that shows only the properties supported for the selected link type after choosing one.
 
-If using the `linkRefContainer` to import link related properties into your dialog be aware that some of the properties defined in the `LinkNameConstants` won't be included. Eg: it is required to add `linkFragment` and `linkQueryParam` separately in order to add fragment and query string support to the link generation.
+If using the [Link Reference Container Granite UI component][graniteui-components] to show link related properties in the edit dialog be aware that some of the properties defined in the `LinkNameConstants` do not have a representation by default. Eg: it is required to add `linkFragment` and `linkQueryParam` separately in order to add fragment and query string support to the link generation.
 
 
 ### Using links in HTL/Sightly template
@@ -136,3 +138,4 @@ When this property is set, the component is also able to read link target inform
 [link-handler-config]: apidocs/io/wcm/handler/link/spi/LinkHandlerConfig.html
 [url-handler]: ../url/
 [sling-commons-caservices]: ../../sling/commons/context-aware-services.html
+[graniteui-components]: graniteui-components.html
