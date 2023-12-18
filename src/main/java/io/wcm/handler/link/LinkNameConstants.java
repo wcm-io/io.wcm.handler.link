@@ -73,12 +73,12 @@ public final class LinkNameConstants {
   public static final @NotNull String PN_LINK_EXTERNAL_REF = "linkExternalRef";
 
   /**
-   * Name of fragment
+   * Fragment part to add to link URL.
    */
   public static final @NotNull String PN_LINK_FRAGMENT = "linkFragment";
 
   /**
-   * Open media library item with download dialog
+   * Query parameters to add to link URL.
    */
   public static final @NotNull String PN_LINK_QUERY_PARAM = "linkQueryParam";
 
@@ -89,17 +89,23 @@ public final class LinkNameConstants {
 
   /**
    * Window width (px)
+   * @deprecated This property is no longer supported.
    */
+  @Deprecated(forRemoval = true)
   public static final @NotNull String PN_LINK_WINDOW_WIDTH = "linkWindowWidth";
 
   /**
    * Window height (px)
+   * @deprecated This property is no longer supported.
    */
+  @Deprecated(forRemoval = true)
   public static final @NotNull String PN_LINK_WINDOW_HEIGHT = "linkWindowHeight";
 
   /**
    * Window features
+   * @deprecated This property is no longer supported.
    */
+  @Deprecated(forRemoval = true)
   public static final @NotNull String PN_LINK_WINDOW_FEATURES = "linkWindowFeatures";
 
   /**

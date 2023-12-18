@@ -28,6 +28,9 @@ A component that defines the full set of fields for defining a link with it's pr
 }
 ```
 
+The link source input will be dynamically shown/hidden according to the link type selected. This functionality is included in a clientlib. It may be required to clear the clientlibs cache to see the changes immediately.
+
+`http://localhost:4502/libs/granite/ui/content/dumplibs.rebuild.html`
 
 ### Internal Link Type Path Field
 
