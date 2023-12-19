@@ -537,16 +537,6 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  @SuppressWarnings("deprecation")
-  void testGetSyntheticLinkResource_Deprecated() {
-    Resource resource = InternalLinkType.getSyntheticLinkResource(context.resourceResolver(),
-        "/page/ref");
-    ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, InternalLinkType.ID,
-        LinkNameConstants.PN_LINK_CONTENT_REF, "/page/ref");
-    assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
-  }
-
-  @Test
   void testReferenceAutoDetection() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 

@@ -30,23 +30,21 @@ import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.link.spi.LinkType;
 import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.handler.link.type.InternalCrossContextLinkType;
-import io.wcm.handler.link.type.InternalCrossScopeLinkType;
 import io.wcm.handler.link.type.InternalLinkType;
 import io.wcm.handler.link.type.MediaLinkType;
 
 /**
  * Dummy link configuration
  */
-@SuppressWarnings({ "null", "deprecation" })
+@SuppressWarnings("null")
 public class DummyLinkHandlerConfig extends LinkHandlerConfig {
 
   private static final List<Class<? extends LinkType>> LINK_TYPES = List.of(
       InternalLinkType.class,
       InternalCrossContextLinkType.class,
-      InternalCrossScopeLinkType.class,
       ExternalLinkType.class,
       MediaLinkType.class
-      );
+  );
 
   @Override
   public List<Class<? extends LinkType>> getLinkTypes() {
