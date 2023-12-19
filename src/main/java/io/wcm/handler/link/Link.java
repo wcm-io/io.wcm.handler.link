@@ -140,15 +140,6 @@ public final class Link {
   }
 
   /**
-   * @param anchor Anchor element
-   * @deprecated Use {@link #setAnchorBuilder(Function)} to build anchor on-demand
-   */
-  @Deprecated
-  public void setAnchor(Anchor anchor) {
-    this.anchor = anchor;
-  }
-
-  /**
    * @param anchorBuilder Function that builds an anchor representation on demand
    */
   public void setAnchorBuilder(Function<Link, Anchor> anchorBuilder) {
