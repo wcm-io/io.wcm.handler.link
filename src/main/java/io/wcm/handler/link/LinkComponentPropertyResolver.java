@@ -55,19 +55,6 @@ public final class LinkComponentPropertyResolver implements AutoCloseable {
   }
 
   /**
-   * @param resource Resource containing link properties
-   * @deprecated Please use {@link #LinkComponentPropertyResolver(Resource, ComponentPropertyResolverFactory)}
-   */
-  @Deprecated
-  @SuppressWarnings("resource")
-  public LinkComponentPropertyResolver(@NotNull Resource resource) {
-    // resolve media component properties 1. from policies and 2. from component definition
-    resolver = new ComponentPropertyResolver(resource, true)
-        .contentPolicyResolution(ComponentPropertyResolution.RESOLVE)
-        .componentPropertiesResolution(ComponentPropertyResolution.RESOLVE_INHERIT);
-  }
-
-  /**
    * @return Link target URL fallback property name
    */
   @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")

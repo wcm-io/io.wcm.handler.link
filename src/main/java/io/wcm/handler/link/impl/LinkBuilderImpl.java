@@ -55,7 +55,7 @@ final class LinkBuilderImpl implements LinkBuilder {
   private static final Logger log = LoggerFactory.getLogger(LinkBuilderImpl.class);
 
   LinkBuilderImpl(@Nullable Resource resource, @NotNull LinkHandlerImpl linkHandler,
-      @Nullable ComponentPropertyResolverFactory componentPropertyResolverFactory) {
+      @NotNull ComponentPropertyResolverFactory componentPropertyResolverFactory) {
     this.resource = resource;
     this.page = null;
     this.reference = null;
@@ -64,7 +64,7 @@ final class LinkBuilderImpl implements LinkBuilder {
   }
 
   LinkBuilderImpl(@NotNull LinkRequest linkRequest, @NotNull LinkHandlerImpl linkHandler,
-      @Nullable ComponentPropertyResolverFactory componentPropertyResolverFactory) {
+      @NotNull ComponentPropertyResolverFactory componentPropertyResolverFactory) {
     this.resource = linkRequest.getResource();
     this.page = linkRequest.getPage();
     this.reference = linkRequest.getReference();
@@ -88,13 +88,13 @@ final class LinkBuilderImpl implements LinkBuilder {
     this.linkHandler = linkHandler;
   }
 
-  private void resolveWindowTargetAndFallbackProperties(@Nullable ComponentPropertyResolverFactory componentPropertyResolverFactory) {
+  private void resolveWindowTargetAndFallbackProperties(@NotNull ComponentPropertyResolverFactory componentPropertyResolverFactory) {
     if (resource == null) {
       return;
     }
 
     // resolve default settings from content policies and component properties
-    try (LinkComponentPropertyResolver resolver = getLinkComponentPropertyResolver(resource, componentPropertyResolverFactory)) {
+    try (LinkComponentPropertyResolver resolver = new LinkComponentPropertyResolver(resource, componentPropertyResolverFactory)) {
       linkArgs.linkTargetUrlFallbackProperty(resolver.getLinkTargetUrlFallbackProperty());
       linkArgs.linkTargetWindowTargetFallbackProperty(resolver.getLinkTargetWindowTargetFallbackProperty());
     }
@@ -104,18 +104,6 @@ final class LinkBuilderImpl implements LinkBuilder {
 
     // get window target from resource
     linkArgs.windowTarget(getWindowTargetFromResource(resource, linkArgs));
-  }
-
-  @SuppressWarnings("deprecation")
-  private static LinkComponentPropertyResolver getLinkComponentPropertyResolver(@NotNull Resource resource,
-      @Nullable ComponentPropertyResolverFactory componentPropertyResolverFactory) {
-    if (componentPropertyResolverFactory != null) {
-      return new LinkComponentPropertyResolver(resource, componentPropertyResolverFactory);
-    }
-    else {
-      // fallback mode if ComponentPropertyResolverFactory is not available
-      return new LinkComponentPropertyResolver(resource);
-    }
   }
 
   private static String getWindowTargetFromResource(@NotNull Resource resource, @NotNull LinkArgs linkArgs) {
