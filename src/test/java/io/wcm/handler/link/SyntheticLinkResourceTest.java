@@ -63,29 +63,4 @@ class SyntheticLinkResourceTest {
     assertNull(page);
   }
 
-  @Test
-  @SuppressWarnings("deprecation")
-  void testSimpleConstructor_Deprecated() {
-    Resource underTest = new SyntheticLinkResource(resourceResolver);
-    ValueMap props = underTest.getValueMap();
-    assertTrue(props.isEmpty());
-  }
-
-  @Test
-  @SuppressWarnings("deprecation")
-  void testWithMap_Deprecated() {
-    ValueMap givenProps = ImmutableValueMap.of("prop1", "value1");
-    Resource underTest = new SyntheticLinkResource(resourceResolver, givenProps);
-    ValueMap props = underTest.getValueMap();
-    assertEquals(givenProps, ImmutableValueMap.copyOf(props));
-  }
-
-  @Test
-  @SuppressWarnings("deprecation")
-  void testAdaptTo_Deprecated() {
-    Resource underTest = new SyntheticLinkResource(resourceResolver);
-    Page page = underTest.adaptTo(Page.class);
-    assertNull(page);
-  }
-
 }

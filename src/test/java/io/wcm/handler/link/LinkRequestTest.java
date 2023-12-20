@@ -30,7 +30,7 @@ class LinkRequestTest {
   @Test
   void testToString() {
     LinkRequest request = new LinkRequest(null, null, new LinkArgs().urlMode(UrlModes.DEFAULT));
-    assertEquals("LinkRequest[linkArgs=LinkArgs[urlMode=DEFAULT,dummyLink=false,disableSuffixSelector=false]]", request.toString());
+    assertEquals("LinkRequest[linkArgs=LinkArgs[disableSuffixSelector=false,dummyLink=false,urlMode=DEFAULT]]", request.toString());
   }
 
 }

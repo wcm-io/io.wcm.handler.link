@@ -135,21 +135,6 @@ public final class InternalCrossContextLinkType extends LinkType {
     return new SyntheticLinkResource(resourceResolver, path, map);
   }
 
-  /**
-   * Get synthetic link resource for this link type.
-   * @param resourceResolver Resource resolver
-   * @param pageRef Path to target page
-   * @return Synthetic link resource
-   * @deprecated Please use {@link #getSyntheticLinkResource(ResourceResolver, String, String)}
-   */
-  @Deprecated
-  public static @NotNull Resource getSyntheticLinkResource(@NotNull ResourceResolver resourceResolver, @NotNull String pageRef) {
-    Map<String, Object> map = new HashMap<>();
-    map.put(LinkNameConstants.PN_LINK_TYPE, ID);
-    map.put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, pageRef);
-    return new SyntheticLinkResource(resourceResolver, map);
-  }
-
   @Override
   public String toString() {
     return ID;

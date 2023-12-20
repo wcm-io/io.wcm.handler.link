@@ -101,16 +101,6 @@ class ExternalLinkTypeTest {
   }
 
   @Test
-  @SuppressWarnings("deprecation")
-  void testGetSyntheticLinkResource_Deprecated() {
-    Resource resource = ExternalLinkType.getSyntheticLinkResource(context.resourceResolver(),
-        "http://dummy");
-    ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID,
-        LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://dummy");
-    assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
-  }
-
-  @Test
   void testAccepts() throws Exception {
     LinkType underTest = AdaptTo.notNull(adaptable(), ExternalLinkType.class);
 

@@ -122,14 +122,4 @@ class InternalCrossContextLinkTypeTest {
     assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
   }
 
-  @Test
-  @SuppressWarnings("deprecation")
-  void testGetSyntheticLinkResource_Deprecated() {
-    Resource resource = InternalCrossContextLinkType.getSyntheticLinkResource(context.resourceResolver(),
-        "/page/ref");
-    ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID,
-        LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, "/page/ref");
-    assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
-  }
-
 }

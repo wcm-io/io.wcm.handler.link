@@ -88,27 +88,6 @@ public final class LinkNameConstants {
   public static final @NotNull String PN_LINK_WINDOW_TARGET = "linkWindowTarget";
 
   /**
-   * Window width (px)
-   * @deprecated This property is no longer supported.
-   */
-  @Deprecated(forRemoval = true)
-  public static final @NotNull String PN_LINK_WINDOW_WIDTH = "linkWindowWidth";
-
-  /**
-   * Window height (px)
-   * @deprecated This property is no longer supported.
-   */
-  @Deprecated(forRemoval = true)
-  public static final @NotNull String PN_LINK_WINDOW_HEIGHT = "linkWindowHeight";
-
-  /**
-   * Window features
-   * @deprecated This property is no longer supported.
-   */
-  @Deprecated(forRemoval = true)
-  public static final @NotNull String PN_LINK_WINDOW_FEATURES = "linkWindowFeatures";
-
-  /**
    * Open media library item with download dialog
    */
   public static final @NotNull String PN_LINK_MEDIA_DOWNLOAD = "linkMediaDownload";

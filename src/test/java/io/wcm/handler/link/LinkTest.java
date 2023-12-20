@@ -67,19 +67,6 @@ class LinkTest {
   }
 
   @Test
-  @SuppressWarnings("deprecation")
-  void testAnchor() {
-    assertNull(underTest.getAnchorAttributes());
-    assertNull(underTest.getMarkup());
-
-    Anchor anchor = new Anchor("http://dummy");
-    underTest.setAnchor(anchor);
-    assertSame(anchor, underTest.getAnchor());
-    assertEquals("http://dummy", underTest.getAnchorAttributes().get("href"));
-    assertEquals("<a href=\"http://dummy\">", underTest.getMarkup());
-  }
-
-  @Test
   void testAnchorBuilder() {
     assertNull(underTest.getAnchorAttributes());
     assertNull(underTest.getMarkup());
@@ -123,7 +110,7 @@ class LinkTest {
 
   @Test
   void testToString() {
-    assertEquals("Link[linkType=linkType,linkRequest=LinkRequest[linkArgs=LinkArgs[dummyLink=false,disableSuffixSelector=false]],linkReferenceInvalid=false]",
+    assertEquals("Link[linkReferenceInvalid=false,linkRequest=LinkRequest[linkArgs=LinkArgs[disableSuffixSelector=false,dummyLink=false]],linkType=linkType]",
         underTest.toString());
   }
 

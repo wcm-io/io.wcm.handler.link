@@ -167,16 +167,6 @@ class MediaLinkTypeTest {
   }
 
   @Test
-  @SuppressWarnings("deprecation")
-  void testGetSyntheticLinkResource_Deprecated() {
-    Resource resource = MediaLinkType.getSyntheticLinkResource(context.resourceResolver(),
-        "/media/ref");
-    ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID,
-        LinkNameConstants.PN_LINK_MEDIA_REF, "/media/ref");
-    assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
-  }
-
-  @Test
   void testReferenceAutoDetection() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
