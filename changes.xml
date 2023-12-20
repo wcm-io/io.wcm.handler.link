@@ -27,6 +27,9 @@
       <action type="remove" dev="sseifert">
         Remove deprecated functionality.
       </action>
+      <action type="update" dev="sseifert">
+        Switch to AEM 6.5.17 as minimum version.
+      </action>
     </release>
 
     <release version="1.10.4" date="2023-12-18">
