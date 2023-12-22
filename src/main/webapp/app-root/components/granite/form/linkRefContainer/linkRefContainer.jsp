@@ -133,13 +133,14 @@ String[] linkTargetUrlFallbackProperty = null;
 String linkTargetUrlFallbackValue = null;
 String linkTargetUrlFallbackTypeId = null;
 if (contentResource != null && contentResource.getValueMap().get(LinkNameConstants.PN_LINK_TYPE, String.class) == null) {
-  LinkComponentPropertyResolver propertyResolver = new LinkComponentPropertyResolver(contentResource);
-  linkTargetUrlFallbackProperty = propertyResolver.getLinkTargetUrlFallbackProperty();
-  if (linkTargetUrlFallbackProperty != null && linkTargetUrlFallbackProperty.length > 0) {
-    for (String propertyName : linkTargetUrlFallbackProperty) {
-      linkTargetUrlFallbackValue = contentResource.getValueMap().get(propertyName, String.class);
-      if (StringUtils.isNotBlank(linkTargetUrlFallbackValue)) {
-        break;
+  try (LinkComponentPropertyResolver propertyResolver = contentResource.adaptTo(LinkComponentPropertyResolver.class)) {
+    linkTargetUrlFallbackProperty = propertyResolver.getLinkTargetUrlFallbackProperty();
+    if (linkTargetUrlFallbackProperty != null && linkTargetUrlFallbackProperty.length > 0) {
+      for (String propertyName : linkTargetUrlFallbackProperty) {
+        linkTargetUrlFallbackValue = contentResource.getValueMap().get(propertyName, String.class);
+        if (StringUtils.isNotBlank(linkTargetUrlFallbackValue)) {
+          break;
+        }
       }
     }
   }
