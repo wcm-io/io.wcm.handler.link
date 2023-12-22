@@ -28,11 +28,11 @@ import org.apache.sling.testing.mock.caconfig.MockContextAwareConfig;
 import org.jetbrains.annotations.NotNull;
 
 import io.wcm.handler.link.impl.DefaultLinkHandlerConfig;
-import io.wcm.handler.link.impl.LinkHandlerConfigAdapterFactory;
+import io.wcm.handler.link.impl.LinkHandlerAdapterFactory;
 import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.media.format.impl.MediaFormatProviderManagerImpl;
 import io.wcm.handler.media.impl.DefaultMediaHandlerConfig;
-import io.wcm.handler.media.impl.MediaHandlerConfigAdapterFactory;
+import io.wcm.handler.media.impl.MediaHandlerAdapterFactory;
 import io.wcm.handler.media.spi.MediaFormatProvider;
 import io.wcm.handler.media.spi.MediaHandlerConfig;
 import io.wcm.handler.url.SiteConfig;
@@ -91,23 +91,23 @@ public final class AppAemContext {
     public void execute(@NotNull AemContext context) throws Exception {
 
       // handler SPI
-      context.registerInjectActivateService(new SiteRootDetectorImpl());
-      context.registerInjectActivateService(new UrlHandlerAdapterFactory());
-      context.registerInjectActivateService(new DefaultUrlHandlerConfig());
-      context.registerInjectActivateService(new ClientlibProxyRewriterImpl());
+      context.registerInjectActivateService(SiteRootDetectorImpl.class);
+      context.registerInjectActivateService(UrlHandlerAdapterFactory.class);
+      context.registerInjectActivateService(DefaultUrlHandlerConfig.class);
+      context.registerInjectActivateService(ClientlibProxyRewriterImpl.class);
       context.registerService(UrlHandlerConfig.class, new DummyUrlHandlerConfig());
-      context.registerInjectActivateService(new MediaHandlerConfigAdapterFactory());
-      context.registerInjectActivateService(new DefaultMediaHandlerConfig());
+      context.registerInjectActivateService(MediaHandlerAdapterFactory.class);
+      context.registerInjectActivateService(DefaultMediaHandlerConfig.class);
       context.registerService(MediaHandlerConfig.class, new DummyMediaHandlerConfig());
-      context.registerInjectActivateService(new LinkHandlerConfigAdapterFactory());
-      context.registerInjectActivateService(new DefaultLinkHandlerConfig());
+      context.registerInjectActivateService(LinkHandlerAdapterFactory.class);
+      context.registerInjectActivateService(DefaultLinkHandlerConfig.class);
       context.registerService(LinkHandlerConfig.class, new DummyLinkHandlerConfig());
 
       // context path strategy
       MockCAConfig.contextPathStrategyAbsoluteParent(context, DummyUrlHandlerConfig.SITE_ROOT_LEVEL);
 
       // media formats
-      context.registerInjectActivateService(new MediaFormatProviderManagerImpl());
+      context.registerInjectActivateService(MediaFormatProviderManagerImpl.class);
       context.registerService(MediaFormatProvider.class, new DummyMediaFormatProvider());
 
       // sling models registration

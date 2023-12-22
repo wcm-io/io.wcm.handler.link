@@ -28,14 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.apache.sling.api.resource.Resource;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import io.wcm.handler.link.testcontext.AppAemContext;
+import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import io.wcm.wcm.commons.component.ComponentPropertyResolverFactory;
 
 @ExtendWith(AemContextExtension.class)
 class LinkComponentPropertyResolverTest {
@@ -44,19 +43,12 @@ class LinkComponentPropertyResolverTest {
 
   private final AemContext context = AppAemContext.newAemContext();
 
-  private ComponentPropertyResolverFactory componentPropertyResolverFactory;
-
-  @BeforeEach
-  void setUp() {
-    componentPropertyResolverFactory = context.getService(ComponentPropertyResolverFactory.class);
-  }
-
   @Test
   @SuppressWarnings("unused")
   void testGetLinkTargetUrlFallbackProperty_Default() throws Exception {
     Resource resource = context.create().resource("/content/r1");
 
-    try (LinkComponentPropertyResolver underTest = new LinkComponentPropertyResolver(resource, componentPropertyResolverFactory)) {
+    try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(resource, LinkComponentPropertyResolver.class)) {
       assertNull(underTest.getLinkTargetUrlFallbackProperty());
       assertNull(underTest.getLinkTargetWindowTargetFallbackProperty());
     }
@@ -70,7 +62,7 @@ class LinkComponentPropertyResolverTest {
     Resource resource = context.create().resource("/content/r1",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
 
-    try (LinkComponentPropertyResolver underTest = new LinkComponentPropertyResolver(resource, componentPropertyResolverFactory)) {
+    try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(resource, LinkComponentPropertyResolver.class)) {
       assertArrayEquals(new String[] { "property1" }, underTest.getLinkTargetUrlFallbackProperty());
       assertArrayEquals(new String[] { "prop2a", "prop2b" }, underTest.getLinkTargetWindowTargetFallbackProperty());
     }
@@ -86,7 +78,7 @@ class LinkComponentPropertyResolverTest {
     Resource resource = context.create().resource("/content/r1",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
 
-    try (LinkComponentPropertyResolver underTest = new LinkComponentPropertyResolver(resource, componentPropertyResolverFactory)) {
+    try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(resource, LinkComponentPropertyResolver.class)) {
       assertArrayEquals(new String[] { "property2", "property3" }, underTest.getLinkTargetUrlFallbackProperty());
     }
   }
@@ -101,7 +93,7 @@ class LinkComponentPropertyResolverTest {
         JCR_PRIMARYTYPE, NT_UNSTRUCTURED);
     Resource subResource2 = context.create().resource(subResource1, "subResource2");
 
-    try (LinkComponentPropertyResolver underTest = new LinkComponentPropertyResolver(subResource2, componentPropertyResolverFactory)) {
+    try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(subResource2, LinkComponentPropertyResolver.class)) {
       assertArrayEquals(new String[] { "property1" }, underTest.getLinkTargetUrlFallbackProperty());
     }
   }
