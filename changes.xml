@@ -27,6 +27,9 @@
       <action type="remove" dev="sseifert" issue="7">
         Remove deprecated functionality.
       </action>
+      <action type="update" dev="sseifert" issue="9">
+        Disable web-optimized image delivery for links to get link to original asset.
+      </action>
       <action type="update" dev="sseifert">
         Switch to AEM 6.5.17 as minimum version.
       </action>

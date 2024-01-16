@@ -113,7 +113,10 @@ public final class MediaLinkType extends LinkType {
     MediaArgs mediaArgs = new MediaArgs()
         // only allow linking to "download" media formats
         .download(true)
+        // content disposition header for download links
         .contentDispositionAttachment(isDownload)
+        // disable web-optimized image delivery to get asset in original resolution
+        .webOptimizedImageDeliveryDisabled(true)
         .urlMode(linkRequest.getLinkArgs().getUrlMode());
 
     // resolve media library reference
