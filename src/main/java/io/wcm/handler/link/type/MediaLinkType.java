@@ -107,7 +107,8 @@ public final class MediaLinkType extends LinkType {
     ValueMap props = linkRequest.getResourceProperties();
 
     // get properties
-    String mediaRef = props.get(LinkNameConstants.PN_LINK_MEDIA_REF, link.getLinkRequest().getReference());
+    String mediaRef = StringUtils.defaultString(props.get(LinkNameConstants.PN_LINK_MEDIA_REF, String.class),
+        link.getLinkRequest().getReference());
     boolean isDownload = props.get(LinkNameConstants.PN_LINK_MEDIA_DOWNLOAD, false);
 
     MediaArgs mediaArgs = new MediaArgs()
