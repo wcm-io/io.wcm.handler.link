@@ -28,6 +28,8 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkHandler;
@@ -55,7 +57,7 @@ public class ResourceLink {
    * Result is never null, check for validness with the {@link Link#isValid()} method.
    * @return Link
    */
-  public Link getMetadata() {
+  public @NotNull Link getMetadata() {
     return link;
   }
 
@@ -71,7 +73,7 @@ public class ResourceLink {
    * Returns a map of attributes which can be applied to a HTML anchor element.
    * @return Anchor attributes
    */
-  public Map<String, String> getAttributes() {
+  public @Nullable Map<String, String> getAttributes() {
     return link.getAnchorAttributes();
   }
 

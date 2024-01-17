@@ -66,17 +66,17 @@ public final class LinkHandlerImpl implements LinkHandler {
   private ComponentPropertyResolverFactory componentPropertyResolverFactory;
 
   @Override
-  public @NotNull LinkBuilder get(Resource resource) {
+  public @NotNull LinkBuilder get(@Nullable Resource resource) {
     return new LinkBuilderImpl(resource, this, componentPropertyResolverFactory);
   }
 
   @Override
-  public @NotNull LinkBuilder get(Page page) {
+  public @NotNull LinkBuilder get(@Nullable Page page) {
     return new LinkBuilderImpl(page, this);
   }
 
   @Override
-  public @NotNull LinkBuilder get(String reference) {
+  public @NotNull LinkBuilder get(@Nullable String reference) {
     return new LinkBuilderImpl(reference, this);
   }
 

@@ -19,7 +19,6 @@
  */
 package io.wcm.handler.link;
 
-import org.jetbrains.annotations.NotNull;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -45,52 +44,52 @@ public final class LinkNameConstants {
   /**
    * Link title
    */
-  public static final @NotNull String PN_LINK_TITLE = "linkTitle";
+  public static final String PN_LINK_TITLE = "linkTitle";
 
   /**
    * Link type
    */
-  public static final @NotNull String PN_LINK_TYPE = "linkType";
+  public static final String PN_LINK_TYPE = "linkType";
 
   /**
    * Internal content page path
    */
-  public static final @NotNull String PN_LINK_CONTENT_REF = "linkContentRef";
+  public static final String PN_LINK_CONTENT_REF = "linkContentRef";
 
   /**
    * Internal content page path (other scope/site)
    */
-  public static final @NotNull String PN_LINK_CROSSCONTEXT_CONTENT_REF = "linkCrossContextContentRef";
+  public static final String PN_LINK_CROSSCONTEXT_CONTENT_REF = "linkCrossContextContentRef";
 
   /**
    * Internal media library item path
    */
-  public static final @NotNull String PN_LINK_MEDIA_REF = "linkMediaRef";
+  public static final String PN_LINK_MEDIA_REF = "linkMediaRef";
 
   /**
    * External URL
    */
-  public static final @NotNull String PN_LINK_EXTERNAL_REF = "linkExternalRef";
+  public static final String PN_LINK_EXTERNAL_REF = "linkExternalRef";
 
   /**
    * Fragment part to add to link URL.
    */
-  public static final @NotNull String PN_LINK_FRAGMENT = "linkFragment";
+  public static final String PN_LINK_FRAGMENT = "linkFragment";
 
   /**
    * Query parameters to add to link URL.
    */
-  public static final @NotNull String PN_LINK_QUERY_PARAM = "linkQueryParam";
+  public static final String PN_LINK_QUERY_PARAM = "linkQueryParam";
 
   /**
    * Window target name
    */
-  public static final @NotNull String PN_LINK_WINDOW_TARGET = "linkWindowTarget";
+  public static final String PN_LINK_WINDOW_TARGET = "linkWindowTarget";
 
   /**
    * Open media library item with download dialog
    */
-  public static final @NotNull String PN_LINK_MEDIA_DOWNLOAD = "linkMediaDownload";
+  public static final String PN_LINK_MEDIA_DOWNLOAD = "linkMediaDownload";
 
   /**
    * Defines a "fallback" property name that is used to load link target information from a single property
@@ -101,7 +100,7 @@ public final class LinkNameConstants {
    * Property is to be set on component or in policy.
    * </p>
    */
-  public static final @NotNull String PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY = "wcmio:linkTargetUrlFallbackProperty";
+  public static final String PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY = "wcmio:linkTargetUrlFallbackProperty";
 
   /**
    * Defines a "fallback" property name that is used to load the "windows target" information from
@@ -112,6 +111,6 @@ public final class LinkNameConstants {
    * Property is to be set on component or in policy.
    * </p>
    */
-  public static final @NotNull String PN_COMPONENT_LINK_TARGET_WINDOW_TARGET_FALLBACK_PROPERTY = "wcmio:linkTargetWindowTargetFallbackProperty";
+  public static final String PN_COMPONENT_LINK_TARGET_WINDOW_TARGET_FALLBACK_PROPERTY = "wcmio:linkTargetWindowTargetFallbackProperty";
 
 }

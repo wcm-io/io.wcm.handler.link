@@ -24,6 +24,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 import io.wcm.handler.commons.dom.Anchor;
@@ -45,7 +46,7 @@ public final class SimpleLinkMarkupBuilder implements LinkMarkupBuilder {
   }
 
   @Override
-  public Anchor build(@NotNull Link link) {
+  public @Nullable Anchor build(@NotNull Link link) {
     // build anchor
     Anchor anchor = new Anchor(link.getUrl());
 
