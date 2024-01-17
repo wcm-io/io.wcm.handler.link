@@ -94,6 +94,7 @@ class MediaLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testInvalidLink_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;

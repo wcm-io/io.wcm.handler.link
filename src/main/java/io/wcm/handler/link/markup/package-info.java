@@ -20,5 +20,5 @@
 /**
  * Default link markup builder implementations.
  */
-@org.osgi.annotation.versioning.Version("1.0.1")
+@org.osgi.annotation.versioning.Version("1.0.2")
 package io.wcm.handler.link.markup;

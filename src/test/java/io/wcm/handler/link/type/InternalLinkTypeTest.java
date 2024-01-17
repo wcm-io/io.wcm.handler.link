@@ -141,6 +141,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testInvalidLink_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;
@@ -258,6 +259,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testRedirectRedirectInternal() throws Exception {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
@@ -288,6 +290,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testRedirectExternal() throws Exception {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 

@@ -21,6 +21,7 @@ package io.wcm.handler.link;
 
 import org.apache.sling.api.resource.Resource;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 import com.day.cq.wcm.api.Page;
@@ -48,7 +49,7 @@ public interface LinkHandler {
    * @return Link builder
    */
   @NotNull
-  LinkBuilder get(Resource resource);
+  LinkBuilder get(@Nullable Resource resource);
 
   /**
    * Build internal link referencing the given content page.
@@ -56,7 +57,7 @@ public interface LinkHandler {
    * @return Link builder
    */
   @NotNull
-  LinkBuilder get(Page page);
+  LinkBuilder get(@Nullable Page page);
 
   /**
    * Build link with auto-detecting the type from the given string.
@@ -64,7 +65,7 @@ public interface LinkHandler {
    * @return Link builder
    */
   @NotNull
-  LinkBuilder get(String reference);
+  LinkBuilder get(@Nullable String reference);
 
   /**
    * Build link for the given request holding all further request properties.
