@@ -44,6 +44,7 @@ import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.link.spi.LinkMarkupBuilder;
 import io.wcm.handler.link.spi.LinkProcessor;
 import io.wcm.handler.link.spi.LinkType;
+import io.wcm.handler.link.type.InvalidLinkType;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.commons.component.ComponentPropertyResolverFactory;
@@ -107,6 +108,9 @@ public final class LinkHandlerImpl implements LinkHandler {
         linkType = candidateLinkType;
         break;
       }
+    }
+    if (linkType == null) {
+      linkType = AdaptTo.notNull(adaptable, InvalidLinkType.class);
     }
     Link link = new Link(linkType, linkRequest);
 
@@ -172,12 +176,7 @@ public final class LinkHandlerImpl implements LinkHandler {
 
   @Override
   public Link invalid() {
-    // build invalid link with first link type
-    Class<? extends LinkType> linkTypeClass = linkHandlerConfig.getLinkTypes().stream().findFirst().orElse(null);
-    if (linkTypeClass == null) {
-      throw new RuntimeException("No link types defined.");
-    }
-    LinkType linkType = AdaptTo.notNull(adaptable, linkTypeClass);
+    LinkType linkType = AdaptTo.notNull(adaptable, InvalidLinkType.class);
     return new Link(linkType, new LinkRequest(null, null, null));
   }
 

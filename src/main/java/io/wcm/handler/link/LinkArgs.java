@@ -326,10 +326,9 @@ public final class LinkArgs implements Cloneable {
    * Custom clone-method for {@link LinkArgs}
    * @return the cloned {@link LinkArgs}
    */
-  // CHECKSTYLE:OFF
   @Override
+  @SuppressWarnings({ "java:S2975", "java:S1182", "checkstyle:SuperCloneCheck" }) // ignore clone warnings
   public LinkArgs clone() { //NOPMD
-    // CHECKSTYLE:ON
     LinkArgs clone = new LinkArgs();
 
     clone.urlMode = this.urlMode;
