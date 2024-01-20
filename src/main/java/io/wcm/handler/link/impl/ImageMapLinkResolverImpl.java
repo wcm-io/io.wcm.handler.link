@@ -35,12 +35,6 @@ import io.wcm.handler.media.spi.ImageMapLinkResolver;
 public class ImageMapLinkResolverImpl implements ImageMapLinkResolver<Link> {
 
   @Override
-  public @Nullable String resolve(@NotNull String linkUrl, @NotNull Resource context) {
-    Link link = resolveLink(linkUrl, null, context);
-    return getLinkUrl(link);
-  }
-
-  @Override
   public @Nullable Link resolveLink(@NotNull String linkUrl, @Nullable String linkWindowTarget, @NotNull Resource context) {
     LinkHandler linkHandler = context.adaptTo(LinkHandler.class);
     if (linkHandler != null) {
