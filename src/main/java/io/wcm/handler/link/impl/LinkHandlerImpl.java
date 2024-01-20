@@ -92,7 +92,11 @@ public final class LinkHandlerImpl implements LinkHandler {
    * @return Link metadata (never null)
    */
   @NotNull
-  @SuppressWarnings({ "null", "unused" })
+  @SuppressWarnings({
+      "null", "unused",
+      "java:S6541", "java:S3776", "java:S2589", // ignore complexity
+      "java:S112" // runtime exception
+  })
   @SuppressFBWarnings({ "CORRECTNESS", "STYLE" })
   Link processRequest(@NotNull LinkRequest linkRequest) {
 
@@ -127,11 +131,9 @@ public final class LinkHandlerImpl implements LinkHandler {
     }
 
     // resolve link
-    if (linkType != null) {
-      link = linkType.resolveLink(link);
-      if (link == null) {
-        throw new RuntimeException("LinkType '" + linkType + "' returned null, page '" + (currentPage != null ? currentPage.getPath() : "-") + "'.");
-      }
+    link = linkType.resolveLink(link);
+    if (link == null) {
+      throw new RuntimeException("LinkType '" + linkType + "' returned null, page '" + (currentPage != null ? currentPage.getPath() : "-") + "'.");
     }
 
     // if link is invalid - check if a fallback link property is set and try resolution with it
