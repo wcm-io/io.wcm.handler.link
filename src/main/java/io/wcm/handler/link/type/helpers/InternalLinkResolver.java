@@ -90,6 +90,10 @@ public final class InternalLinkResolver {
    * @param options Options
    * @return true if link is acceptable
    */
+  @SuppressWarnings({
+      "java:S1172", // options is unused, but may be needed in the future
+      "java:S1126" // keep separate if statements for better readability
+  })
   public boolean acceptPage(@Nullable Page page, @NotNull InternalLinkResolverOptions options) {
     if (page == null) {
       return false;
@@ -120,6 +124,7 @@ public final class InternalLinkResolver {
    * @param options Options to influence the link resolution process
    * @return Resolved link object
    */
+  @SuppressWarnings("java:S3776") // ignore complexity
   public @NotNull Link resolveLink(@NotNull Link link, @NotNull InternalLinkResolverOptions options) {
     LinkRequest linkRequest = link.getLinkRequest();
     ValueMap props = linkRequest.getResourceProperties();

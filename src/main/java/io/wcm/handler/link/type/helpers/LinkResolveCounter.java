@@ -56,7 +56,7 @@ public final class LinkResolveCounter {
    */
   public void decreaseCount() {
     if (this.count == 0) {
-      throw new RuntimeException("Cannot decrease, counter is already 0.");
+      throw new IllegalStateException("Cannot decrease, counter is already 0.");
     }
     this.count--;
     if (this.count == 0) {

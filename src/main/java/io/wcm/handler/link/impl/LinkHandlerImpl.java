@@ -44,6 +44,7 @@ import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.link.spi.LinkMarkupBuilder;
 import io.wcm.handler.link.spi.LinkProcessor;
 import io.wcm.handler.link.spi.LinkType;
+import io.wcm.handler.link.type.InvalidLinkType;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.models.annotations.AemObject;
 import io.wcm.wcm.commons.component.ComponentPropertyResolverFactory;
@@ -91,7 +92,11 @@ public final class LinkHandlerImpl implements LinkHandler {
    * @return Link metadata (never null)
    */
   @NotNull
-  @SuppressWarnings({ "null", "unused" })
+  @SuppressWarnings({
+      "null", "unused",
+      "java:S6541", "java:S3776", "java:S2589", // ignore complexity
+      "java:S112" // runtime exception
+  })
   @SuppressFBWarnings({ "CORRECTNESS", "STYLE" })
   Link processRequest(@NotNull LinkRequest linkRequest) {
 
@@ -108,6 +113,9 @@ public final class LinkHandlerImpl implements LinkHandler {
         break;
       }
     }
+    if (linkType == null) {
+      linkType = AdaptTo.notNull(adaptable, InvalidLinkType.class);
+    }
     Link link = new Link(linkType, linkRequest);
 
     // preprocess link before resolving
@@ -123,11 +131,9 @@ public final class LinkHandlerImpl implements LinkHandler {
     }
 
     // resolve link
-    if (linkType != null) {
-      link = linkType.resolveLink(link);
-      if (link == null) {
-        throw new RuntimeException("LinkType '" + linkType + "' returned null, page '" + (currentPage != null ? currentPage.getPath() : "-") + "'.");
-      }
+    link = linkType.resolveLink(link);
+    if (link == null) {
+      throw new RuntimeException("LinkType '" + linkType + "' returned null, page '" + (currentPage != null ? currentPage.getPath() : "-") + "'.");
     }
 
     // if link is invalid - check if a fallback link property is set and try resolution with it
@@ -172,12 +178,7 @@ public final class LinkHandlerImpl implements LinkHandler {
 
   @Override
   public Link invalid() {
-    // build invalid link with first link type
-    Class<? extends LinkType> linkTypeClass = linkHandlerConfig.getLinkTypes().stream().findFirst().orElse(null);
-    if (linkTypeClass == null) {
-      throw new RuntimeException("No link types defined.");
-    }
-    LinkType linkType = AdaptTo.notNull(adaptable, linkTypeClass);
+    LinkType linkType = AdaptTo.notNull(adaptable, InvalidLinkType.class);
     return new Link(linkType, new LinkRequest(null, null, null));
   }
 

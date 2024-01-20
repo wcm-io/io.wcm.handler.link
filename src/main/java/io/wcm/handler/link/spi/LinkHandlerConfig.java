@@ -67,11 +67,13 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
   /**
    * Default content root path.
    */
+  @SuppressWarnings("java:S1075") // no file path
   public static final String DEFAULT_ROOT_PATH_CONTENT = "/content";
 
   /**
    * Default media/asset root path.
    */
+  @SuppressWarnings("java:S1075") // no file path
   public static final String DEFAULT_ROOT_PATH_MEDIA = "/content/dam";
 
   /**
