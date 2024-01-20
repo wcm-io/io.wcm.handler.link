@@ -293,6 +293,7 @@ public final class InternalLinkResolver {
    * @param options Link resolver options
    * @return true if target context should be used
    */
+  @SuppressWarnings("java:S1871")
   private boolean useTargetContext(InternalLinkResolverOptions options) {
     if (options.isUseTargetContext() && !options.isRewritePathToContext()) {
       return true;

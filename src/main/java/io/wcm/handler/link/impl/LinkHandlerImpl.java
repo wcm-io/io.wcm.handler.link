@@ -95,7 +95,8 @@ public final class LinkHandlerImpl implements LinkHandler {
   @SuppressWarnings({
       "null", "unused",
       "java:S6541", "java:S3776", "java:S2589", // ignore complexity
-      "java:S112" // runtime exception
+      "java:S112", // runtime exception
+      "java:S1192" // redundant string literals
   })
   @SuppressFBWarnings({ "CORRECTNESS", "STYLE" })
   Link processRequest(@NotNull LinkRequest linkRequest) {
