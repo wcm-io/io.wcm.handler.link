@@ -255,7 +255,8 @@ class LinkHandlerImplTest {
 
     @Override
     public Link resolveLink(Link link) {
-      String contentRef = link.getLinkRequest().getResourceProperties().get("dummyLinkRef", link.getLinkRequest().getReference());
+      String contentRef = StringUtils.defaultString(link.getLinkRequest().getResourceProperties().get("dummyLinkRef", String.class),
+          link.getLinkRequest().getReference());
       link.setUrl("http://xyz" + contentRef);
       return link;
     }

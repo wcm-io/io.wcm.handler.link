@@ -141,6 +141,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testInvalidLink_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;
@@ -258,6 +259,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testRedirectRedirectInternal() throws Exception {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
@@ -288,6 +290,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testRedirectExternal() throws Exception {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
@@ -530,16 +533,6 @@ class InternalLinkTypeTest {
   void testGetSyntheticLinkResource() {
     Resource resource = InternalLinkType.getSyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
-        "/page/ref");
-    ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, InternalLinkType.ID,
-        LinkNameConstants.PN_LINK_CONTENT_REF, "/page/ref");
-    assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
-  }
-
-  @Test
-  @SuppressWarnings("deprecation")
-  void testGetSyntheticLinkResource_Deprecated() {
-    Resource resource = InternalLinkType.getSyntheticLinkResource(context.resourceResolver(),
         "/page/ref");
     ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, InternalLinkType.ID,
         LinkNameConstants.PN_LINK_CONTENT_REF, "/page/ref");

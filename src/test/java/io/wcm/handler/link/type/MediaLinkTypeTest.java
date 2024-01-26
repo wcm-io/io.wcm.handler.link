@@ -94,6 +94,7 @@ class MediaLinkTypeTest {
   }
 
   @Test
+  @SuppressWarnings("null")
   void testInvalidLink_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;
@@ -160,16 +161,6 @@ class MediaLinkTypeTest {
   void testGetSyntheticLinkResource() {
     Resource resource = MediaLinkType.getSyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
-        "/media/ref");
-    ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID,
-        LinkNameConstants.PN_LINK_MEDIA_REF, "/media/ref");
-    assertEquals(expected, ImmutableValueMap.copyOf(resource.getValueMap()));
-  }
-
-  @Test
-  @SuppressWarnings("deprecation")
-  void testGetSyntheticLinkResource_Deprecated() {
-    Resource resource = MediaLinkType.getSyntheticLinkResource(context.resourceResolver(),
         "/media/ref");
     ValueMap expected = ImmutableValueMap.of(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID,
         LinkNameConstants.PN_LINK_MEDIA_REF, "/media/ref");

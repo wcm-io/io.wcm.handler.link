@@ -22,7 +22,6 @@ package io.wcm.handler.link.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
@@ -54,13 +53,6 @@ class ImageMapLinkResolverImplTest {
     page = context.currentPage(context.create().page("/content/site1/en/page1"));
 
     underTest = context.registerInjectActivateService(new ImageMapLinkResolverImpl());
-  }
-
-  @Test
-  void testResolve() {
-    assertEquals("http://host", underTest.resolve("http://host", page.getContentResource()));
-    assertEquals("/content/site1/en.html", underTest.resolve("/content/site1/en", page.getContentResource()));
-    assertNull(underTest.resolve("/content/site1/en/invalid", page.getContentResource()));
   }
 
   @Test

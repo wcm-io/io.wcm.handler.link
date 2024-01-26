@@ -23,6 +23,27 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="2.0.0" date="2024-01-26">
+      <action type="update" dev="sseifert"><![CDATA[
+        Version 2.0.0 contains minor breaking API changes, see <a href=https://wcm-io.atlassian.net/wiki/x/AYBxsw">Migrate from wcm.io Handler 1.x to 2.x</a> for details.
+      ]]></action>
+      <action type="add" dev="sseifert">
+        Introduce link type "invalid" to mark invalid links.
+      </action>
+      <action type="remove" dev="sseifert" issue="7">
+        Remove deprecated functionality.
+      </action>
+      <action type="update" dev="sseifert" issue="9">
+        Disable web-optimized image delivery for links to get link to original asset.
+      </action>
+      <action type="update" dev="sseifert">
+        Explicitly define folder type for JSON files with "nt:unstructured" as root node to circumvent SLING-12197.
+      </action>
+      <action type="update" dev="sseifert">
+        Switch to AEM 6.5.17 as minimum version.
+      </action>
+    </release>
+
     <release version="1.10.4" date="2023-12-18">
       <action type="update" dev="sseifert">
         LinkNameConstants: Mark properties PN_LINK_WINDOW_WIDTH, PN_LINK_WINDOW_HEIGHT, PN_LINK_WINDOW_FEATURES as deprecated - they are not used.

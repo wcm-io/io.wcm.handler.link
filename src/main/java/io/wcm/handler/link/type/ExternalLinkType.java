@@ -57,7 +57,7 @@ public final class ExternalLinkType extends LinkType {
    * Matches all strings that seem to have a proper URL scheme - e.g. starting with http://, https://, mailto:, tel:
    * It also allows anchor links staring with #
    */
-  private static final Pattern EXTERNALIZED_PATTERN = Pattern.compile("^(([^/]+:|//)|#).*$");
+  private static final Pattern EXTERNALIZED_PATTERN = Pattern.compile("^([^/]+:|//|#).+?");
 
   /**
    * @return Link type ID (is stored as identifier in repository)
@@ -103,7 +103,8 @@ public final class ExternalLinkType extends LinkType {
     ValueMap props = link.getLinkRequest().getResourceProperties();
 
     // get external URL from link properties
-    String linkUrl = props.get(LinkNameConstants.PN_LINK_EXTERNAL_REF, link.getLinkRequest().getReference());
+    String linkUrl = StringUtils.defaultString(props.get(LinkNameConstants.PN_LINK_EXTERNAL_REF, String.class),
+        link.getLinkRequest().getReference());
 
     // check external link url
     if (StringUtils.isBlank(linkUrl)) {
@@ -131,21 +132,6 @@ public final class ExternalLinkType extends LinkType {
     map.put(LinkNameConstants.PN_LINK_TYPE, ID);
     map.put(LinkNameConstants.PN_LINK_EXTERNAL_REF, url);
     return new SyntheticLinkResource(resourceResolver, path, map);
-  }
-
-  /**
-   * Get synthetic link resource for this link type.
-   * @param resourceResolver Resource resolver
-   * @param url Link URL
-   * @return Synthetic link resource
-   * @deprecated Please use {@link #getSyntheticLinkResource(ResourceResolver, String, String)}
-   */
-  @Deprecated
-  public static @NotNull Resource getSyntheticLinkResource(@NotNull ResourceResolver resourceResolver, @NotNull String url) {
-    Map<String, Object> map = new HashMap<>();
-    map.put(LinkNameConstants.PN_LINK_TYPE, ID);
-    map.put(LinkNameConstants.PN_LINK_EXTERNAL_REF, url);
-    return new SyntheticLinkResource(resourceResolver, map);
   }
 
   @Override

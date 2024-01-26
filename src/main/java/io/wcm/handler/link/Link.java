@@ -30,6 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jdom2.Attribute;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
 import com.day.cq.wcm.api.Page;
@@ -114,7 +115,7 @@ public final class Link {
    * @return Anchor element
    */
   @JsonIgnore
-  public Anchor getAnchor() {
+  public @Nullable Anchor getAnchor() {
     if (this.anchor == null && this.anchorBuilder != null) {
       this.anchor = this.anchorBuilder.apply(this);
       this.anchorBuilder = null;
@@ -127,7 +128,7 @@ public final class Link {
    */
   @JsonIgnore
   @SuppressWarnings("java:S1168")
-  public Map<String, String> getAnchorAttributes() {
+  public @Nullable Map<String, String> getAnchorAttributes() {
     Anchor a = getAnchor();
     if (a == null) {
       return null;
@@ -140,18 +141,9 @@ public final class Link {
   }
 
   /**
-   * @param anchor Anchor element
-   * @deprecated Use {@link #setAnchorBuilder(Function)} to build anchor on-demand
-   */
-  @Deprecated
-  public void setAnchor(Anchor anchor) {
-    this.anchor = anchor;
-  }
-
-  /**
    * @param anchorBuilder Function that builds an anchor representation on demand
    */
-  public void setAnchorBuilder(Function<Link, Anchor> anchorBuilder) {
+  public void setAnchorBuilder(@NotNull Function<Link, Anchor> anchorBuilder) {
     this.anchorBuilder = anchorBuilder;
   }
 
@@ -159,7 +151,7 @@ public final class Link {
    * @return Link markup (only the opening anchor tag) or null if resolving was not successful.
    */
   @JsonIgnore
-  public String getMarkup() {
+  public @Nullable String getMarkup() {
     Anchor a = getAnchor();
     if (a != null) {
       return StringUtils.removeEnd(a.toString(), "</a>");
@@ -172,14 +164,14 @@ public final class Link {
   /**
    * @return Link URL
    */
-  public String getUrl() {
+  public @Nullable String getUrl() {
     return this.url;
   }
 
   /**
    * @param url Link URL
    */
-  public void setUrl(String url) {
+  public void setUrl(@Nullable String url) {
     this.url = url;
   }
 
@@ -187,14 +179,14 @@ public final class Link {
    * @return Target page referenced by the link (applies only for internal links)
    */
   @JsonIgnore
-  public Page getTargetPage() {
+  public @Nullable Page getTargetPage() {
     return this.targetPage;
   }
 
   /**
    * @param targetPage Target page referenced by the link (applies only for internal links)
    */
-  public void setTargetPage(Page targetPage) {
+  public void setTargetPage(@Nullable Page targetPage) {
     this.targetPage = targetPage;
   }
 
@@ -202,14 +194,14 @@ public final class Link {
    * @return Target media item (applies only for media links)
    */
   @JsonIgnore
-  public Asset getTargetAsset() {
+  public @Nullable Asset getTargetAsset() {
     return this.targetAsset;
   }
 
   /**
    * @param targetAsset Target media item (applies only for media links)
    */
-  public void setTargetAsset(Asset targetAsset) {
+  public void setTargetAsset(@Nullable Asset targetAsset) {
     this.targetAsset = targetAsset;
   }
 
@@ -217,14 +209,14 @@ public final class Link {
    * @return Target media rendition (applies only for media links)
    */
   @JsonIgnore
-  public Rendition getTargetRendition() {
+  public @Nullable Rendition getTargetRendition() {
     return this.targetRendition;
   }
 
   /**
    * @param targetRendition Target media rendition (applies only for media links)
    */
-  public void setTargetRendition(Rendition targetRendition) {
+  public void setTargetRendition(@Nullable Rendition targetRendition) {
     this.targetRendition = targetRendition;
   }
 

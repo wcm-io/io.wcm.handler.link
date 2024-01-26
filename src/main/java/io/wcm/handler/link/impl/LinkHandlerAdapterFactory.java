@@ -21,11 +21,14 @@ package io.wcm.handler.link.impl;
 
 import org.apache.sling.api.adapter.Adaptable;
 import org.apache.sling.api.adapter.AdapterFactory;
+import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import io.wcm.handler.link.LinkComponentPropertyResolver;
 import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.sling.commons.caservice.ContextAwareServiceResolver;
+import io.wcm.wcm.commons.component.ComponentPropertyResolverFactory;
 
 /**
  * Adapts resources or requests to {@link LinkHandlerConfig} via {@link ContextAwareServiceResolver}.
@@ -34,18 +37,24 @@ import io.wcm.sling.commons.caservice.ContextAwareServiceResolver;
     property = {
         AdapterFactory.ADAPTABLE_CLASSES + "=org.apache.sling.api.resource.Resource",
         AdapterFactory.ADAPTABLE_CLASSES + "=org.apache.sling.api.SlingHttpServletRequest",
-        AdapterFactory.ADAPTER_CLASSES + "=io.wcm.handler.link.spi.LinkHandlerConfig"
+        AdapterFactory.ADAPTER_CLASSES + "=io.wcm.handler.link.spi.LinkHandlerConfig",
+        AdapterFactory.ADAPTER_CLASSES + "=io.wcm.handler.link.LinkComponentPropertyResolver"
     })
-public class LinkHandlerConfigAdapterFactory implements AdapterFactory {
+public class LinkHandlerAdapterFactory implements AdapterFactory {
 
   @Reference
   private ContextAwareServiceResolver serviceResolver;
+  @Reference
+  private ComponentPropertyResolverFactory componentPropertyResolverFactory;
 
   @SuppressWarnings({ "unchecked", "null" })
   @Override
   public <AdapterType> AdapterType getAdapter(Object adaptable, Class<AdapterType> type) {
     if (type == LinkHandlerConfig.class) {
       return (AdapterType)serviceResolver.resolve(LinkHandlerConfig.class, (Adaptable)adaptable);
+    }
+    if (type == LinkComponentPropertyResolver.class && adaptable instanceof Resource) {
+      return (AdapterType)new LinkComponentPropertyResolver((Resource)adaptable, componentPropertyResolverFactory);
     }
     return null;
   }

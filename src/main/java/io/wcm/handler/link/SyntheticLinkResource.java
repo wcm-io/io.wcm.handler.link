@@ -37,7 +37,6 @@ import org.osgi.annotation.versioning.ProviderType;
 public final class SyntheticLinkResource extends SyntheticResource {
 
   private static final String RESOURCE_TYPE = "wcm-io/handler/link/synthetic/resource";
-  private static final String LEGACY_DEFAULT_PATH = "/apps/wcm-io/handler/link/synthetic/resource";
 
   private final ValueMap properties;
 
@@ -65,27 +64,6 @@ public final class SyntheticLinkResource extends SyntheticResource {
       @NotNull String path, @NotNull Map<String, Object> properties) {
     super(resourceResolver, path, RESOURCE_TYPE);
     this.properties = new ValueMapDecorator(properties);
-  }
-
-  /**
-   * Instantiate resource with static path/resource type
-   * @param resourceResolver Resource resolver
-   * @deprecated Please use {@link #SyntheticLinkResource(ResourceResolver, String)}
-   */
-  @Deprecated
-  public SyntheticLinkResource(@NotNull ResourceResolver resourceResolver) {
-    this(resourceResolver, LEGACY_DEFAULT_PATH);
-  }
-
-  /**
-   * Instantiate resource with static path/resource type
-   * @param resourceResolver Resource resolver
-   * @param properties Properties for resource
-   * @deprecated Please use {@link #SyntheticLinkResource(ResourceResolver, String, Map)}
-   */
-  @Deprecated
-  public SyntheticLinkResource(@NotNull ResourceResolver resourceResolver, @NotNull Map<String, Object> properties) {
-    this(resourceResolver, LEGACY_DEFAULT_PATH, properties);
   }
 
   @Override

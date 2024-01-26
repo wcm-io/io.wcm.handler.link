@@ -2,7 +2,7 @@
  * #%L
  * wcm.io
  * %%
- * Copyright (C) 2014 wcm.io
+ * Copyright (C) 2024 wcm.io
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,8 @@
  * limitations under the License.
  * #L%
  */
-package io.wcm.handler.link.markup;
+package io.wcm.handler.link.type;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -27,39 +26,44 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
 
-import io.wcm.handler.commons.dom.Anchor;
 import io.wcm.handler.link.Link;
-import io.wcm.handler.link.spi.LinkMarkupBuilder;
+import io.wcm.handler.link.spi.LinkType;
 
 /**
- * Very basic implementation of {@link LinkMarkupBuilder}
+ * This link type is used for invalid links. It must not be registered explicitly.
  */
 @Model(adaptables = {
     SlingHttpServletRequest.class, Resource.class
 })
 @ProviderType
-public final class SimpleLinkMarkupBuilder implements LinkMarkupBuilder {
+public final class InvalidLinkType extends LinkType {
 
+  /**
+   * Link type ID
+   */
+  public static final @NotNull String ID = "invalid";
+
+  /**
+   * @return Link type ID (is stored as identifier in repository)
+   */
   @Override
-  public boolean accepts(@NotNull Link link) {
-    return link.isValid() && StringUtils.isNotEmpty(link.getUrl());
+  public @NotNull String getId() {
+    return ID;
   }
 
   @Override
-  public @Nullable Anchor build(@NotNull Link link) {
-    // build anchor
-    Anchor anchor = new Anchor(link.getUrl());
+  public @Nullable String getPrimaryLinkRefProperty() {
+    return null;
+  }
 
-    // window target
-    String target = link.getLinkRequest().getLinkArgs().getWindowTarget();
-    if (StringUtils.isNotEmpty(target) && !"_self".equals(target)) {
-      anchor.setTarget(target);
-    }
+  @Override
+  public boolean accepts(@NotNull String linkRef) {
+    return false;
+  }
 
-    // all other link reference properties like popup windows settings, user tracking
-    // have to be handled by project-specific implementations of LinkMarkupBuilder
-
-    return anchor;
+  @Override
+  public @NotNull Link resolveLink(@NotNull Link link) {
+    return link;
   }
 
 }

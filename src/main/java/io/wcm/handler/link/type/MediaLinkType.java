@@ -107,13 +107,17 @@ public final class MediaLinkType extends LinkType {
     ValueMap props = linkRequest.getResourceProperties();
 
     // get properties
-    String mediaRef = props.get(LinkNameConstants.PN_LINK_MEDIA_REF, link.getLinkRequest().getReference());
+    String mediaRef = StringUtils.defaultString(props.get(LinkNameConstants.PN_LINK_MEDIA_REF, String.class),
+        link.getLinkRequest().getReference());
     boolean isDownload = props.get(LinkNameConstants.PN_LINK_MEDIA_DOWNLOAD, false);
 
     MediaArgs mediaArgs = new MediaArgs()
         // only allow linking to "download" media formats
         .download(true)
+        // content disposition header for download links
         .contentDispositionAttachment(isDownload)
+        // disable web-optimized image delivery to get asset in original resolution
+        .webOptimizedImageDeliveryDisabled(true)
         .urlMode(linkRequest.getLinkArgs().getUrlMode());
 
     // resolve media library reference
@@ -155,21 +159,6 @@ public final class MediaLinkType extends LinkType {
     map.put(LinkNameConstants.PN_LINK_TYPE, ID);
     map.put(LinkNameConstants.PN_LINK_MEDIA_REF, mediaRef);
     return new SyntheticLinkResource(resourceResolver, path, map);
-  }
-
-  /**
-   * Get synthetic link resource for this link type.
-   * @param resourceResolver Resource resolver
-   * @param mediaRef Media asset reference
-   * @return Synthetic link resource
-   * @deprecated Please use {@link #getSyntheticLinkResource(ResourceResolver, String, String)}
-   */
-  @Deprecated
-  public static @NotNull Resource getSyntheticLinkResource(@NotNull ResourceResolver resourceResolver, @NotNull String mediaRef) {
-    Map<String, Object> map = new HashMap<>();
-    map.put(LinkNameConstants.PN_LINK_TYPE, ID);
-    map.put(LinkNameConstants.PN_LINK_MEDIA_REF, mediaRef);
-    return new SyntheticLinkResource(resourceResolver, map);
   }
 
   @Override
