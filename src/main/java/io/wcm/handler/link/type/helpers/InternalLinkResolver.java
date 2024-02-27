@@ -202,6 +202,7 @@ public final class InternalLinkResolver {
           .queryString(queryString)
           .fragment(fragment)
           .urlMode(linkArgs.getUrlMode())
+          .vanityMode(linkArgs.getVanityMode())
           .disableSuffixSelector(linkArgs.isDisableSuffixSelector())
           .buildExternalLinkUrl(targetPage);
     }

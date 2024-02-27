@@ -19,6 +19,7 @@
  */
 package io.wcm.handler.link;
 
+import io.wcm.handler.url.VanityMode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ProviderType;
@@ -107,6 +108,15 @@ public interface LinkBuilder {
    */
   @NotNull
   LinkBuilder urlMode(@Nullable UrlMode urlMode);
+
+
+  /**
+   * Set Vanity mode for building the URL
+   * @param vanityMode Vanity mode. If null, default Vanity mode is used.
+   * @return Link builder
+   */
+  @NotNull
+  LinkBuilder vanityMode(@Nullable VanityMode vanityMode);
 
   /**
    * @param value If set to true, link handler returns a dummy link in edit mode when link is invalid.
