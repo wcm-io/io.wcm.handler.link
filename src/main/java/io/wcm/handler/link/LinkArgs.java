@@ -22,6 +22,7 @@ package io.wcm.handler.link;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.wcm.handler.url.VanityMode;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -43,6 +44,7 @@ import io.wcm.wcm.commons.util.ToStringStyle;
 public final class LinkArgs implements Cloneable {
 
   private UrlMode urlMode;
+  private VanityMode vanityMode;
   private boolean dummyLink;
   private String dummyLinkUrl;
   private String selectors;
@@ -65,11 +67,27 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * @return Vanity mode for building the URL
+   */
+  public @Nullable VanityMode getVanityMode() {
+    return this.vanityMode;
+  }
+
+  /**
    * @param value URL mode for externalizing the URL
    * @return this
    */
   public @NotNull LinkArgs urlMode(@Nullable UrlMode value) {
     this.urlMode = value;
+    return this;
+  }
+
+  /**
+   * @param value Vanity mode for building the URL
+   * @return this
+   */
+  public @NotNull LinkArgs vanityMode(@Nullable VanityMode value) {
+    this.vanityMode = value;
     return this;
   }
 
