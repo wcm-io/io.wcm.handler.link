@@ -39,12 +39,14 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 
 import io.wcm.handler.link.Link;
+import io.wcm.handler.link.LinkBuilder;
 import io.wcm.handler.link.LinkHandler;
 import io.wcm.handler.link.LinkNameConstants;
 import io.wcm.handler.link.SyntheticLinkResource;
 import io.wcm.handler.link.testcontext.AppAemContext;
 import io.wcm.handler.link.testcontext.DummyAppTemplate;
 import io.wcm.handler.url.UrlModes;
+import io.wcm.handler.url.VanityMode;
 import io.wcm.handler.url.integrator.IntegratorModes;
 import io.wcm.handler.url.integrator.IntegratorNameConstants;
 import io.wcm.handler.url.integrator.IntegratorProtocol;
@@ -550,6 +552,26 @@ class InternalLinkTypeTest {
     assertFalse(link.isLinkReferenceInvalid(), "link ref invalid");
     assertEquals("http://www.dummysite.org/content/unittest/de_test/brand/de/section/content.html", link.getUrl(), "link url");
     assertNotNull(link.getAnchor(), "anchor");
+  }
+
+  @Test
+  void testVanityMode() {
+    String vanityPath = "/content/unittest/de_test/brand/de/vanity-path";
+    targetPage = context.create().page("/content/unittest/de_test/brand/de/section/content-vanity",
+        DummyAppTemplate.CONTENT.getTemplatePath(),
+        "sling:vanityPath", vanityPath);
+
+    SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
+        "/content/dummy-path",
+        ImmutableValueMap.builder()
+            .put(LinkNameConstants.PN_LINK_TYPE, InternalLinkType.ID)
+            .put(LinkNameConstants.PN_LINK_CONTENT_REF, targetPage.getPath())
+            .build());
+
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+    LinkBuilder linkBuilder = linkHandler.get(linkResource)
+        .vanityMode(VanityMode.ALWAYS);
+    assertEquals("http://www.dummysite.org/content/unittest/de_test/brand/de/vanity-path.html", linkBuilder.buildUrl());
   }
 
 }
