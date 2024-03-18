@@ -19,7 +19,6 @@
  */
 package io.wcm.handler.link.impl;
 
-import io.wcm.handler.url.VanityMode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -39,6 +38,7 @@ import io.wcm.handler.link.LinkComponentPropertyResolver;
 import io.wcm.handler.link.LinkNameConstants;
 import io.wcm.handler.link.LinkRequest;
 import io.wcm.handler.url.UrlMode;
+import io.wcm.handler.url.VanityMode;
 import io.wcm.wcm.commons.component.ComponentPropertyResolverFactory;
 
 /**
@@ -151,7 +151,6 @@ final class LinkBuilderImpl implements LinkBuilder {
     this.linkArgs.vanityMode(value);
     return this;
   }
-
 
   @Override
   public @NotNull LinkBuilder dummyLink(boolean value) {
