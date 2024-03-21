@@ -38,6 +38,7 @@ import io.wcm.handler.link.LinkComponentPropertyResolver;
 import io.wcm.handler.link.LinkNameConstants;
 import io.wcm.handler.link.LinkRequest;
 import io.wcm.handler.url.UrlMode;
+import io.wcm.handler.url.VanityMode;
 import io.wcm.wcm.commons.component.ComponentPropertyResolverFactory;
 
 /**
@@ -142,6 +143,12 @@ final class LinkBuilderImpl implements LinkBuilder {
   @Override
   public @NotNull LinkBuilder urlMode(@Nullable UrlMode value) {
     this.linkArgs.urlMode(value);
+    return this;
+  }
+
+  @Override
+  public @NotNull LinkBuilder vanityMode(@Nullable VanityMode value) {
+    this.linkArgs.vanityMode(value);
     return this;
   }
 
