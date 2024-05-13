@@ -24,7 +24,7 @@
   <body>
 
     <release version="2.2.0" date="not released">
-      <action type="add" dev="sseifert">
+      <action type="add" dev="sseifert" issue="14">
         Support detecting redirect pages using AEM cq:redirectTarget property (instead of link handler properties).
       </action>
     </release>
