@@ -66,7 +66,11 @@ public class DummyLinkHandlerConfig extends LinkHandlerConfig {
   @Override
   public boolean isRedirect(Page page) {
     String templatePath = page.getProperties().get(NameConstants.PN_TEMPLATE, String.class);
-    return StringUtils.equals(templatePath, DummyAppTemplate.REDIRECT.getTemplatePath());
+    boolean isRedirect = StringUtils.equals(templatePath, DummyAppTemplate.REDIRECT.getTemplatePath());
+    if (isRedirect) {
+      return true;
+    }
+    return super.isRedirect(page);
   }
 
 }
