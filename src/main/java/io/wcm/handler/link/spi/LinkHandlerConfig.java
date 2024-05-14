@@ -19,6 +19,8 @@
  */
 package io.wcm.handler.link.spi;
 
+import static com.day.cq.wcm.api.NameConstants.PN_REDIRECT_TARGET;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
   private static final List<Class<? extends LinkProcessor>> DEFAULT_POST_PROCESSORS = List.of(
       DefaultInternalLinkInheritUrlParamLinkPostProcessor.class);
 
-  private static final String REDIRECT_RESOURCE_TYPE = "wcm-io/handler/link/components/page/redirect";
+  static final String REDIRECT_RESOURCE_TYPE = "wcm-io/handler/link/components/page/redirect";
 
   /**
    * Default content root path.
@@ -123,7 +125,8 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
    * @return true if Page is a redirect page
    */
   public boolean isRedirect(@NotNull Page page) {
-    return ResourceType.is(page.getContentResource(), REDIRECT_RESOURCE_TYPE);
+    return ResourceType.is(page.getContentResource(), REDIRECT_RESOURCE_TYPE)
+        || StringUtils.isNotBlank(page.getProperties().get(PN_REDIRECT_TARGET, String.class));
   }
 
   /**

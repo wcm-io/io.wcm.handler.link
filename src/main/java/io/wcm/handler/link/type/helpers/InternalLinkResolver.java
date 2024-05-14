@@ -19,6 +19,11 @@
  */
 package io.wcm.handler.link.type.helpers;
 
+import static com.day.cq.wcm.api.NameConstants.PN_REDIRECT_TARGET;
+import static io.wcm.handler.link.LinkNameConstants.PN_LINK_FRAGMENT;
+import static io.wcm.handler.link.LinkNameConstants.PN_LINK_QUERY_PARAM;
+import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -40,7 +45,6 @@ import com.day.cq.wcm.api.WCMMode;
 import io.wcm.handler.link.Link;
 import io.wcm.handler.link.LinkArgs;
 import io.wcm.handler.link.LinkHandler;
-import io.wcm.handler.link.LinkNameConstants;
 import io.wcm.handler.link.LinkRequest;
 import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.url.UrlHandler;
@@ -182,16 +186,16 @@ public final class InternalLinkResolver {
 
       // optionally override query parameters and fragment from link resource
       if (queryString == null) {
-        queryString = props.get(LinkNameConstants.PN_LINK_QUERY_PARAM, String.class);
+        queryString = props.get(PN_LINK_QUERY_PARAM, String.class);
       }
       else {
-        queryString = props.get(LinkNameConstants.PN_LINK_QUERY_PARAM, queryString);
+        queryString = props.get(PN_LINK_QUERY_PARAM, queryString);
       }
       if (fragment == null) {
-        fragment = props.get(LinkNameConstants.PN_LINK_FRAGMENT, String.class);
+        fragment = props.get(PN_LINK_FRAGMENT, String.class);
       }
       else {
-        fragment = props.get(LinkNameConstants.PN_LINK_FRAGMENT, fragment);
+        fragment = props.get(PN_LINK_FRAGMENT, fragment);
       }
 
       // build link url
@@ -226,13 +230,26 @@ public final class InternalLinkResolver {
    * @return Link metadata
    */
   private Link recursiveResolveLink(Page redirectPage, Link link) {
-
-    // set link reference to content resource of redirect page, keep other parameters
     LinkRequest linkRequest = link.getLinkRequest();
-    LinkRequest redirectLinkRequest = new LinkRequest(
-        redirectPage.getContentResource(),
-        null,
-        linkRequest.getLinkArgs());
+    LinkRequest redirectLinkRequest;
+
+    String linkType = redirectPage.getProperties().get(PN_LINK_TYPE, String.class);
+    String cqRedirectTarget = redirectPage.getProperties().get(PN_REDIRECT_TARGET, String.class);
+    if (StringUtils.isBlank(linkType) && StringUtils.isNotBlank(cqRedirectTarget)) {
+      // detected cq-style cq:redirectTarget property, use it's value as reference
+      redirectLinkRequest = new LinkRequest(
+          null,
+          null,
+          cqRedirectTarget,
+          linkRequest.getLinkArgs());
+    }
+    else {
+      // set link reference to content resource of redirect page, keep other parameters
+      redirectLinkRequest = new LinkRequest(
+          redirectPage.getContentResource(),
+          null,
+          linkRequest.getLinkArgs());
+    }
 
     // check of maximum recursive calls via threadlocal to avoid endless loops, return invalid link if one is detected
     LinkResolveCounter linkResolveCounter = LinkResolveCounter.get();

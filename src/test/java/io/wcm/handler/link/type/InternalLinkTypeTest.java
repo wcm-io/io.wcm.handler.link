@@ -35,6 +35,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 
@@ -226,6 +227,25 @@ class InternalLinkTypeTest {
             .put(LinkNameConstants.PN_LINK_TYPE, InternalLinkType.ID)
             .put(LinkNameConstants.PN_LINK_CONTENT_REF, targetPage.getPath())
             .build());
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("http://www.dummysite.org/content/unittest/de_test/brand/de/section/content.html", link.getUrl(), "link url");
+    assertNotNull(link.getAnchor(), "anchor");
+
+    List<Page> redirectPages = link.getRedirectPages();
+    assertEquals(1, redirectPages.size());
+    assertEquals(redirectInternalPage, redirectPages.get(0));
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget() throws Exception {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // redirect page using cq:redirectTarget property
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectInternal", null,
+        NameConstants.PN_REDIRECT_TARGET, targetPage.getPath());
 
     Link link = linkHandler.get(redirectInternalPage).build();
 

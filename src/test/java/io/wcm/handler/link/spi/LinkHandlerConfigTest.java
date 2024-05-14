@@ -19,12 +19,16 @@
  */
 package io.wcm.handler.link.spi;
 
+import static com.day.cq.wcm.api.NameConstants.PN_REDIRECT_TARGET;
 import static io.wcm.handler.link.spi.LinkHandlerConfig.DEFAULT_ROOT_PATH_CONTENT;
 import static io.wcm.handler.link.spi.LinkHandlerConfig.DEFAULT_ROOT_PATH_MEDIA;
 import static io.wcm.handler.link.testcontext.AppAemContext.ROOTPATH_CONTENT;
 import static io.wcm.handler.link.testcontext.AppAemContext.ROOTPATH_CONTENT_OTHER_SITE;
+import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -87,6 +91,15 @@ class LinkHandlerConfigTest {
   @Test
   void testGetLinkRootPath_Invalid() {
     assertNull(underTest.getLinkRootPath(contentPage, "invalid"));
+  }
+
+  @Test
+  void testIsRedirect() {
+    assertFalse(underTest.isRedirect(context.create().page(ROOTPATH_CONTENT + "/page1")));
+    assertTrue(underTest.isRedirect(context.create().page(ROOTPATH_CONTENT + "/page2", null,
+        PROPERTY_RESOURCE_TYPE, LinkHandlerConfig.REDIRECT_RESOURCE_TYPE)));
+    assertTrue(underTest.isRedirect(context.create().page(ROOTPATH_CONTENT + "/page3", null,
+        PN_REDIRECT_TARGET, "https://myhost.com")));
   }
 
 }
