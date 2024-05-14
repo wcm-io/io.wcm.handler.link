@@ -23,7 +23,7 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="2.2.0" date="not released">
+    <release version="2.2.0" date="2024-05-14">
       <action type="add" dev="sseifert" issue="14">
         Support detecting redirect pages using AEM cq:redirectTarget property (instead of link handler properties).
       </action>
