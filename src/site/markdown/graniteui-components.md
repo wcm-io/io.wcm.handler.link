@@ -7,7 +7,7 @@
 
 A component that defines the full set of fields for defining a link with it's properties to be included in a dialog tab. The link types are displayed dynamically as configured in the link handler configuration. It is possible to add your own fields.
 
-```json
+```json-jcr
 {
   "jcr:primaryType": "nt:unstructured",
   "sling:resourceType": "granite/ui/components/coral/foundation/fixedcolumns",
@@ -36,7 +36,7 @@ The link source input will be dynamically shown/hidden according to the link typ
 
 This is a customized Path Field that always sets the root path to the link root path as defined by the Link Handler configuration for internal links. By default, this is the site root path as defined by the URL Handler configuration.
 
-```json
+```json-jcr
 "field": {
   "sling:resourceType": "wcm-io/handler/link/components/granite/form/internalLinkPathField",
   "fieldLabel": "Internal page (same site)"
@@ -53,7 +53,7 @@ This component extends the [wcm.io Granite UI components Path Field][wcmio-wcm-u
 
 This is a customized Path Field that always sets the root path to the link root path as defined by the Link Handler configuration for internal cross-context links. By default, this is `/content`.
 
-```json
+```json-jcr
 "field": {
   "sling:resourceType": "wcm-io/handler/link/components/granite/form/internalCrossContextLinkPathField",
   "fieldLabel": "Internal Page (other site)"
@@ -70,7 +70,7 @@ This component extends the [wcm.io Granite UI components Path Field][wcmio-wcm-u
 
 This is a customized Path Field that always sets the root path to the link root path as defined by the Link Handler configuration for media links. By default, this is `/content/dam`.
 
-```json
+```json-jcr
 "field": {
   "sling:resourceType": "wcm-io/handler/link/components/granite/form/mediaLinkPathField",
   "fieldLabel": "Asset reference"
