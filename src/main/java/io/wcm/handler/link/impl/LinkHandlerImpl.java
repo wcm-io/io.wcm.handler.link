@@ -31,6 +31,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.day.cq.wcm.api.Page;
 
@@ -65,6 +67,8 @@ public final class LinkHandlerImpl implements LinkHandler {
   private Page currentPage;
   @OSGiService
   private ComponentPropertyResolverFactory componentPropertyResolverFactory;
+
+  private static final Logger log = LoggerFactory.getLogger(LinkHandlerImpl.class);
 
   @Override
   public @NotNull LinkBuilder get(@Nullable Resource resource) {
@@ -119,10 +123,15 @@ public final class LinkHandlerImpl implements LinkHandler {
     }
     Link link = new Link(linkType, linkRequest);
 
+    if (log.isTraceEnabled()) {
+      log.trace("Start processing link request (linkType={}): {}", linkType.getId(), linkRequest);
+    }
+
     // preprocess link before resolving
     List<Class<? extends LinkProcessor>> linkPreProcessors = linkHandlerConfig.getPreProcessors();
     if (linkPreProcessors != null) {
       for (Class<? extends LinkProcessor> processorClass : linkPreProcessors) {
+        log.trace("Apply pre processor ({}): {}", processorClass, linkRequest);
         LinkProcessor processor = AdaptTo.notNull(adaptable, processorClass);
         link = processor.process(link);
         if (link == null) {
@@ -141,6 +150,7 @@ public final class LinkHandlerImpl implements LinkHandler {
     if (!link.isValid()) {
       LinkRequest fallbackLinkRequest = getFallbackLinkRequest(linkRequest);
       if (fallbackLinkRequest != null) {
+        log.trace("Link is invalid ({}) - process fallback link request: {}", link, fallbackLinkRequest);
         Link fallbackLink = processRequest(fallbackLinkRequest);
         if (fallbackLink.isValid()) {
           return fallbackLink;
@@ -155,6 +165,7 @@ public final class LinkHandlerImpl implements LinkHandler {
         for (Class<? extends LinkMarkupBuilder> linkMarkupBuilderClass : linkMarkupBuilders) {
           LinkMarkupBuilder linkMarkupBuilder = AdaptTo.notNull(adaptable, linkMarkupBuilderClass);
           if (linkMarkupBuilder.accepts(l)) {
+            log.trace("Apply link markup builder ({}): {}", linkMarkupBuilderClass, linkRequest);
             return linkMarkupBuilder.build(l);
           }
         }
@@ -166,6 +177,7 @@ public final class LinkHandlerImpl implements LinkHandler {
     List<Class<? extends LinkProcessor>> linkPostProcessors = linkHandlerConfig.getPostProcessors();
     if (linkPostProcessors != null) {
       for (Class<? extends LinkProcessor> processorClass : linkPostProcessors) {
+        log.trace("Apply post processor ({}): {}", processorClass, linkRequest);
         LinkProcessor processor = AdaptTo.notNull(adaptable, processorClass);
         link = processor.process(link);
         if (link == null) {
@@ -173,6 +185,8 @@ public final class LinkHandlerImpl implements LinkHandler {
         }
       }
     }
+
+    log.debug("Finished link processing: {}", link);
 
     return link;
   }
