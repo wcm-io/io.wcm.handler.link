@@ -24,7 +24,7 @@
   <body>
 
     <release version="2.2.2" date="not released">
-      <action type="update" dev="sseifert">
+      <action type="update" dev="sseifert" issue="15">
         Provide DEBUG/TRACE log messages for link processing.
       </action>
     </release>
