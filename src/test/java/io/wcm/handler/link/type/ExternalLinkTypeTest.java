@@ -101,7 +101,7 @@ class ExternalLinkTypeTest {
   }
 
   @Test
-  void testAccepts() throws Exception {
+  void testAccepts() {
     LinkType underTest = AdaptTo.notNull(adaptable(), ExternalLinkType.class);
 
     assertTrue(underTest.accepts("http://hostname"));

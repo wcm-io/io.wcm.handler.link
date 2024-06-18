@@ -56,7 +56,7 @@ class SeoSitemapLinkExternalizerImplTest {
   private Page page1;
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
 
     // simulate AEM built-in SitemapLinkExternalizer with lower service ranking
     context.registerService(SitemapLinkExternalizer.class, aemSitemapLinkExternalizer,
