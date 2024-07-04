@@ -259,7 +259,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testRedirectInternal_EditMode() throws Exception {
+  void testRedirectInternal_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;
     }
