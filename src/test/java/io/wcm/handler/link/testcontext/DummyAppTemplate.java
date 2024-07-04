@@ -62,8 +62,8 @@ public enum DummyAppTemplate {
 
     // build resource type from template path
     String resourceTypeFromTemplatePath = null;
-    final Pattern TEMPLATE_PATH_PATTERN = Pattern.compile("^/apps/([^/]+)/templates(/.*)?/([^/]+)$");
-    Matcher templateParts = TEMPLATE_PATH_PATTERN.matcher(templatePath);
+    final Pattern templatePathPattern = Pattern.compile("^/apps/([^/]+)/templates(/.*)?/([^/]+)$");
+    Matcher templateParts = templatePathPattern.matcher(templatePath);
     if (templateParts.matches()) {
       resourceTypeFromTemplatePath = templateParts.group(1) + "/components" + StringUtils.defaultString(templateParts.group(2))
       + "/page/" + templateParts.group(3);

@@ -207,7 +207,7 @@ class LinkHandlerImplTest {
       return List.of(TestLinkPostProcessor.class);
     }
 
-  };
+  }
 
   @Model(adaptables = {
       SlingHttpServletRequest.class, Resource.class
