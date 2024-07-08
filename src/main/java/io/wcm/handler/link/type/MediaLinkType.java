@@ -97,7 +97,7 @@ public final class MediaLinkType extends LinkType {
   @Override
   public boolean accepts(@NotNull String linkRef) {
     // accept as media link if the ref is inside default media subtrees
-    return MediaLinkType.isDefaultMediaContentPath(linkRef);
+    return isDefaultMediaContentPath(linkRef);
   }
 
   @SuppressWarnings("null")

@@ -31,7 +31,7 @@ import org.osgi.annotation.versioning.ProviderType;
 
 import com.day.cq.wcm.api.Page;
 
-import io.wcm.wcm.commons.util.ToStringStyle;
+import io.wcm.wcm.commons.util.AemObjectReflectionToStringBuilder;
 
 /**
  * Holds all properties that are part of a link handling request.
@@ -121,7 +121,22 @@ public final class LinkRequest {
 
   @Override
   public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_OMIT_NULL_STYLE);
+    ToStringBuilder sb = new ToStringBuilder(this,
+        io.wcm.wcm.commons.util.ToStringStyle.SHORT_PREFIX_OMIT_NULL_STYLE);
+    if (resource != null) {
+      sb.append("resource", resource.getPath());
+      sb.append("resourceProperties", AemObjectReflectionToStringBuilder.filteredValueMap(resource.getValueMap()));
+    }
+    if (page != null) {
+      sb.append("page", page.getPath());
+    }
+    if (reference != null) {
+      sb.append("reference", reference);
+    }
+    if (linkArgs != null) {
+      sb.append("linkArgs", linkArgs);
+    }
+    return sb.build();
   }
 
 }

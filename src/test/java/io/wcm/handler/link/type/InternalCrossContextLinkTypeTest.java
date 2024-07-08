@@ -62,7 +62,7 @@ class InternalCrossContextLinkTypeTest {
   }
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
 
     // create current page in site context
     context.currentPage(context.create().page("/content/unittest/de_test/brand/de/section/page",

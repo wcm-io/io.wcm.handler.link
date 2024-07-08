@@ -72,7 +72,7 @@ class InternalLinkTypeTest {
   }
 
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
 
     // create current page in site context
     context.currentPage(context.create().page("/content/unittest/de_test/brand/de/section/page",
@@ -219,7 +219,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testRedirectInternal() throws Exception {
+  void testRedirectInternal() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
     Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectInternal",
@@ -240,7 +240,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testRedirectInternal_cqRedirectTarget() throws Exception {
+  void testRedirectInternal_cqRedirectTarget() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
     // redirect page using cq:redirectTarget property
@@ -259,7 +259,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testRedirectInternal_EditMode() throws Exception {
+  void testRedirectInternal_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;
     }
@@ -282,7 +282,7 @@ class InternalLinkTypeTest {
 
   @Test
   @SuppressWarnings("null")
-  void testRedirectRedirectInternal() throws Exception {
+  void testRedirectRedirectInternal() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
     Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectInternal",
@@ -313,7 +313,7 @@ class InternalLinkTypeTest {
 
   @Test
   @SuppressWarnings("null")
-  void testRedirectExternal() throws Exception {
+  void testRedirectExternal() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
     Page redirectExternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectExternal",
@@ -332,7 +332,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testRedirectCyclic() throws Exception {
+  void testRedirectCyclic() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
     String redirectInternalCyclic1Path = "/content/unittest/de_test/brand/de/section/redirectInternalCyclic1";
@@ -363,7 +363,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testIntegrator() throws Exception {
+  void testIntegrator() {
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
 
     Page integratorPage = context.create().page("/content/unittest/de_test/brand/de/section/integrator",
@@ -382,7 +382,7 @@ class InternalLinkTypeTest {
   }
 
   @Test
-  void testIntegrator_EditMode() throws Exception {
+  void testIntegrator_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;
     }

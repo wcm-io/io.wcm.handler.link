@@ -28,6 +28,7 @@ import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jdom2.Attribute;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +44,6 @@ import io.wcm.handler.commons.dom.Anchor;
 import io.wcm.handler.link.spi.LinkType;
 import io.wcm.handler.media.Asset;
 import io.wcm.handler.media.Rendition;
-import io.wcm.wcm.commons.util.ToStringStyle;
 
 /**
  * Holds information about a link processed and resolved by {@link LinkHandler}.
@@ -259,7 +259,32 @@ public final class Link {
 
   @Override
   public String toString() {
-    return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_OMIT_NULL_STYLE);
+    ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    sb.append("valid", isValid());
+    if (isValid()) {
+      sb.append("url", getUrl());
+    }
+    else {
+      sb.append("linkReferenceInvalid", this.linkReferenceInvalid);
+    }
+    sb.append("linkType", getLinkType());
+    if (this.anchor != null) {
+      sb.append("anchor", this.anchor.toString());
+    }
+    if (targetPage != null) {
+      sb.append("targetPage", targetPage.getPath());
+    }
+    if (targetAsset != null) {
+      sb.append("targetAsset", targetAsset.getPath());
+    }
+    if (targetRendition != null) {
+      sb.append("targetRendition", targetRendition);
+    }
+    if (redirectPages != null && !redirectPages.isEmpty()) {
+      sb.append("redirectPages", redirectPages.stream().map(Page::getPath).toArray());
+    }
+    sb.append("linkRequest", linkRequest);
+    return sb.build();
   }
 
 }

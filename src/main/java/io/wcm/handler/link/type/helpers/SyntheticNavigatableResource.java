@@ -80,7 +80,7 @@ final class SyntheticNavigatableResource extends AbstractResource {
     if (parentPath == null) {
       return null;
     }
-    return SyntheticNavigatableResource.get(parentPath, resolver);
+    return get(parentPath, resolver);
   }
 
   /**
