@@ -38,7 +38,7 @@
 
   // predefined "url" pattern validator
   foundationValidator.register('foundation.validation.validator', {
-    selector: '[data-validation="wcmio.handler.link.url"]',
+    selector: '[data-foundation-validation="wcmio.handler.link.url"]',
     validate: function(el) {
       var value = getValue(el);
       var valid = value.length === 0 || pattern.url.test(value);
