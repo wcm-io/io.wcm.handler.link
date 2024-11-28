@@ -24,7 +24,7 @@
   <body>
 
     <release version="2.2.4" date="not released">
-      <action type="fix" dev="sseifert">
+      <action type="fix" dev="sseifert" issue="17">
         GraniteUI validator: Use data-foundation-validation instead of data-validation HTML attribute, the latter is deprecated.
       </action>
     </release>
