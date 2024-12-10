@@ -23,7 +23,7 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="2.2.4" date="not released">
+    <release version="2.2.4" date="2024-12-10">
       <action type="fix" dev="sseifert" issue="17">
         GraniteUI validator: Use data-foundation-validation instead of data-validation HTML attribute, the latter is deprecated.
       </action>
