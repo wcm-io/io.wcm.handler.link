@@ -32,7 +32,7 @@ The link source input will be dynamically shown/hidden according to the link typ
 
 `http://localhost:4502/libs/granite/ui/content/dumplibs.rebuild.html`
 
-Properties
+Properties:
 - `showLinkTitle` (boolean), default: `false`\
   Show text field with link title.
 - `linkTypes` (String[])\
@@ -76,7 +76,7 @@ This component extends the [wcm.io Granite UI components Path Field][wcmio-wcm-u
 * Dynamically sets `rootPath` to the link root path as returned by the Link Handler configuration
 * Dynamically sets `name` to the default property name for internal links
 
-Properties
+Properties:
 - `name` (String), default: "./linkContentRef"\
   Property name for internal link reference.
 - `rootPath` (String)\
@@ -104,7 +104,7 @@ This component extends the [wcm.io Granite UI components Path Field][wcmio-wcm-u
 * Dynamically sets `rootPath` to the link root path as returned by the Link Handler configuration
 * Dynamically sets `name` to the default property name for internal cross-context links
 
-Properties
+Properties:
 - `name` (String), default: "./linkCrossContextContentRef"\
   Property name for internal cross-context link reference.
 - `rootPath` (String)\
@@ -133,19 +133,20 @@ This component extends the [Media Handler-aware Path Field][wcmio-handler-media-
 * Dynamically sets `name` to the default property name for media links
 * Dynamically sets `mediaFormats` to a list of all media formats with "download" flag
 
-  - `name` (String), default: "./linkMediaRef"\
-    Property name for media link reference.
-  - `rootPath` (String)\
-    The root path for the pathfield. If not set, it's value is set automatically
-    to the root path for media link type as returned by the current context's Link Handler configuration.
-  - `fallbackRootPath` (String), default: "/content/dam"
-    The root path that is used as fallback when no root path could be detected dynamically,
-    e.g. because outside any site or within experience fragments.
-  - `appendPath` (String)\
-    Appendix path added to the (usually auto-detected) root path.
-  - `mediaFormats` (String[])\
-    List of media formats for assets that can be linked upon.
-    If not set the property value is set to the list of all media formats with "download" flag.
+Properties:
+- `name` (String), default: "./linkMediaRef"\
+  Property name for media link reference.
+- `rootPath` (String)\
+  The root path for the pathfield. If not set, it's value is set automatically
+  to the root path for media link type as returned by the current context's Link Handler configuration.
+- `fallbackRootPath` (String), default: "/content/dam"
+  The root path that is used as fallback when no root path could be detected dynamically,
+  e.g. because outside any site or within experience fragments.
+- `appendPath` (String)\
+  Appendix path added to the (usually auto-detected) root path.
+- `mediaFormats` (String[])\
+  List of media formats for assets that can be linked upon.
+  If not set the property value is set to the list of all media formats with "download" flag.
 
 [wcmio-handler-media-pathfield]: https://wcm.io/handler/media/graniteui-components.html#Media_Handler-aware_Path_Field
 [wcmio-wcm-ui-granite-pathfield]: https://wcm.io/wcm/ui/granite/components.html#Path_Field
