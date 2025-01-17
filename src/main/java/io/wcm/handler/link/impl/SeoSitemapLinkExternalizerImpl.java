@@ -44,6 +44,7 @@ import io.wcm.sling.commons.adapter.AdaptTo;
 /**
  * Implementation of {@link SitemapLinkExternalizer} that uses the link handler for externalizing links.
  * This is used to externalize links in sitemaps, and links used for SEO tags e.g. canoncial URLs.
+ *
  * <p>
  * As AEM has no concept for context-aware services, this implementation is called for every link on an AEM instance. If
  * the targeted resource is actually an AEM Page, the link is tried to externalize using the Link Handler. If this does

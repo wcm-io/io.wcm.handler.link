@@ -23,6 +23,7 @@ import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Names used for link handling.
+ *
  * <p>
  * Conventions:
  * </p>
@@ -96,6 +97,7 @@ public final class LinkNameConstants {
    * instead of the link type + link type depending property name. This property is used for migration
    * from components that do not support Link Handler. It is only used for reading, and never written back to.
    * When opened and saved in the link dialog, the property is removed and instead the dedicated properties are used.
+   *
    * <p>
    * Property is to be set on component or in policy.
    * </p>
@@ -107,6 +109,7 @@ public final class LinkNameConstants {
    * instead of the the default property. This property is used for migration
    * from components that do not support Link Handler. It is only used for reading, and never written back to.
    * When opened and saved in the link dialog, the property is removed and instead the dedicated properties are used.
+   *
    * <p>
    * Property is to be set on component or in policy.
    * </p>

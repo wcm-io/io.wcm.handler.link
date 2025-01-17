@@ -44,6 +44,7 @@ import io.wcm.handler.url.UrlHandler;
 /**
  * Default implementation of {@link io.wcm.handler.link.spi.LinkType} for internal links.
  * Internal links are links to content pages inside the CMS.
+ *
  * <p>
  * This link type ensures all links target only pages inside the same inner-most configuration scope, which is usually
  * the same site/language. All link paths referencing pages outside this content subtree are rewritten via
