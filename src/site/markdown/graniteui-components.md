@@ -139,7 +139,7 @@ Properties:
 - `rootPath` (String)\
   The root path for the pathfield. If not set, it's value is set automatically
   to the root path for media link type as returned by the current context's Link Handler configuration.
-- `fallbackRootPath` (String), default: "/content/dam"
+- `fallbackRootPath` (String), default: "/content/dam"\
   The root path that is used as fallback when no root path could be detected dynamically,
   e.g. because outside any site or within experience fragments.
 - `appendPath` (String)\
@@ -148,5 +148,40 @@ Properties:
   List of media formats for assets that can be linked upon.
   If not set the property value is set to the list of all media formats with "download" flag.
 
-[wcmio-handler-media-pathfield]: https://wcm.io/handler/media/graniteui-components.html#Media_Handler-aware_Path_Field
-[wcmio-wcm-ui-granite-pathfield]: https://wcm.io/wcm/ui/granite/components.html#Path_Field
+### Media Link Type File Upload
+
+This is a customized FileUpload field that always sets the root path to the media root path as defined by the Link Handler configuration for media links. By default, this is `/content/dam`.
+
+```json-jcr
+"field": {
+  "sling:resourceType": "wcm-io/handler/link/components/granite/form/mediaLinkFileUpload",
+  "fieldLabel": "Asset reference"
+}
+```
+
+This component extends the [Media Handler-aware FileUpload][wcmio-handler-media-fileupload]. Enhancements over this version:
+
+* Dynamically sets `rootPath` to the media link root path as returned by the Link Handler configuration
+* Dynamically sets `name` to the default property name for media links
+* Dynamically sets `mediaFormats` to a list of all media formats with "download" flag
+
+
+Properties:
+- `name` (String), default: "./linkMediaRef"\
+  Property name for this link type.
+- `rootPath` (String)\
+  The root path for the pathfield. If not set, it's value is set automatically
+  to the root path for media link type as returned by the current context's Link Handler configuration.
+- `fallbackRootPath` (String), default: "/content/dam"\
+  The root path that is used as fallback when no root path could be detected dynamically.
+- `appendPath` (String)\
+  Appendix path added to the (usually auto-detected) root path.
+- `mediaFormats` (String[])\
+  List of media format names for assets that can be linked upon.
+  If not set, the property value is set to the list of all media formats with "download" flag.
+
+Super component properties `mediaFormatsMandatory` and `mediaCropAuto` are overwritten and ignored.
+
+[wcmio-handler-media-pathfield]: https://wcm.io/handler/media/graniteui-components.html#media_handler-aware_path_field
+[wcmio-handler-media-fileupload]: https://wcm.io/handler/media/graniteui-components.html#media_handler-aware_file_upload
+[wcmio-wcm-ui-granite-pathfield]: https://wcm.io/wcm/ui/granite/components.html#path_field
