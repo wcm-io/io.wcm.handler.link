@@ -55,7 +55,7 @@ are overwritten or added.
 
   /**
    * The path of the root of the pathfield. If not set, it's value is set automatically
-   * to the root path for internal link type as returned by the current context's Link Handler configuration.
+   * to the root path for media link type as returned by the current context's Link Handler configuration.
    */
   - rootPath (StringEL) = {link type-dependent root path}
 
