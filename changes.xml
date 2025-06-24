@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="2.2.5" date="not released">
+      <action type="update" dev="sseifert" issue="25">
+        global.jsp: Get rid of deprecated Granite XSS API.
+      </action>
+    </release>
+
     <release version="2.2.4" date="2024-12-10">
       <action type="fix" dev="sseifert" issue="17">
         GraniteUI validator: Use data-foundation-validation instead of data-validation HTML attribute, the latter is deprecated.
