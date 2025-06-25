@@ -102,7 +102,7 @@ public final class LinkHandlerImpl implements LinkHandler {
       "java:S112", // runtime exception
       "java:S1192" // redundant string literals
   })
-  @SuppressFBWarnings({ "CORRECTNESS", "STYLE" })
+  @SuppressFBWarnings({ "STYLE" })
   Link processRequest(@NotNull LinkRequest linkRequest) {
 
     // detect link type - first accepting wins
