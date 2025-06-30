@@ -65,6 +65,6 @@ Sources: https://github.com/wcm-io/io.wcm.handler.link
 [general-concepts]: general-concepts.html
 [apidocs]: apidocs/
 [graniteui-components]: graniteui-components.html
-[changelog]: changes-report.html
+[changelog]: changes.html
 [url-handler]: ../url/
 [ui-package]: apidocs/io/wcm/handler/link/ui/package-summary.html

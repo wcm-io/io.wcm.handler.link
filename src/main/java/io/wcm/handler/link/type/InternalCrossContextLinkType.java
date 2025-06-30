@@ -44,6 +44,7 @@ import io.wcm.handler.link.type.helpers.InternalLinkResolverOptions;
  * Implementation of {@link io.wcm.handler.link.spi.LinkType} for internal links with supports
  * links between different sites or configuration context paths.
  * Internal links are links to content pages inside the CMS.
+ *
  * <p>
  * This link type ensures that links that are referenced from other sites/configuration contexts are resolved
  * using the URL handler configuration of the target context, e.g. with the Site URL from the other site.

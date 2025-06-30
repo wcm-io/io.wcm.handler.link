@@ -59,6 +59,7 @@ import io.wcm.wcm.commons.util.Path;
  * Implements resolving an internal link for link types. The primary goal is to support the implementation
  * for {@link io.wcm.handler.link.type.InternalLinkType}, but it can be used by custom link type implementations as
  * well.
+ *
  * <p>
  * The link resolving process can be customized by providing a customized {@link InternalLinkResolverOptions} object.
  * </p>
