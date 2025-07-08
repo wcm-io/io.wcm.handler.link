@@ -1,0 +1,55 @@
+{
+  "io.wcm.handler.link": {
+    "redirectInfo": "Deze pagina verwijst door naar",
+    "redirectMissing": "Geef een doorverwijslink op in de pagina-eigenschappen.",
+
+    "components.global.include": {
+      "linkRefContainer": {
+        "linkRefTab": {
+          "title": "Link"
+        },
+        "linkRefNoTitleTab": {
+          "title": "Link"
+        },
+        "redirectStatus": {
+          "title": "Doorverwijzingsstatus",
+          "redirectStatus.fieldLabel": "Doorverwijzingsstatus",
+          "redirectStatus.fieldDescription": "HTTP-responscode die wordt gebruikt voor de doorverwijzing.",
+          "redirectStatus.301": "Permanent verplaatst (301, standaard)",
+          "redirectStatus.302": "Tijdelijk verplaatst (302)"
+        }
+      }
+    },
+
+    "components.granite.form": {
+      "linkRefContainer": {
+        "linkTitle.fieldLabel": "Linktitel",
+        "linkType.fieldLabel": "Linktype",
+        "linkWindowTarget.fieldLabel": "Doelvenster",
+        "linkWindowTarget._self": "Zelfde venster",
+        "linkWindowTarget._blank": "Nieuw venster",
+        "internal": {
+          "type": "Intern (zelfde site)",
+          "linkContentRef.fieldLabel": "Interne pagina",
+          "linkContentRef.fieldDescription": "Link naar doelpagina in CMS (zelfde site)"
+        },
+        "internalCrossContext": {
+          "type": "Intern (andere site)",
+          "linkCrossContextContentRef.fieldLabel": "Interne pagina (andere site)",
+          "linkCrossContextContentRef.fieldDescription": "Link naar doelpagina in CMS (andere site)"
+        },
+        "external": {
+          "type": "Extern",
+          "linkExternalRef.fieldLabel": "URL",
+          "linkExternalRef.fieldDescription": "Link naar externe bestemming"
+        },
+        "media": {
+          "type": "Bestand",
+          "linkMediaRef.fieldLabel": "Bestandsreferentie",
+          "linkMediaDownload.fieldLabel": "Downloaden",
+          "linkMediaDownload.fieldDescription": "Open bestand met downloadvenster in browser."
+        }
+      }
+    }
+  }
+}
