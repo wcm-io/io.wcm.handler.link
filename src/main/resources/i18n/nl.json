@@ -1,7 +1,7 @@
 {
   "io.wcm.handler.link": {
-    "redirectInfo": "This page forwards to",
-    "redirectMissing": "Please specify a redirect link in page properties.",
+    "redirectInfo": "Deze pagina verwijst door naar",
+    "redirectMissing": "Geef een doorverwijslink op in de pagina-eigenschappen.",
 
     "components.global.include": {
       "linkRefContainer": {
@@ -12,45 +12,44 @@
           "title": "Link"
         },
         "redirectStatus": {
-          "title": "Redirect Status",
-          "redirectStatus.fieldLabel": "Redirect Status",
-          "redirectStatus.fieldDescription": "HTTP response code used for the redirect.",
-          "redirectStatus.301": "Moved Permanently (301, default)",
-          "redirectStatus.302": "Moved Temporarily (302)"
+          "title": "Doorverwijzingsstatus",
+          "redirectStatus.fieldLabel": "Doorverwijzingsstatus",
+          "redirectStatus.fieldDescription": "HTTP-responscode die wordt gebruikt voor de doorverwijzing.",
+          "redirectStatus.301": "Permanent verplaatst (301, standaard)",
+          "redirectStatus.302": "Tijdelijk verplaatst (302)"
         }
       }
     },
 
     "components.granite.form": {
       "linkRefContainer": {
-        "linkTitle.fieldLabel": "Link title",
-        "linkType.fieldLabel": "Link type",
-        "linkWindowTarget.fieldLabel": "Window target",
-        "linkWindowTarget._self": "Same window",
-        "linkWindowTarget._blank": "New window",
+        "linkTitle.fieldLabel": "Linktitel",
+        "linkType.fieldLabel": "Linktype",
+        "linkWindowTarget.fieldLabel": "Doelvenster",
+        "linkWindowTarget._self": "Zelfde venster",
+        "linkWindowTarget._blank": "Nieuw venster",
         "internal": {
-          "type": "Internal (same site)",
-          "linkContentRef.fieldLabel": "Internal page",
-          "linkContentRef.fieldDescription": "Link to target page in CMS (same site)"
+          "type": "Intern (zelfde site)",
+          "linkContentRef.fieldLabel": "Interne pagina",
+          "linkContentRef.fieldDescription": "Link naar doelpagina in CMS (zelfde site)"
         },
         "internalCrossContext": {
-          "type": "Internal (other site)",
-          "linkCrossContextContentRef.fieldLabel": "Internal page (other site)",
-          "linkCrossContextContentRef.fieldDescription": "Link to target page in CMS (other site)"
+          "type": "Intern (andere site)",
+          "linkCrossContextContentRef.fieldLabel": "Interne pagina (andere site)",
+          "linkCrossContextContentRef.fieldDescription": "Link naar doelpagina in CMS (andere site)"
         },
         "external": {
-          "type": "External",
+          "type": "Extern",
           "linkExternalRef.fieldLabel": "URL",
-          "linkExternalRef.fieldDescription": "Link to external destination"
+          "linkExternalRef.fieldDescription": "Link naar externe bestemming"
         },
         "media": {
-          "type": "Asset",
-          "linkMediaRef.fieldLabel": "Asset reference",
-          "linkMediaDownload.fieldLabel": "Download",
-          "linkMediaDownload.fieldDescription": "Open asset with download dialog in Browser."
+          "type": "Bestand",
+          "linkMediaRef.fieldLabel": "Bestandsreferentie",
+          "linkMediaDownload.fieldLabel": "Downloaden",
+          "linkMediaDownload.fieldDescription": "Open bestand met downloadvenster in browser."
         }
       }
     }
-
   }
 }
