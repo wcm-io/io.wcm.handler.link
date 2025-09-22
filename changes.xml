@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="2.2.10" date="not-released">
+      <action type="fix" dev="mrozati" issue="31">
+        SeoSitemapExternalizer: fix NPE when page is published implicitly and jcr:content is missing.
+      </action>
+    </release>
+
     <release version="2.2.8" date="2025-07-28">
       <action type="add" dev="henrykuijpers" issue="26">
         I18n: Add Dutch translations.

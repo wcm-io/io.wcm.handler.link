@@ -136,7 +136,7 @@ public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
   }
 
   private @Nullable String externalizePageLink(@Nullable Page page) {
-    if (page != null) {
+    if (page != null && page.hasContent()) {
       LinkHandler linkHandler = AdaptTo.notNull(page.getContentResource(), LinkHandler.class);
       String url = linkHandler.get(page).urlMode(UrlModes.FULL_URL).buildUrl();
       if (url != null) {

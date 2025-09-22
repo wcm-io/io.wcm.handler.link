@@ -113,6 +113,23 @@ class SeoSitemapLinkExternalizerImplTest {
   }
 
   @Test
+  void testExternalizeResource_Page_NoContentResource() {
+    MockContextAwareConfig.writeConfiguration(context, ROOTPATH_CONTENT, SiteConfig.class,
+        "siteUrl", "https://myhost");
+
+    // When a page is published implicitly i.e. when it's child is published but the page itself not,
+    // AEM creates a page node without jcr:content
+    Resource resource = context.create().resource(ROOTPATH_CONTENT + "/page2", "jcr:primaryType", "cq:Page");
+
+    when(aemSitemapLinkExternalizer.externalize(resource)).thenReturn("defaultResult");
+
+    String result = underTest.externalize(resource);
+    assertEquals("defaultResult", result);
+
+    verifyNoMoreInteractions(aemSitemapLinkExternalizer);
+  }
+
+  @Test
   void testExternalizeResource_NotPage() {
     Resource resource = context.create().resource("/content/resource1");
 
