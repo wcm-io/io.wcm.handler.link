@@ -28,6 +28,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Supplier;
+
+import org.apache.sling.api.adapter.Adaptable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -49,6 +54,13 @@ class ResourceLinkTest {
     context.create().page(ROOTPATH_CONTENT + "/page1");
   }
 
+  // test with different adaptables: request and resource
+  Collection<Supplier<Adaptable>> adaptables() {
+    return List.of(
+        context::request,
+        context::currentResource);
+  }
+
   @Test
   void testValidLink() {
     context.currentResource(context.create().resource(ROOTPATH_CONTENT + "/page1/jcr:content/validLink",
@@ -56,10 +68,12 @@ class ResourceLinkTest {
         PN_LINK_TYPE, ExternalLinkType.ID,
         PN_LINK_EXTERNAL_REF, "http://www.dummysite.org"));
 
-    ResourceLink underTest = context.request().adaptTo(ResourceLink.class);
-    assertTrue(underTest.isValid());
-    assertEquals("http://www.dummysite.org", underTest.getMetadata().getUrl());
-    assertEquals("http://www.dummysite.org", underTest.getAttributes().get("href"));
+    for (Supplier<Adaptable> adaptable : adaptables()) {
+      ResourceLink underTest = adaptable.get().adaptTo(ResourceLink.class);
+      assertTrue(underTest.isValid());
+      assertEquals("http://www.dummysite.org", underTest.getMetadata().getUrl());
+      assertEquals("http://www.dummysite.org", underTest.getAttributes().get("href"));
+    }
   }
 
   @Test
@@ -69,8 +83,10 @@ class ResourceLinkTest {
         PN_LINK_TYPE, InternalLinkType.ID,
         PN_LINK_CONTENT_REF, "/invalid/link"));
 
-    ResourceLink underTest = context.request().adaptTo(ResourceLink.class);
-    assertFalse(underTest.isValid());
+    for (Supplier<Adaptable> adaptable : adaptables()) {
+      ResourceLink underTest = adaptable.get().adaptTo(ResourceLink.class);
+      assertFalse(underTest.isValid());
+    }
   }
 
 }
