@@ -26,7 +26,7 @@
 
     <release version="2.2.12" date="not released">
       <action type="update" dev="sseifert" issue="36">
-        ResourceLink: Allow to adaption from Resource, additional to from SlingHttpServletRequest.
+        ResourceLink: Allow adapting from Resource, additional to from SlingHttpServletRequest.
       </action>
     </release>
 
