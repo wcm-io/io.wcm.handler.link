@@ -37,7 +37,7 @@ import io.wcm.handler.link.LinkHandler;
 /**
  * Generic resource-based link model.
  */
-@Model(adaptables = SlingHttpServletRequest.class)
+@Model(adaptables = { SlingHttpServletRequest.class, Resource.class })
 public class ResourceLink {
 
   @Self
