@@ -24,7 +24,10 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
-    <release version="2.2.12" date="not released">
+    <release version="2.3.0" date="not released">
+      <action type="add" dev="sseifert" issue="38">
+        Add Link.getTitle() method.
+      </action>
       <action type="update" dev="sseifert" issue="36">
         ResourceLink: Allow adapting from Resource, additional to from SlingHttpServletRequest.
       </action>

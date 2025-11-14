@@ -176,6 +176,14 @@ public final class Link {
   }
 
   /**
+   * Get link title. This is only supported, if the link was build from a resource with link properties,
+   * and in this resource a property {@link LinkNameConstants#PN_LINK_TITLE} is set.
+   */
+  public @Nullable String getTitle() {
+    return linkRequest.getResourceProperties().get(LinkNameConstants.PN_LINK_TITLE, String.class);
+  }
+
+  /**
    * @return Target page referenced by the link (applies only for internal links)
    */
   @JsonIgnore
