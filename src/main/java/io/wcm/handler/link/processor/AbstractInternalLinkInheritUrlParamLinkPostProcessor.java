@@ -50,6 +50,7 @@ public abstract class AbstractInternalLinkInheritUrlParamLinkPostProcessor imple
   private final Logger log = LoggerFactory.getLogger(getClass());
 
   /**
+   * Constructor.
    * @param inheritUrlParameterNames Custom list of inheritable URL parameter names.
    */
   protected AbstractInternalLinkInheritUrlParamLinkPostProcessor(Set<String> inheritUrlParameterNames) {

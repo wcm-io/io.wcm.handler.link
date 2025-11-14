@@ -42,6 +42,7 @@ public final class LinkComponentPropertyResolver implements AutoCloseable {
   private final ComponentPropertyResolver resolver;
 
   /**
+   * Constructor.
    * @param resource Resource containing link properties
    * @param componentPropertyResolverFactory Component property resolver factory
    */
@@ -54,6 +55,7 @@ public final class LinkComponentPropertyResolver implements AutoCloseable {
   }
 
   /**
+   * Get link target URL fallback property.
    * @return Link target URL fallback property name
    */
   public @NotNull String @Nullable [] getLinkTargetUrlFallbackProperty() {
@@ -61,6 +63,7 @@ public final class LinkComponentPropertyResolver implements AutoCloseable {
   }
 
   /**
+   * Get link target window target fallback property.
    * @return Link target window target fallback property name
    */
   public @NotNull String @Nullable [] getLinkTargetWindowTargetFallbackProperty() {

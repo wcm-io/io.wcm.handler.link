@@ -45,12 +45,14 @@ import io.wcm.handler.link.LinkRequest;
 public abstract class LinkType {
 
   /**
+   * Get link type ID.
    * @return Link type ID (is stored as identifier in repository)
    */
   @JsonProperty("linkType")
   public abstract @NotNull String getId();
 
   /**
+   * Get link type label.
    * @return Link type label (displayed in link dialogs)
    */
   @JsonIgnore
@@ -59,6 +61,7 @@ public abstract class LinkType {
   }
 
   /**
+   * Get primary link reference property.
    * @return Name of the property in which the primary link reference is stored
    */
   @JsonIgnore

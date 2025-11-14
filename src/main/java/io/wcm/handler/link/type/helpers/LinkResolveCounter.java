@@ -37,6 +37,7 @@ public final class LinkResolveCounter {
   private int count;
 
   /**
+   * Get counter value.
    * @return Counter value
    */
   public int getCount() {
@@ -65,6 +66,7 @@ public final class LinkResolveCounter {
   }
 
   /**
+   * Check if maximum is reached.
    * @return true if maximum of allowed recursion steps is reached.
    */
   public boolean isMaximumReached() {
@@ -72,6 +74,7 @@ public final class LinkResolveCounter {
   }
 
   /**
+   * Get counter instance.
    * @return Counter for current request/thread.
    *         If instance was not set in thread before it is newly created and attached to the current thread.
    */

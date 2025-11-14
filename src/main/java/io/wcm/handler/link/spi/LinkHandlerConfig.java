@@ -79,6 +79,7 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
   public static final String DEFAULT_ROOT_PATH_MEDIA = "/content/dam";
 
   /**
+   * Get supported link types.
    * @return Supported link types
    */
   public @NotNull List<Class<? extends LinkType>> getLinkTypes() {
@@ -86,6 +87,7 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
   }
 
   /**
+   * Get available markup builders.
    * @return Available link markup builders
    */
   public @NotNull List<Class<? extends LinkMarkupBuilder>> getMarkupBuilders() {
@@ -93,6 +95,7 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
   }
 
   /**
+   * Get pre processors.
    * @return List of link metadata pre processors (optional). The processors are applied in list order.
    */
   public @NotNull List<Class<? extends LinkProcessor>> getPreProcessors() {
@@ -101,6 +104,7 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
   }
 
   /**
+   * Get post processors.
    * @return List of link metadata post processors (optional). The processors are applied in list order.
    */
   public @NotNull List<Class<? extends LinkProcessor>> getPostProcessors() {
