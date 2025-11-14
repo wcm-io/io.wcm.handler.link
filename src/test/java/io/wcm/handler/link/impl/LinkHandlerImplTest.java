@@ -214,7 +214,6 @@ class LinkHandlerImplTest {
     assertNull(link.getTitle());
   }
 
-
   public static class TestLinkHandlerConfig extends LinkHandlerConfig {
 
     @Override
