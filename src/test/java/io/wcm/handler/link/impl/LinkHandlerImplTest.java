@@ -21,10 +21,13 @@ package io.wcm.handler.link.impl;
 
 import static io.wcm.handler.link.LinkNameConstants.PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY;
 import static io.wcm.handler.link.LinkNameConstants.PN_COMPONENT_LINK_TARGET_WINDOW_TARGET_FALLBACK_PROPERTY;
+import static io.wcm.handler.link.LinkNameConstants.PN_LINK_EXTERNAL_REF;
+import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TITLE;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 import java.util.Map;
@@ -48,6 +51,7 @@ import io.wcm.handler.link.spi.LinkHandlerConfig;
 import io.wcm.handler.link.spi.LinkProcessor;
 import io.wcm.handler.link.spi.LinkType;
 import io.wcm.handler.link.testcontext.AppAemContext;
+import io.wcm.handler.link.type.ExternalLinkType;
 import io.wcm.handler.url.UrlModes;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
@@ -187,6 +191,27 @@ class LinkHandlerImplTest {
 
     Link link = linkHandler.get("http://dummy").property("prop1", "value1").build();
     assertEquals("value1", link.getLinkRequest().getLinkArgs().getProperties().get("prop1"));
+  }
+
+  @Test
+  void testLinkGetTitle() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    Resource linkResource = context.create().resource("/content/dummy-path",
+        PN_LINK_TYPE, ExternalLinkType.ID,
+        PN_LINK_EXTERNAL_REF, "http://dummy",
+        PN_LINK_TITLE, "My Link Title");
+
+    Link link = linkHandler.get(linkResource).build();
+    assertEquals("My Link Title", link.getTitle());
+  }
+
+  @Test
+  void testLinkGetTitleWithoutResourceProperties() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    Link link = linkHandler.get("http://dummy").build();
+    assertNull(link.getTitle());
   }
 
 
