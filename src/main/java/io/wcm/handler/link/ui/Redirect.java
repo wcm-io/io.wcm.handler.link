@@ -82,6 +82,7 @@ public class Redirect {
   }
 
   /**
+   * Check if page should be rendered.
    * @return true if redirect page should be rendered
    */
   public boolean isRenderPage() {

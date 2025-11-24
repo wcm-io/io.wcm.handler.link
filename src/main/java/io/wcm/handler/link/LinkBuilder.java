@@ -119,6 +119,7 @@ public interface LinkBuilder {
   LinkBuilder vanityMode(@Nullable VanityMode vanityMode);
 
   /**
+   * Set dummy link mode.
    * @param value If set to true, link handler returns a dummy link in edit mode when link is invalid.
    * @return this
    */
@@ -126,6 +127,7 @@ public interface LinkBuilder {
   LinkBuilder dummyLink(boolean value);
 
   /**
+   * Set dummy link URL.
    * @param value Custom dummy link url. If null default dummy url is used.
    * @return this
    */

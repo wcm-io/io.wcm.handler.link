@@ -64,6 +64,7 @@ public final class Link {
   private List<Page> redirectPages;
 
   /**
+   * Constructor.
    * @param linkType Link type
    * @param linkRequest Processed link reference
    */
@@ -73,6 +74,7 @@ public final class Link {
   }
 
   /**
+   * Get link type.
    * @return Link type
    */
   @JsonUnwrapped
@@ -81,6 +83,7 @@ public final class Link {
   }
 
   /**
+   * Get link request.
    * @return Link request
    */
   @JsonIgnore
@@ -89,6 +92,7 @@ public final class Link {
   }
 
   /**
+   * Set link request.
    * @param linkRequest Link request
    */
   public void setLinkRequest(@NotNull LinkRequest linkRequest) {
@@ -96,6 +100,7 @@ public final class Link {
   }
 
   /**
+   * Check if link reference is invalid.
    * @return true if a link reference was set, but the reference was invalid and could not be resolved
    */
   @JsonIgnore
@@ -104,6 +109,7 @@ public final class Link {
   }
 
   /**
+   * Set link reference invalid flag.
    * @param linkReferenceInvalid true if a link reference was set, but the reference was invalid and could not be
    *          resolved
    */
@@ -112,6 +118,7 @@ public final class Link {
   }
 
   /**
+   * Get anchor element.
    * @return Anchor element
    */
   @JsonIgnore
@@ -124,6 +131,7 @@ public final class Link {
   }
 
   /**
+   * Get anchor attributes as map.
    * @return Map with all attributes of the anchor element. Returns null if anchor element is null.
    */
   @JsonIgnore
@@ -141,6 +149,7 @@ public final class Link {
   }
 
   /**
+   * Set anchor builder function.
    * @param anchorBuilder Function that builds an anchor representation on demand
    */
   public void setAnchorBuilder(@NotNull Function<Link, Anchor> anchorBuilder) {
@@ -148,6 +157,7 @@ public final class Link {
   }
 
   /**
+   * Get link markup.
    * @return Link markup (only the opening anchor tag) or null if resolving was not successful.
    */
   @JsonIgnore
@@ -162,6 +172,7 @@ public final class Link {
   }
 
   /**
+   * Get link URL.
    * @return Link URL
    */
   public @Nullable String getUrl() {
@@ -169,6 +180,7 @@ public final class Link {
   }
 
   /**
+   * Set link URL.
    * @param url Link URL
    */
   public void setUrl(@Nullable String url) {
@@ -176,6 +188,16 @@ public final class Link {
   }
 
   /**
+   * Get link title. This is only supported, if the link was build from a resource with link properties,
+   * and in this resource a property {@link LinkNameConstants#PN_LINK_TITLE} is set.
+   * @return Link title
+   */
+  public @Nullable String getTitle() {
+    return linkRequest.getResourceProperties().get(LinkNameConstants.PN_LINK_TITLE, String.class);
+  }
+
+  /**
+   * Get target page.
    * @return Target page referenced by the link (applies only for internal links)
    */
   @JsonIgnore
@@ -184,6 +206,7 @@ public final class Link {
   }
 
   /**
+   * Set target page.
    * @param targetPage Target page referenced by the link (applies only for internal links)
    */
   public void setTargetPage(@Nullable Page targetPage) {
@@ -191,6 +214,7 @@ public final class Link {
   }
 
   /**
+   * Get target asset.
    * @return Target media item (applies only for media links)
    */
   @JsonIgnore
@@ -199,6 +223,7 @@ public final class Link {
   }
 
   /**
+   * Set target asset.
    * @param targetAsset Target media item (applies only for media links)
    */
   public void setTargetAsset(@Nullable Asset targetAsset) {
@@ -206,6 +231,7 @@ public final class Link {
   }
 
   /**
+   * Get target rendition.
    * @return Target media rendition (applies only for media links)
    */
   @JsonIgnore
@@ -214,6 +240,7 @@ public final class Link {
   }
 
   /**
+   * Set target rendition.
    * @param targetRendition Target media rendition (applies only for media links)
    */
   public void setTargetRendition(@Nullable Rendition targetRendition) {
@@ -248,6 +275,7 @@ public final class Link {
   }
 
   /**
+   * Check if link is valid.
    * @return true if link is valid and was resolved successfully
    */
   @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility

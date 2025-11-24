@@ -47,6 +47,7 @@ public final class LinkRequest {
   private ValueMap resourceProperties;
 
   /**
+   * Constructor.
    * @param resource Resource containing properties that define the link target
    * @param page Target content page
    * @param linkArgs Link arguments
@@ -56,6 +57,7 @@ public final class LinkRequest {
   }
 
   /**
+   * Constructor.
    * @param resource Resource containing properties that define the link target
    * @param page Target content page
    * @param reference Link reference (internal or external).
@@ -77,6 +79,7 @@ public final class LinkRequest {
   }
 
   /**
+   * Get resource.
    * @return Resource containing properties that define the link target
    */
   public @Nullable Resource getResource() {
@@ -84,6 +87,7 @@ public final class LinkRequest {
   }
 
   /**
+   * Get page.
    * @return Target content page
    */
   public @Nullable Page getPage() {
@@ -91,6 +95,7 @@ public final class LinkRequest {
   }
 
   /**
+   * Get reference.
    * @return Link reference (internal or external).
    */
   public @Nullable String getReference() {
@@ -98,6 +103,7 @@ public final class LinkRequest {
   }
 
   /**
+   * Get link arguments.
    * @return Link arguments
    */
   public @NotNull LinkArgs getLinkArgs() {
@@ -105,6 +111,7 @@ public final class LinkRequest {
   }
 
   /**
+   * Get resource properties.
    * @return Properties from resource containing target link. The value map is a copy
    *         of the original map so it is safe to change the property values contained in the map.
    */

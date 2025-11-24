@@ -60,6 +60,7 @@ public final class LinkArgs implements Cloneable {
 
 
   /**
+   * Get URL mode.
    * @return URL mode for externalizing the URL
    */
   public @Nullable UrlMode getUrlMode() {
@@ -67,6 +68,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get vanity mode.
    * @return Vanity mode for building the URL
    */
   public @Nullable VanityMode getVanityMode() {
@@ -74,6 +76,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set URL mode.
    * @param value URL mode for externalizing the URL
    * @return this
    */
@@ -83,6 +86,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set vanity mode.
    * @param value Vanity mode for building the URL
    * @return this
    */
@@ -92,6 +96,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Check if dummy link mode is enabled.
    * @return If set to true, link handler returns a dummy link in edit mode when link is invalid.
    */
   public boolean isDummyLink() {
@@ -99,6 +104,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set dummy link mode.
    * @param value If set to true, link handler returns a dummy link in edit mode when link is invalid.
    * @return this
    */
@@ -108,6 +114,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get dummy link URL.
    * @return Custom dummy link url. If null default dummy url is used.
    */
   public @Nullable String getDummyLinkUrl() {
@@ -115,6 +122,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set dummy link URL.
    * @param value Custom dummy link url. If null default dummy url is used.
    * @return this
    */
@@ -124,6 +132,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get selectors.
    * @return Selector string
    */
   public @Nullable String getSelectors() {
@@ -131,6 +140,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set selectors.
    * @param value Selector string
    * @return this
    */
@@ -140,6 +150,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get extension.
    * @return File extension
    */
   public @Nullable String getExtension() {
@@ -147,6 +158,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set extension.
    * @param value File extension
    * @return this
    */
@@ -156,6 +168,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get suffix.
    * @return Suffix string
    */
   public @Nullable String getSuffix() {
@@ -163,6 +176,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set suffix.
    * @param value Suffix string
    * @return this
    */
@@ -172,6 +186,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get query string.
    * @return Query parameters string (properly url-encoded)
    */
   public @Nullable String getQueryString() {
@@ -179,6 +194,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set query string.
    * @param value Query parameters string (properly url-encoded)
    * @return this
    */
@@ -188,6 +204,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get fragment.
    * @return Fragment identifier
    */
   public @Nullable String getFragment() {
@@ -195,6 +212,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set fragment.
    * @param value Fragment identifier
    * @return this
    */
@@ -204,6 +222,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get window target.
    * @return Link window target
    */
   public @Nullable String getWindowTarget() {
@@ -211,6 +230,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Set window target.
    * @param value Link window target
    * @return this
    */
@@ -298,6 +318,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get link target URL fallback property.
    * @return Property name(s)
    */
   public @Nullable String[] getLinkTargetUrlFallbackProperty() {
@@ -318,6 +339,7 @@ public final class LinkArgs implements Cloneable {
   }
 
   /**
+   * Get link target window target fallback property.
    * @return Property name(s)
    */
   public @Nullable String[] getLinkTargetWindowTargetFallbackProperty() {

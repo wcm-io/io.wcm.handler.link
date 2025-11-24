@@ -137,6 +137,7 @@ public final class MediaLinkType extends LinkType {
   }
 
   /**
+   * Check if path is a default media content path.
    * @param path Content path
    * @return true if Path is located below DAM default root folders.
    */
