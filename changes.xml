@@ -24,6 +24,12 @@
     xsi:schemaLocation="http://maven.apache.org/changes/2.0.0 https://maven.apache.org/xsd/changes-2.0.0.xsd">
   <body>
 
+    <release version="2.3.2" date="not released">
+      <action type="fix" dev="sseifert" issue="44">
+        Strip comments from JSON Files in Sling-Initial-Content to fix deployment problem in AEM 6.6.2 (AEM 6.5 LTS SP 2).
+      </action>
+    </release>
+
     <release version="2.3.0" date="2025-11-24">
       <action type="add" dev="sseifert" issue="38">
         Add Link.getTitle() method.
