@@ -78,7 +78,7 @@ class ImageMapLinkResolverImplTest {
     assertTrue(link.isValid());
     assertEquals(expectedUrl, link.getUrl());
 
-    Map<String,Object> expectedAnchorAttributes = new HashMap<>();
+    Map<String, Object> expectedAnchorAttributes = new HashMap<>();
     expectedAnchorAttributes.put("href", expectedUrl);
     if (expectedWindowTarget != null) {
       expectedAnchorAttributes.put("target", expectedWindowTarget);

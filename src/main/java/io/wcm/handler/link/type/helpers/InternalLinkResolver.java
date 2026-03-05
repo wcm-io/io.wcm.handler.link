@@ -201,15 +201,15 @@ public final class InternalLinkResolver {
 
       // build link url
       linkUrl = resolvingUrlHandler.get(targetPage)
-          .selectors(selectors)
-          .extension(fileExtension)
-          .suffix(suffix)
-          .queryString(queryString)
-          .fragment(fragment)
-          .urlMode(linkArgs.getUrlMode())
-          .vanityMode(linkArgs.getVanityMode())
-          .disableSuffixSelector(linkArgs.isDisableSuffixSelector())
-          .buildExternalLinkUrl(targetPage);
+        .selectors(selectors)
+        .extension(fileExtension)
+        .suffix(suffix)
+        .queryString(queryString)
+        .fragment(fragment)
+        .urlMode(linkArgs.getUrlMode())
+        .vanityMode(linkArgs.getVanityMode())
+        .disableSuffixSelector(linkArgs.isDisableSuffixSelector())
+        .buildExternalLinkUrl(targetPage);
     }
 
     // mark link as invalid if a reference was set that could not be resolved

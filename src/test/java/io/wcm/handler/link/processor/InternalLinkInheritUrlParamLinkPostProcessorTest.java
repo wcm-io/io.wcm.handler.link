@@ -222,6 +222,7 @@ class InternalLinkInheritUrlParamLinkPostProcessorTest {
       SlingHttpServletRequest.class, Resource.class
   })
   public static class AbcInternalLinkInheritUrlParamLinkPostProcessor extends AbstractInternalLinkInheritUrlParamLinkPostProcessor {
+
     //CHECKSTYLE:OFF
     public AbcInternalLinkInheritUrlParamLinkPostProcessor() {
       //CHECKSTYLE_ON

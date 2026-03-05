@@ -64,7 +64,7 @@ public interface LinkBuilder {
    * @return Link builder
    */
   @NotNull
-  LinkBuilder suffix (@Nullable String suffix);
+  LinkBuilder suffix(@Nullable String suffix);
 
   /**
    * Set query parameters string

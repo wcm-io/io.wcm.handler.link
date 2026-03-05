@@ -76,15 +76,15 @@ class InternalLinkResolverTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(PN_LINK_TYPE, InternalLinkType.ID)
-            .put(PN_LINK_CONTENT_REF, "/content/unittest/en_test/brand/en/section/content")
-            .build());
+          .put(PN_LINK_TYPE, InternalLinkType.ID)
+          .put(PN_LINK_CONTENT_REF, "/content/unittest/en_test/brand/en/section/content")
+          .build());
 
     LinkRequest linkRequest = new LinkRequest(linkResource, null, null);
     Link link = new Link(new InternalLinkType(), linkRequest);
 
     link = resolver.resolveLink(link, new InternalLinkResolverOptions()
-        .rewritePathToContext(true));
+      .rewritePathToContext(true));
 
     assertTrue(link.isValid(), "link valid");
     assertFalse(link.isLinkReferenceInvalid(), "link ref invalid");
@@ -98,15 +98,15 @@ class InternalLinkResolverTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(PN_LINK_TYPE, InternalLinkType.ID)
-            .put(PN_LINK_CONTENT_REF, "/content/unittest/en_test/brand/en/section/content")
-            .build());
+          .put(PN_LINK_TYPE, InternalLinkType.ID)
+          .put(PN_LINK_CONTENT_REF, "/content/unittest/en_test/brand/en/section/content")
+          .build());
 
     LinkRequest linkRequest = new LinkRequest(linkResource, null, null);
     Link link = new Link(new InternalLinkType(), linkRequest);
 
     link = resolver.resolveLink(link, new InternalLinkResolverOptions()
-        .rewritePathToContext(false));
+      .rewritePathToContext(false));
 
     assertTrue(link.isValid(), "link valid");
     assertFalse(link.isLinkReferenceInvalid(), "link ref invalid");
@@ -130,7 +130,7 @@ class InternalLinkResolverTest {
     Link link = new Link(new InternalLinkType(), linkRequest);
 
     link = resolver.resolveLink(link, new InternalLinkResolverOptions()
-        .rewritePathToContext(true));
+      .rewritePathToContext(true));
 
     assertTrue(link.isValid(), "link valid");
     assertFalse(link.isLinkReferenceInvalid(), "link ref invalid");

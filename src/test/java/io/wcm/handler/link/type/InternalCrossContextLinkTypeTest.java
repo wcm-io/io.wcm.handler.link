@@ -83,9 +83,9 @@ class InternalCrossContextLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, targetPage.getPath())
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, targetPage.getPath())
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 
@@ -102,9 +102,9 @@ class InternalCrossContextLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, "/content/unittest/en_test/brand/en/section/content")
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, "/content/unittest/en_test/brand/en/section/content")
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 
@@ -134,13 +134,13 @@ class InternalCrossContextLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, targetPage.getPath())
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, InternalCrossContextLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_CROSSCONTEXT_CONTENT_REF, targetPage.getPath())
+          .build());
 
     LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
     LinkBuilder linkBuilder = linkHandler.get(linkResource)
-        .vanityMode(VanityMode.ALWAYS);
+      .vanityMode(VanityMode.ALWAYS);
     assertEquals("http://www.dummysite.org/content/unittest/de_test/brand/de/vanity-path.html", linkBuilder.buildUrl());
   }
 

@@ -61,9 +61,9 @@ class ExternalLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "")
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "")
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 
@@ -79,9 +79,9 @@ class ExternalLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://xyz/abc")
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://xyz/abc")
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 

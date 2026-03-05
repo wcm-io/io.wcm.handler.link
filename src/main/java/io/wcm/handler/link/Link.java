@@ -278,7 +278,9 @@ public final class Link {
    * Check if link is valid.
    * @return true if link is valid and was resolved successfully
    */
-  @SuppressWarnings({ "null", "java:S2589" }) // extra null checks for backward compatibility
+  @SuppressWarnings({
+      "null", "java:S2589"
+  }) // extra null checks for backward compatibility
   public boolean isValid() {
     return getLinkType() != null
         && getUrl() != null

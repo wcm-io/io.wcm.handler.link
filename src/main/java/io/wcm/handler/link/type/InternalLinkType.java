@@ -64,9 +64,9 @@ public final class InternalLinkType extends LinkType {
   public static final @NotNull String ID = "internal";
 
   private final @NotNull InternalLinkResolverOptions resolverOptions = new InternalLinkResolverOptions()
-      .primaryLinkRefProperty(getPrimaryLinkRefProperty())
-      .rewritePathToContext(true)
-      .useTargetContext(false);
+    .primaryLinkRefProperty(getPrimaryLinkRefProperty())
+    .rewritePathToContext(true)
+    .useTargetContext(false);
 
   @Self
   private InternalLinkResolver internalLinkResolver;

@@ -50,8 +50,8 @@ public final class LinkComponentPropertyResolver implements AutoCloseable {
       @NotNull ComponentPropertyResolverFactory componentPropertyResolverFactory) {
     // resolve media component properties 1. from policies and 2. from component definition
     resolver = componentPropertyResolverFactory.get(resource, true)
-        .contentPolicyResolution(ComponentPropertyResolution.RESOLVE)
-        .componentPropertiesResolution(ComponentPropertyResolution.RESOLVE_INHERIT);
+      .contentPolicyResolution(ComponentPropertyResolution.RESOLVE)
+      .componentPropertiesResolution(ComponentPropertyResolution.RESOLVE_INHERIT);
   }
 
   /**

@@ -39,8 +39,8 @@ public class ImageMapLinkResolverImpl implements ImageMapLinkResolver<Link> {
     LinkHandler linkHandler = context.adaptTo(LinkHandler.class);
     if (linkHandler != null) {
       return linkHandler.get(linkUrl)
-          .windowTarget(linkWindowTarget)
-          .build();
+        .windowTarget(linkWindowTarget)
+        .build();
     }
     return null;
   }

@@ -102,7 +102,9 @@ public final class LinkHandlerImpl implements LinkHandler {
       "java:S112", // runtime exception
       "java:S1192" // redundant string literals
   })
-  @SuppressFBWarnings({ "STYLE" })
+  @SuppressFBWarnings({
+      "STYLE"
+  })
   Link processRequest(@NotNull LinkRequest linkRequest) {
 
     // detect link type - first accepting wins
@@ -181,7 +183,8 @@ public final class LinkHandlerImpl implements LinkHandler {
         LinkProcessor processor = AdaptTo.notNull(adaptable, processorClass);
         link = processor.process(link);
         if (link == null) {
-          throw new RuntimeException("LinkPostProcessor '" + processor + "' returned null, page '" + (currentPage != null ? currentPage.getPath() : "-") + "'.");
+          throw new RuntimeException(
+              "LinkPostProcessor '" + processor + "' returned null, page '" + (currentPage != null ? currentPage.getPath() : "-") + "'.");
         }
       }
     }

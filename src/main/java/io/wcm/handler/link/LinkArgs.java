@@ -268,7 +268,9 @@ public final class LinkArgs implements Cloneable {
    * @param map Property map. Is merged with properties already set.
    * @return this
    */
-  @SuppressWarnings({ "null", "unused" })
+  @SuppressWarnings({
+      "null", "unused"
+  })
   public @NotNull LinkArgs properties(@NotNull Map<String, Object> map) {
     if (map == null) {
       throw new IllegalArgumentException("Map argument must not be null.");
@@ -283,7 +285,9 @@ public final class LinkArgs implements Cloneable {
    * @param value Property value
    * @return this
    */
-  @SuppressWarnings({ "null", "unused" })
+  @SuppressWarnings({
+      "null", "unused"
+  })
   public @NotNull LinkArgs property(@NotNull String key, @Nullable Object value) {
     if (key == null) {
       throw new IllegalArgumentException("Key argument must not be null.");
@@ -367,7 +371,9 @@ public final class LinkArgs implements Cloneable {
    * @return the cloned {@link LinkArgs}
    */
   @Override
-  @SuppressWarnings({ "java:S2975", "java:S1182", "checkstyle:SuperCloneCheck" }) // ignore clone warnings
+  @SuppressWarnings({
+      "java:S2975", "java:S1182", "checkstyle:SuperCloneCheck"
+  }) // ignore clone warnings
   public LinkArgs clone() { //NOPMD
     LinkArgs clone = new LinkArgs();
 

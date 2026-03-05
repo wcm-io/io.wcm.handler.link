@@ -112,13 +112,13 @@ public final class MediaLinkType extends LinkType {
     boolean isDownload = props.get(LinkNameConstants.PN_LINK_MEDIA_DOWNLOAD, false);
 
     MediaArgs mediaArgs = new MediaArgs()
-        // only allow linking to "download" media formats
-        .download(true)
-        // content disposition header for download links
-        .contentDispositionAttachment(isDownload)
-        // disable web-optimized image delivery to get asset in original resolution
-        .webOptimizedImageDeliveryDisabled(true)
-        .urlMode(linkRequest.getLinkArgs().getUrlMode());
+      // only allow linking to "download" media formats
+      .download(true)
+      // content disposition header for download links
+      .contentDispositionAttachment(isDownload)
+      // disable web-optimized image delivery to get asset in original resolution
+      .webOptimizedImageDeliveryDisabled(true)
+      .urlMode(linkRequest.getLinkArgs().getUrlMode());
 
     // resolve media library reference
     Media media = mediaHandler.get(mediaRef, mediaArgs).build();

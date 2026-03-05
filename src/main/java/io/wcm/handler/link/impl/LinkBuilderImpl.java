@@ -130,7 +130,9 @@ final class LinkBuilderImpl implements LinkBuilder {
   }
 
   @Override
-  @SuppressWarnings({ "null", "unused" })
+  @SuppressWarnings({
+      "null", "unused"
+  })
   public @NotNull LinkBuilder args(@NotNull LinkArgs value) {
     if (value == null) {
       throw new IllegalArgumentException("LinkArgs is null.");

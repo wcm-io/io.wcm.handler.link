@@ -63,8 +63,8 @@ class MediaLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 
@@ -81,9 +81,9 @@ class MediaLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_MEDIA_REF, "/invalid/media/link")
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_MEDIA_REF, "/invalid/media/link")
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 
@@ -107,9 +107,9 @@ class MediaLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_MEDIA_REF, "/invalid/media/link")
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_MEDIA_REF, "/invalid/media/link")
+          .build());
 
     Link link = linkHandler.get(linkResource).dummyLink(true).dummyLinkUrl("/my/dummy/url").build();
 
@@ -127,9 +127,9 @@ class MediaLinkTypeTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
-            .put(LinkNameConstants.PN_LINK_MEDIA_REF, "/content/dam/dummymedia/pdf1")
-            .build());
+          .put(LinkNameConstants.PN_LINK_TYPE, MediaLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_MEDIA_REF, "/content/dam/dummymedia/pdf1")
+          .build());
 
     Link link = linkHandler.get(linkResource).build();
 
