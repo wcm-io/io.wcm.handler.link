@@ -88,7 +88,9 @@ public final class ExternalLinkType extends LinkType {
   }
 
   @Override
-  @SuppressWarnings({ "unused", "null" })
+  @SuppressWarnings({
+      "unused", "null"
+  })
   public boolean accepts(@NotNull String linkRef) {
     // test for null because earlier versions of this method did not have the @NotNull annotation
     if (linkRef == null) {

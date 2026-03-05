@@ -43,8 +43,7 @@ public class DummyLinkHandlerConfig extends LinkHandlerConfig {
       InternalLinkType.class,
       InternalCrossContextLinkType.class,
       ExternalLinkType.class,
-      MediaLinkType.class
-  );
+      MediaLinkType.class);
 
   @Override
   public List<Class<? extends LinkType>> getLinkTypes() {

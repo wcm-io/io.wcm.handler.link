@@ -69,6 +69,7 @@ class LinkHandlerImplTest {
   static final String APP_ID = "linkHandlerImplTestApp";
 
   final AemContext context = AppAemContext.newAemContext(new AemContextCallback() {
+
     @Override
     public void execute(AemContext callbackContext) {
       callbackContext.registerService(LinkHandlerConfig.class, new TestLinkHandlerConfig(),
@@ -91,9 +92,9 @@ class LinkHandlerImplTest {
     SyntheticLinkResource linkResource = new SyntheticLinkResource(context.resourceResolver(),
         "/content/dummy-path",
         ImmutableValueMap.builder()
-            .put(PN_LINK_TYPE, "dummy")
-            .put("dummyLinkRef", "/path1")
-            .build());
+          .put(PN_LINK_TYPE, "dummy")
+          .put("dummyLinkRef", "/path1")
+          .build());
     LinkRequest linkRequest = new LinkRequest(linkResource, null, new LinkArgs().urlMode(UrlModes.DEFAULT));
     Link link = linkHandler.get(linkRequest).build();
 
@@ -149,7 +150,9 @@ class LinkHandlerImplTest {
 
     // build resource with fallbackproperty and component that has a fallback property name defined
     Resource componentResource = context.create().resource("/apps/app1/components/comp1",
-        PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY, new String[] { "fallbackProperty1", "fallbackProperty2" });
+        PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY, new String[] {
+            "fallbackProperty1", "fallbackProperty2"
+        });
     Resource linkResource = context.create().resource("/content/dummy-path",
         ResourceResolver.PROPERTY_RESOURCE_TYPE, componentResource.getPath(),
         "fallbackProperty2", "/fallbackpath1");
@@ -237,6 +240,7 @@ class LinkHandlerImplTest {
       SlingHttpServletRequest.class, Resource.class
   })
   public static class TestLinkPreProcessor implements LinkProcessor {
+
     @Override
     public Link process(Link link) {
       LinkRequest linkRequest = link.getLinkRequest();
@@ -291,6 +295,7 @@ class LinkHandlerImplTest {
       SlingHttpServletRequest.class, Resource.class
   })
   public static class TestLinkPostProcessor implements LinkProcessor {
+
     @Override
     public Link process(Link link) {
       String linkUrl = StringUtils.defaultString(link.getUrl()) + "/post1";

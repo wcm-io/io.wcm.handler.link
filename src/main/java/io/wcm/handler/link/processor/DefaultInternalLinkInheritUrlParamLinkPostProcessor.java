@@ -41,8 +41,7 @@ public final class DefaultInternalLinkInheritUrlParamLinkPostProcessor extends A
    */
   public static final Set<String> DEFAULT_INHERIT_URL_PARAMETER_NAMES = Set.of(
       "debugClientLibs",
-      "wcmmode"
-      );
+      "wcmmode");
 
   /**
    * Initialize inherited URL parameter names.

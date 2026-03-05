@@ -67,7 +67,9 @@ public final class SyntheticLinkResource extends SyntheticResource {
   }
 
   @Override
-  @SuppressWarnings({ "unchecked", "null" })
+  @SuppressWarnings({
+      "unchecked", "null"
+  })
   public <Type> Type adaptTo(Class<Type> type) {
     if (type == ValueMap.class) {
       return (Type)this.properties;

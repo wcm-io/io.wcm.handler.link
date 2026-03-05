@@ -72,9 +72,9 @@ public abstract class AbstractInternalLinkInheritUrlParamLinkPostProcessor imple
           path = uri.getScheme() + "://" + uri.getHost() + (uri.getPort() == -1 ? "" : (":" + uri.getPort())) + path;
         }
         url = urlHandler.get(path)
-            .queryString(uri.getRawQuery(), this.inheritUrlParameterNames)
-            .fragment(uri.getFragment())
-            .build();
+          .queryString(uri.getRawQuery(), this.inheritUrlParameterNames)
+          .fragment(uri.getFragment())
+          .build();
         link.setUrl(url);
       }
       catch (URISyntaxException ex) {

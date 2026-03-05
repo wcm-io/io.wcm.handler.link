@@ -58,20 +58,28 @@ class LinkComponentPropertyResolverTest {
   void testGetLinkTargetUrlFallbackProperty_Component() throws Exception {
     context.create().resource(RESOURCE_TYPE,
         PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY, "property1",
-        PN_COMPONENT_LINK_TARGET_WINDOW_TARGET_FALLBACK_PROPERTY, new String[] { "prop2a", "prop2b" });
+        PN_COMPONENT_LINK_TARGET_WINDOW_TARGET_FALLBACK_PROPERTY, new String[] {
+            "prop2a", "prop2b"
+        });
     Resource resource = context.create().resource("/content/r1",
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
 
     try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(resource, LinkComponentPropertyResolver.class)) {
-      assertArrayEquals(new String[] { "property1" }, underTest.getLinkTargetUrlFallbackProperty());
-      assertArrayEquals(new String[] { "prop2a", "prop2b" }, underTest.getLinkTargetWindowTargetFallbackProperty());
+      assertArrayEquals(new String[] {
+          "property1"
+      }, underTest.getLinkTargetUrlFallbackProperty());
+      assertArrayEquals(new String[] {
+          "prop2a", "prop2b"
+      }, underTest.getLinkTargetWindowTargetFallbackProperty());
     }
   }
 
   @Test
   void testGetLinkTargetUrlFallbackProperty_Component_Policy() throws Exception {
     context.contentPolicyMapping(RESOURCE_TYPE,
-        PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY, new String[] { "property2", "property3" });
+        PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY, new String[] {
+            "property2", "property3"
+        });
 
     context.create().resource(RESOURCE_TYPE,
         PN_COMPONENT_LINK_TARGET_URL_FALLBACK_PROPERTY, "property1");
@@ -79,7 +87,9 @@ class LinkComponentPropertyResolverTest {
         PROPERTY_RESOURCE_TYPE, RESOURCE_TYPE);
 
     try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(resource, LinkComponentPropertyResolver.class)) {
-      assertArrayEquals(new String[] { "property2", "property3" }, underTest.getLinkTargetUrlFallbackProperty());
+      assertArrayEquals(new String[] {
+          "property2", "property3"
+      }, underTest.getLinkTargetUrlFallbackProperty());
     }
   }
 
@@ -94,7 +104,9 @@ class LinkComponentPropertyResolverTest {
     Resource subResource2 = context.create().resource(subResource1, "subResource2");
 
     try (LinkComponentPropertyResolver underTest = AdaptTo.notNull(subResource2, LinkComponentPropertyResolver.class)) {
-      assertArrayEquals(new String[] { "property1" }, underTest.getLinkTargetUrlFallbackProperty());
+      assertArrayEquals(new String[] {
+          "property1"
+      }, underTest.getLinkTargetUrlFallbackProperty());
     }
   }
 

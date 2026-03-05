@@ -66,7 +66,7 @@ public enum DummyAppTemplate {
     Matcher templateParts = templatePathPattern.matcher(templatePath);
     if (templateParts.matches()) {
       resourceTypeFromTemplatePath = templateParts.group(1) + "/components" + StringUtils.defaultString(templateParts.group(2))
-      + "/page/" + templateParts.group(3);
+          + "/page/" + templateParts.group(3);
     }
 
     this.resourceType = resourceTypeFromTemplatePath;

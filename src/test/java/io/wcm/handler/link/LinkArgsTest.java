@@ -36,17 +36,17 @@ class LinkArgsTest {
   @Test
   void testProperties() {
     LinkArgs linkArgs = new LinkArgs()
-        .urlMode(UrlModes.FULL_URL)
-        .dummyLink(true)
-        .dummyLinkUrl("/test/url")
-        .selectors("sel1")
-        .extension("ext1")
-        .suffix("suffix1")
-        .queryString("query1")
-        .fragment("fragment1")
-        .windowTarget("_parent")
-        .disableSuffixSelector(true)
-        .linkTargetUrlFallbackProperty("property1");
+      .urlMode(UrlModes.FULL_URL)
+      .dummyLink(true)
+      .dummyLinkUrl("/test/url")
+      .selectors("sel1")
+      .extension("ext1")
+      .suffix("suffix1")
+      .queryString("query1")
+      .fragment("fragment1")
+      .windowTarget("_parent")
+      .disableSuffixSelector(true)
+      .linkTargetUrlFallbackProperty("property1");
 
     assertEquals(UrlModes.FULL_URL, linkArgs.getUrlMode());
     assertTrue(linkArgs.isDummyLink());
@@ -58,7 +58,9 @@ class LinkArgsTest {
     assertEquals("fragment1", linkArgs.getFragment());
     assertEquals("_parent", linkArgs.getWindowTarget());
     assertTrue(linkArgs.isDisableSuffixSelector());
-    assertArrayEquals(new String[] { "property1" }, linkArgs.getLinkTargetUrlFallbackProperty());
+    assertArrayEquals(new String[] {
+        "property1"
+    }, linkArgs.getLinkTargetUrlFallbackProperty());
   }
 
   @Test
@@ -66,9 +68,9 @@ class LinkArgsTest {
     Map<String, Object> props = Map.of("prop1", "value1");
 
     LinkArgs linkArgs = new LinkArgs()
-        .property("prop3", "value3")
-        .properties(props)
-        .property("prop2", "value2");
+      .property("prop3", "value3")
+      .properties(props)
+      .property("prop2", "value2");
 
     assertEquals(3, linkArgs.getProperties().size());
     assertEquals("value1", linkArgs.getProperties().get("prop1", String.class));
@@ -81,19 +83,19 @@ class LinkArgsTest {
     Map<String, Object> props = Map.of("prop1", "value1", "prop2", "value2");
 
     LinkArgs linkArgs = new LinkArgs()
-        .urlMode(UrlModes.FULL_URL)
-        .dummyLink(true)
-        .dummyLinkUrl("/test/url")
-        .selectors("sel1")
-        .extension("ext1")
-        .suffix("suffix1")
-        .queryString("query1")
-        .fragment("fragment1")
-        .windowTarget("_blank")
-        .linkTargetUrlFallbackProperty("property1")
-        .linkTargetWindowTargetFallbackProperty("property2")
-        .disableSuffixSelector(true)
-        .properties(props);
+      .urlMode(UrlModes.FULL_URL)
+      .dummyLink(true)
+      .dummyLinkUrl("/test/url")
+      .selectors("sel1")
+      .extension("ext1")
+      .suffix("suffix1")
+      .queryString("query1")
+      .fragment("fragment1")
+      .windowTarget("_blank")
+      .linkTargetUrlFallbackProperty("property1")
+      .linkTargetWindowTargetFallbackProperty("property2")
+      .disableSuffixSelector(true)
+      .properties(props);
 
     LinkArgs clone = linkArgs.clone();
     assertNotSame(linkArgs, clone);

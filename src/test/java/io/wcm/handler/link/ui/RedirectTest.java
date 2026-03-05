@@ -48,9 +48,9 @@ class RedirectTest {
   void testRedirectDefault() {
     context.currentPage(context.create().page("/content/redirect", DummyAppTemplate.REDIRECT.getTemplatePath(),
         ImmutableValueMap.builder()
-        .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
-        .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://mysite.com")
-        .build()));
+          .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://mysite.com")
+          .build()));
 
     Redirect redirect = context.request().adaptTo(Redirect.class);
 
@@ -63,10 +63,10 @@ class RedirectTest {
   void testRedirect302() {
     context.currentPage(context.create().page("/content/redirect", DummyAppTemplate.REDIRECT.getTemplatePath(),
         ImmutableValueMap.builder()
-        .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
-        .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://mysite.com")
-        .put("redirectStatus", Integer.toString(HttpServletResponse.SC_MOVED_TEMPORARILY))
-        .build()));
+          .put(LinkNameConstants.PN_LINK_TYPE, ExternalLinkType.ID)
+          .put(LinkNameConstants.PN_LINK_EXTERNAL_REF, "http://mysite.com")
+          .put("redirectStatus", Integer.toString(HttpServletResponse.SC_MOVED_TEMPORARILY))
+          .build()));
 
     Redirect redirect = context.request().adaptTo(Redirect.class);
 

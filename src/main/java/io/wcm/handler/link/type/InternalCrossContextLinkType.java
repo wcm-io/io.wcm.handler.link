@@ -62,9 +62,9 @@ public final class InternalCrossContextLinkType extends LinkType {
   public static final @NotNull String ID = "internalCrossContext";
 
   private final @NotNull InternalLinkResolverOptions resolverOptions = new InternalLinkResolverOptions()
-      .primaryLinkRefProperty(getPrimaryLinkRefProperty())
-      .rewritePathToContext(false)
-      .useTargetContext(true);
+    .primaryLinkRefProperty(getPrimaryLinkRefProperty())
+    .rewritePathToContext(false)
+    .useTargetContext(true);
 
   @Self
   private InternalLinkResolver internalLinkResolver;
