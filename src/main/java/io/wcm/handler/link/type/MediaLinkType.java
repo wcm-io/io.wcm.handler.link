@@ -21,8 +21,10 @@ package io.wcm.handler.link.type;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -107,7 +109,7 @@ public final class MediaLinkType extends LinkType {
     ValueMap props = linkRequest.getResourceProperties();
 
     // get properties
-    String mediaRef = StringUtils.defaultString(props.get(LinkNameConstants.PN_LINK_MEDIA_REF, String.class),
+    String mediaRef = Objects.toString(props.get(LinkNameConstants.PN_LINK_MEDIA_REF, String.class),
         link.getLinkRequest().getReference());
     boolean isDownload = props.get(LinkNameConstants.PN_LINK_MEDIA_DOWNLOAD, false);
 
@@ -142,7 +144,7 @@ public final class MediaLinkType extends LinkType {
    * @return true if Path is located below DAM default root folders.
    */
   public static boolean isDefaultMediaContentPath(String path) {
-    return StringUtils.startsWith(path, DEFAULT_DAM_ROOT);
+    return Strings.CS.startsWith(path, DEFAULT_DAM_ROOT);
   }
 
   /**

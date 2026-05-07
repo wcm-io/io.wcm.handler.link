@@ -31,8 +31,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.adapter.Adaptable;
 import org.apache.sling.api.resource.Resource;
@@ -278,12 +280,12 @@ class LinkHandlerImplTest {
 
     @Override
     public boolean accepts(String linkRef) {
-      return StringUtils.startsWith(linkRef, "/");
+      return Strings.CS.startsWith(linkRef, "/");
     }
 
     @Override
     public Link resolveLink(Link link) {
-      String contentRef = StringUtils.defaultString(link.getLinkRequest().getResourceProperties().get("dummyLinkRef", String.class),
+      String contentRef = Objects.toString(link.getLinkRequest().getResourceProperties().get("dummyLinkRef", String.class),
           link.getLinkRequest().getReference());
       link.setUrl("http://xyz" + contentRef);
       return link;

@@ -19,7 +19,8 @@
  */
 package io.wcm.handler.link.markup;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.Objects;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -58,7 +59,7 @@ public final class DummyLinkMarkupBuilder implements LinkMarkupBuilder {
   @Override
   public @Nullable Anchor build(@NotNull Link link) {
     // build anchor
-    String url = StringUtils.defaultString(link.getLinkRequest().getLinkArgs().getDummyLinkUrl(), LinkHandler.INVALID_LINK);
+    String url = Objects.toString(link.getLinkRequest().getLinkArgs().getDummyLinkUrl(), LinkHandler.INVALID_LINK);
     return new Anchor(url);
   }
 

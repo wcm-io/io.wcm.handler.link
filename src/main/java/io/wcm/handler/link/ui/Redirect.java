@@ -25,6 +25,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -67,7 +68,7 @@ public class Redirect {
     if (wcmMode == WCMMode.DISABLED) {
       renderPage = false;
       if (StringUtils.isNotEmpty(redirectUrl)) {
-        if (StringUtils.equals(redirectStatus, Integer.toString(HttpServletResponse.SC_MOVED_TEMPORARILY))) {
+        if (Strings.CS.equals(redirectStatus, Integer.toString(HttpServletResponse.SC_MOVED_TEMPORARILY))) {
           response.sendRedirect(redirectUrl);
         }
         else {

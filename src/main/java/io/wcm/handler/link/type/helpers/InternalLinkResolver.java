@@ -24,6 +24,8 @@ import static io.wcm.handler.link.LinkNameConstants.PN_LINK_FRAGMENT;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_QUERY_PARAM;
 import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 
+import java.util.Objects;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -180,7 +182,7 @@ public final class InternalLinkResolver {
 
       LinkArgs linkArgs = linkRequest.getLinkArgs();
       String selectors = linkArgs.getSelectors();
-      String fileExtension = StringUtils.defaultString(linkArgs.getExtension(), FileExtension.HTML);
+      String fileExtension = Objects.toString(linkArgs.getExtension(), FileExtension.HTML);
       String suffix = linkArgs.getSuffix();
       String queryString = linkArgs.getQueryString();
       String fragment = linkArgs.getFragment();

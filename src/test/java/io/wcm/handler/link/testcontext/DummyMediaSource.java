@@ -19,7 +19,7 @@
  */
 package io.wcm.handler.link.testcontext;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -46,7 +46,7 @@ public class DummyMediaSource extends MediaSource {
 
   @Override
   public boolean accepts(String mediaRef) {
-    return StringUtils.startsWith(mediaRef, "/content/dam/dummymedia/");
+    return Strings.CS.startsWith(mediaRef, "/content/dam/dummymedia/");
   }
 
   @Override
@@ -57,10 +57,10 @@ public class DummyMediaSource extends MediaSource {
   @Override
   public Media resolveMedia(Media media) {
     String mediaUrl = media.getMediaRequest().getMediaRef();
-    if (StringUtils.contains(mediaUrl, "image")) {
+    if (Strings.CS.contains(mediaUrl, "image")) {
       mediaUrl += ".gif";
     }
-    else if (StringUtils.contains(mediaUrl, "pdf")) {
+    else if (Strings.CS.contains(mediaUrl, "pdf")) {
       mediaUrl += ".pdf";
     }
     else {

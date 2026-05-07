@@ -202,7 +202,7 @@ GraniteUiSyntheticResource.child(linkTypeSelect, "granite:data", JcrConstants.NT
     .build());
 Resource linkTypeItems = GraniteUiSyntheticResource.child(linkTypeSelect, "items", JcrConstants.NT_UNSTRUCTURED);
 for (LinkType linkType : linkTypes.values()) {
-  boolean selected = StringUtils.equals(linkType.getId(), linkTargetUrlFallbackTypeId);
+  boolean selected = Strings.CS.equals(linkType.getId(), linkTargetUrlFallbackTypeId);
   GraniteUiSyntheticResource.child(linkTypeItems, linkType.getId(), JcrConstants.NT_UNSTRUCTURED,
       ImmutableValueMap.builder()
       .put("value", linkType.getId())
@@ -233,14 +233,14 @@ for (LinkType linkType : linkTypes.values()) {
       .put("namePrefix", namePrefix)
       .put("required", requiredLink)
       .put("showhideCssClass", showhideCssClass);
-  if (StringUtils.equals(linkTargetUrlFallbackTypeId, linkType.getId())) {
+  if (Strings.CS.equals(linkTargetUrlFallbackTypeId, linkType.getId())) {
     linkTypeEditComponentProps.put("linkTargetUrlFallbackValue", linkTargetUrlFallbackValue);
   }
   Resource linkTypeEditComponent = GraniteUiSyntheticResource.child(linkTypeWellItems, "linkTypeEdit_" + linkType.getId(),
       linkTypeEditComponentResourceType, linkTypeEditComponentProps.build());
 
   // backward compatibility: handle special properties for defining additional link fields
-  if (StringUtils.equalsAny(linkType.getId(),
+  if (Strings.CS.equalsAny(linkType.getId(),
       InternalLinkType.ID, InternalCrossContextLinkType.ID, ExternalLinkType.ID, MediaLinkType.ID)) {
     addAdditionalComponents(linkTypeEditComponent, linkType.getId() + "LinkFields", cfg.getChild(linkType.getId() + "LinkFields"));
   }

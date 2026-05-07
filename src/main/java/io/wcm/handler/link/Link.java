@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jdom2.Attribute;
@@ -164,7 +164,7 @@ public final class Link {
   public @Nullable String getMarkup() {
     Anchor a = getAnchor();
     if (a != null) {
-      return StringUtils.removeEnd(a.toString(), "</a>");
+      return Strings.CS.removeEnd(a.toString(), "</a>");
     }
     else {
       return null;
@@ -284,7 +284,7 @@ public final class Link {
   public boolean isValid() {
     return getLinkType() != null
         && getUrl() != null
-        && !StringUtils.equals(getUrl(), LinkHandler.INVALID_LINK);
+        && !Strings.CS.equals(getUrl(), LinkHandler.INVALID_LINK);
   }
 
   @Override

@@ -22,7 +22,7 @@ package io.wcm.handler.link.type;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -102,7 +102,7 @@ public final class InternalLinkType extends LinkType {
   @Override
   public boolean accepts(@NotNull String linkRef) {
     // accept as internal link if the ref starts with "/content/"
-    return StringUtils.startsWith(linkRef, "/content/")
+    return Strings.CS.startsWith(linkRef, "/content/")
         && !MediaLinkType.isDefaultMediaContentPath(linkRef);
   }
 

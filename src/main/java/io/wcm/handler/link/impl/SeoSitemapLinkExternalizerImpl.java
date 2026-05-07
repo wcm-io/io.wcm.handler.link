@@ -19,7 +19,7 @@
  */
 package io.wcm.handler.link.impl;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -94,7 +94,7 @@ public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
     if (externalizedUrl != null) {
       log.debug("Externalize {} to {}", resource, externalizedUrl);
       // remove ".html" extension, it's added automatically by AEM
-      return StringUtils.removeEnd(externalizedUrl, HTML_EXTENSION);
+      return Strings.CS.removeEnd(externalizedUrl, HTML_EXTENSION);
     }
 
     // fallback to AEM implementation
@@ -108,7 +108,7 @@ public class SeoSitemapLinkExternalizerImpl implements SitemapLinkExternalizer {
   @Override
   public @NotNull String externalize(ResourceResolver resourceResolver, String path) {
     // html extension is added implicitly by AEM, remove it to get the targeted page instance
-    String pagePath = StringUtils.removeEnd(path, HTML_EXTENSION);
+    String pagePath = Strings.CS.removeEnd(path, HTML_EXTENSION);
     Page page = getPageForPath(resourceResolver, pagePath);
     String externalizedUrl = externalizePageLink(page);
     if (externalizedUrl != null) {

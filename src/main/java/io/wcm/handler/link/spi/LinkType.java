@@ -20,6 +20,7 @@
 package io.wcm.handler.link.spi;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -77,7 +78,7 @@ public abstract class LinkType {
     // check for matching link type ID in link resource
     String linkTypeId = props.get(LinkNameConstants.PN_LINK_TYPE, String.class);
     if (StringUtils.isNotEmpty(linkTypeId)) {
-      return StringUtils.equals(linkTypeId, getId());
+      return Strings.CS.equals(linkTypeId, getId());
     }
     // if not link type is set at all check if link ref attribute contains a valid link
     // or a link reference is given with auto-detection of it's type

@@ -21,7 +21,7 @@ package io.wcm.handler.link.testcontext;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
@@ -55,7 +55,7 @@ public class DummyLinkHandlerConfig extends LinkHandlerConfig {
 
     // check for non-linkable templates
     String templatePath = page.getProperties().get(NameConstants.PN_TEMPLATE, String.class);
-    if (StringUtils.equals(templatePath, DummyAppTemplate.STRUCTURE_ELEMENT.getTemplatePath())) {
+    if (Strings.CS.equals(templatePath, DummyAppTemplate.STRUCTURE_ELEMENT.getTemplatePath())) {
       return false;
     }
 
@@ -65,7 +65,7 @@ public class DummyLinkHandlerConfig extends LinkHandlerConfig {
   @Override
   public boolean isRedirect(Page page) {
     String templatePath = page.getProperties().get(NameConstants.PN_TEMPLATE, String.class);
-    boolean isRedirect = StringUtils.equals(templatePath, DummyAppTemplate.REDIRECT.getTemplatePath());
+    boolean isRedirect = Strings.CS.equals(templatePath, DummyAppTemplate.REDIRECT.getTemplatePath());
     if (isRedirect) {
       return true;
     }

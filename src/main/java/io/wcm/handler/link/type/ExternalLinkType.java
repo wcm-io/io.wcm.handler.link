@@ -21,6 +21,7 @@ package io.wcm.handler.link.type;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -105,7 +106,7 @@ public final class ExternalLinkType extends LinkType {
     ValueMap props = link.getLinkRequest().getResourceProperties();
 
     // get external URL from link properties
-    String linkUrl = StringUtils.defaultString(props.get(LinkNameConstants.PN_LINK_EXTERNAL_REF, String.class),
+    String linkUrl = Objects.toString(props.get(LinkNameConstants.PN_LINK_EXTERNAL_REF, String.class),
         link.getLinkRequest().getReference());
 
     // check external link url

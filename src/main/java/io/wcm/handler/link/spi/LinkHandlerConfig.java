@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.annotation.versioning.ConsumerType;
@@ -140,17 +141,17 @@ public abstract class LinkHandlerConfig implements ContextAwareService {
    * @return Root path or null
    */
   public @Nullable String getLinkRootPath(@NotNull Page page, @NotNull String linkTypeId) {
-    if (StringUtils.equals(linkTypeId, InternalLinkType.ID)) {
+    if (Strings.CS.equals(linkTypeId, InternalLinkType.ID)) {
       // inside an experience fragment it does not make sense to use a site root path
       if (Path.isExperienceFragmentPath(page.getPath()) || Path.isEditableTemplatePath(page.getPath())) {
         return DEFAULT_ROOT_PATH_CONTENT;
       }
       return AdaptTo.notNull(page.getContentResource(), SiteRoot.class).getRootPath(page);
     }
-    else if (StringUtils.equals(linkTypeId, InternalCrossContextLinkType.ID)) {
+    else if (Strings.CS.equals(linkTypeId, InternalCrossContextLinkType.ID)) {
       return DEFAULT_ROOT_PATH_CONTENT;
     }
-    else if (StringUtils.equals(linkTypeId, MediaLinkType.ID)) {
+    else if (Strings.CS.equals(linkTypeId, MediaLinkType.ID)) {
       return DEFAULT_ROOT_PATH_MEDIA;
     }
     return null;
