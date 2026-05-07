@@ -89,6 +89,7 @@ final class LinkBuilderImpl implements LinkBuilder {
     this.linkHandler = linkHandler;
   }
 
+  @SuppressWarnings("PMD.AvoidCatchingGenericException")
   private void resolveWindowTargetAndFallbackProperties(@NotNull ComponentPropertyResolverFactory componentPropertyResolverFactory) {
     if (resource == null) {
       return;
