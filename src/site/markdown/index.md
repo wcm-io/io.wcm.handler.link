@@ -32,8 +32,8 @@ Read the [general concepts][general-concepts] to get an overview of the function
 
 |Link Handler version |AEM version supported
 |---------------------|----------------------
-|2.3.4 or higher      |AEM 6.5.24+, AEM 6.6.2+, AEMaaCS
-|2.0.0 - 2.3.2        |AEM 6.5.17+, AEM 6.6.0+, AEMaaCS
+|2.4.0 or higher      |AEM 6.5.24+, AEM 6.6.2+, AEMaaCS
+|2.0.0 - 2.3.x        |AEM 6.5.17+, AEM 6.6.0+, AEMaaCS
 |1.9.4 - 1.10.4       |AEM 6.5.7+, AEMaaCS
 |1.9.0 - 1.9.2        |AEM 6.5+, AEMaaCS
 |1.6.x - 1.8.x        |AEM 6.4.5+, AEMaaCS
