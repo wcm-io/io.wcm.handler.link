@@ -27,6 +27,7 @@ import static io.wcm.handler.link.LinkNameConstants.PN_LINK_TYPE;
 import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -172,7 +173,7 @@ public final class InternalLinkResolver {
     if (targetPage != null
         && (linkHandlerConfig.isRedirect(targetPage) || resolvingUrlHandlerConfig.isIntegrator(targetPage))
         && wcmMode != WCMMode.EDIT) {
-      return recursiveResolveLink(targetPage, link);
+      return recursiveResolveLink(targetPage, link, options);
     }
 
     // build link url
@@ -230,21 +231,41 @@ public final class InternalLinkResolver {
    * content resource (jcr:content node). This information is used to resolve the link.
    * @param redirectPage Redirect or integrator page
    * @param link Link metadata
+   * @param options Options
    * @return Link metadata
    */
-  private Link recursiveResolveLink(Page redirectPage, Link link) {
+  private Link recursiveResolveLink(Page redirectPage, Link link, InternalLinkResolverOptions options) {
     LinkRequest linkRequest = link.getLinkRequest();
     LinkRequest redirectLinkRequest;
 
     String linkType = redirectPage.getProperties().get(PN_LINK_TYPE, String.class);
     String cqRedirectTarget = redirectPage.getProperties().get(PN_REDIRECT_TARGET, String.class);
     if (StringUtils.isBlank(linkType) && StringUtils.isNotBlank(cqRedirectTarget)) {
-      // detected cq-style cq:redirectTarget property, use it's value as reference
-      redirectLinkRequest = new LinkRequest(
-          null,
-          null,
-          cqRedirectTarget,
-          linkRequest.getLinkArgs());
+      // Detected cq-style cq:redirectTarget property. Resolve it to the target page and pass that
+      // page on, instead of passing the property value as a link reference: the value is an
+      // explicit, absolute path stored on the redirect page, so it must not be rewritten to the
+      // current site context the way an authored link reference is (see #getTargetPage). Rewriting
+      // it breaks every redirect that points outside the current context - it either resolves to a
+      // different page that happens to exist at the same relative path in the current context, or,
+      // when that path is the redirect page itself, recurses until LinkResolveCounter aborts and
+      // the link is dropped.
+      Page cqRedirectTargetPage = getCqRedirectTargetPage(cqRedirectTarget, options);
+      if (cqRedirectTargetPage != null) {
+        redirectLinkRequest = new LinkRequest(
+            null,
+            cqRedirectTargetPage,
+            null,
+            linkRequest.getLinkArgs());
+      }
+      else {
+        // no acceptable target page at that path - keep the property value as link reference,
+        // so other link types (e.g. an external URL stored in cq:redirectTarget) still apply
+        redirectLinkRequest = new LinkRequest(
+            null,
+            null,
+            cqRedirectTarget,
+            linkRequest.getLinkArgs());
+      }
     }
     else {
       // set link reference to content resource of redirect page, keep other parameters
@@ -273,6 +294,30 @@ public final class InternalLinkResolver {
     finally {
       linkResolveCounter.decreaseCount();
     }
+  }
+
+  /**
+   * Resolves the value of a cq-style {@code cq:redirectTarget} property to its target page.
+   * @param cqRedirectTarget Property value
+   * @param options Options
+   * @return Target page, or null if the value does not point to an acceptable page (e.g. it holds an
+   *         external URL, or a path that no longer exists)
+   */
+  private Page getCqRedirectTargetPage(String cqRedirectTarget, InternalLinkResolverOptions options) {
+    String path = StringUtils.trim(cqRedirectTarget);
+    Page page = pageManager.getPage(path);
+    if (page == null) {
+      // the property is often authored with the file extension included, e.g. by the page properties
+      // dialog storing the picked page as "/content/.../page.html"
+      String pathWithoutExtension = Strings.CS.removeEnd(path, "." + FileExtension.HTML);
+      if (!Strings.CS.equals(pathWithoutExtension, path)) {
+        page = pageManager.getPage(pathWithoutExtension);
+      }
+    }
+    if (!acceptPage(page, options)) {
+      return null;
+    }
+    return page;
   }
 
   /**

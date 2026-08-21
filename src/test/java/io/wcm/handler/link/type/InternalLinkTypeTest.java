@@ -259,6 +259,132 @@ class InternalLinkTypeTest {
   }
 
   @Test
+  void testRedirectInternal_cqRedirectTarget_OtherSite() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // target page in the other site
+    Page otherSiteTargetPage = context.create().page(AppAemContext.ROOTPATH_CONTENT_OTHER_SITE + "/section/content",
+        DummyAppTemplate.CONTENT.getTemplatePath());
+
+    // redirect page in this site pointing at it
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectOtherSite", null,
+        NameConstants.PN_REDIRECT_TARGET, otherSiteTargetPage.getPath());
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("http://en.dummysite.org/content/unittest/en_test/brand/en/section/content.html", link.getUrl(), "link url");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_OtherSite_SameRelativePath() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // target page in the other site, at the same relative path the redirect page has in this site
+    Page otherSiteTargetPage = context.create().page(AppAemContext.ROOTPATH_CONTENT_OTHER_SITE + "/section/page2",
+        DummyAppTemplate.CONTENT.getTemplatePath());
+
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/page2", null,
+        NameConstants.PN_REDIRECT_TARGET, otherSiteTargetPage.getPath());
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("http://en.dummysite.org/content/unittest/en_test/brand/en/section/page2.html", link.getUrl(), "link url");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_OtherSite_TwoHops() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // chain: this site -> other site -> a page below it. Both hops are cq-style redirects.
+    Page otherSiteTargetPage = context.create().page(AppAemContext.ROOTPATH_CONTENT_OTHER_SITE + "/section/content2",
+        DummyAppTemplate.CONTENT.getTemplatePath());
+    Page otherSiteRedirectPage = context.create().page(AppAemContext.ROOTPATH_CONTENT_OTHER_SITE + "/section/redirect",
+        null, NameConstants.PN_REDIRECT_TARGET, otherSiteTargetPage.getPath());
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectTwoHops", null,
+        NameConstants.PN_REDIRECT_TARGET, otherSiteRedirectPage.getPath());
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("http://en.dummysite.org/content/unittest/en_test/brand/en/section/content2.html", link.getUrl(), "link url");
+    assertEquals(2, link.getRedirectPages().size(), "redirect pages");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_OtherSite_WithHtmlExtension() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // the page properties dialog stores the picked page including its extension
+    Page otherSiteTargetPage = context.create().page(AppAemContext.ROOTPATH_CONTENT_OTHER_SITE + "/section/content",
+        DummyAppTemplate.CONTENT.getTemplatePath());
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectExt", null,
+        NameConstants.PN_REDIRECT_TARGET, otherSiteTargetPage.getPath() + ".html");
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("http://en.dummysite.org/content/unittest/en_test/brand/en/section/content.html", link.getUrl(), "link url");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_Whitespace() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectWhitespace", null,
+        NameConstants.PN_REDIRECT_TARGET, "  " + targetPage.getPath() + "  ");
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("http://www.dummysite.org/content/unittest/de_test/brand/de/section/content.html", link.getUrl(), "link url");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_ExternalUrl() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // an external URL in cq:redirectTarget names no page: it stays a link reference and is resolved
+    // by the external link type
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectExternalUrl",
+        null, NameConstants.PN_REDIRECT_TARGET, "https://www.externaldomain.org/target");
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertTrue(link.isValid(), "link valid");
+    assertEquals("https://www.externaldomain.org/target", link.getUrl(), "link url");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_NonExistingPage() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectMissing", null,
+        NameConstants.PN_REDIRECT_TARGET, "/content/unittest/de_test/brand/de/section/does-not-exist");
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertFalse(link.isValid(), "link valid");
+    assertNull(link.getUrl(), "link url");
+  }
+
+  @Test
+  void testRedirectInternal_cqRedirectTarget_InvalidLinkTarget() {
+    LinkHandler linkHandler = AdaptTo.notNull(adaptable(), LinkHandler.class);
+
+    // a page the link handler config rejects as link target must not become the redirect target
+    Page structureElementPage = context.create().page("/content/unittest/de_test/brand/de/section/structure",
+        DummyAppTemplate.STRUCTURE_ELEMENT.getTemplatePath());
+    Page redirectInternalPage = context.create().page("/content/unittest/de_test/brand/de/section/redirectStructure",
+        null, NameConstants.PN_REDIRECT_TARGET, structureElementPage.getPath());
+
+    Link link = linkHandler.get(redirectInternalPage).build();
+
+    assertFalse(link.isValid(), "link valid");
+  }
+
+  @Test
   void testRedirectInternal_EditMode() {
     if (!(adaptable() instanceof SlingHttpServletRequest)) {
       return;

@@ -28,6 +28,9 @@
       <action type="update" dev="sseifert">
         Switch to AEM 6.5.24 as minimum version (also compatible with AEM 6.6.2 / AEM 6.5 LTS SP2 and AEMaaCS).
       </action>
+      <action type="fix" dev="mrozati" issue="50">
+        InternalLinkResolver: Resolve a cq-style cq:redirectTarget property to its target page instead of re-resolving its value as a link reference. As a link reference the path was rewritten to the current site context, so a redirect pointing to another site or language either resolved to a different page that happened to exist at the same relative path, or recursed until the resolve counter aborted and the link was dropped.
+      </action>
     </release>
 
     <release version="2.3.2" date="2026-02-24">
