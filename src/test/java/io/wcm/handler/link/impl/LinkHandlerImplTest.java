@@ -58,7 +58,6 @@ import io.wcm.handler.url.UrlModes;
 import io.wcm.sling.commons.adapter.AdaptTo;
 import io.wcm.sling.commons.resource.ImmutableValueMap;
 import io.wcm.testing.mock.aem.junit5.AemContext;
-import io.wcm.testing.mock.aem.junit5.AemContextCallback;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
 /**
@@ -70,13 +69,9 @@ class LinkHandlerImplTest {
 
   static final String APP_ID = "linkHandlerImplTestApp";
 
-  final AemContext context = AppAemContext.newAemContext(new AemContextCallback() {
-
-    @Override
-    public void execute(AemContext callbackContext) {
-      callbackContext.registerService(LinkHandlerConfig.class, new TestLinkHandlerConfig(),
-          Constants.SERVICE_RANKING, 1000);
-    }
+  final AemContext context = AppAemContext.newAemContext(callbackContext -> {
+    callbackContext.registerService(LinkHandlerConfig.class, new TestLinkHandlerConfig(),
+        Constants.SERVICE_RANKING, 1000);
   });
 
   protected Adaptable adaptable() {
