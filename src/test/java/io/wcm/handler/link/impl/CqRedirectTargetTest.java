@@ -106,6 +106,7 @@ class CqRedirectTargetTest {
   @Test
   void internalLinkOtherContext_InternalCrossContextLinkTypeHigherPrecedence() {
     context.registerService(LinkHandlerConfig.class, new DummyLinkHandlerConfig() {
+
       // switch order of link types to make InternalCrossContextLinkType higher precedence than InternalLinkType
       // this will cause internal link based on cq:redirectTarget to be resolved as an internal cross context link
       @Override
